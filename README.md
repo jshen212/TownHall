@@ -1,4 +1,4 @@
-# MapSnap
+# TownHall
 
 >company motto
 
