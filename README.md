@@ -1,4 +1,4 @@
-# MapSnap
+# TownHall
 
 >company motto
 
@@ -26,5 +26,4 @@
 #### Dependencies and Running
 ~~~~
 npm install
-bower install
 ~~~~
