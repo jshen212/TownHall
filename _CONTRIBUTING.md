@@ -77,7 +77,7 @@ git rebase --continue
 git push origin branchName
 ~~~~
 
-9) Open a pull request
+9) Open a pull request to **master dev branch**
 
 ---------------------------
 **GIT STYLE GUIDE**
