@@ -26,5 +26,4 @@
 #### Dependencies and Running
 ~~~~
 npm install
-bower install
 ~~~~
