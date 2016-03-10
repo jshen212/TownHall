@@ -85,8 +85,8 @@ git push origin branchName
 Branch Names: please use type/description with camel-casing
 >feature/logoutButton
 
-Commit Messages: please use **[TYPE]** Description with first letter of type capitalized. Description should have proper punctuation/capitalization and be in past tense.
-> [Feature] Added button that allows user to logout
+Commit Messages: please use **[TYPE]** Description with first letter of type lowercase. Description should have proper punctuation/capitalization and be in past tense.
+> [feature] added button that allows user to logout
 
 Possible **TYPES** include:
 >setup, feature, refactor, bugfix
