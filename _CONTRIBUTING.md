@@ -7,14 +7,14 @@
 2) Clone your fork to your local machine
 
 ~~~~
-git clone https://github.com/**yourAcctName**/mapSnap.git
+git clone https://github.com/**yourAcctName**/TownHall.git
 Add an upstream that points to the main repo
 ~~~~
 
 3) Add an upstream remote
 
 ~~~~
-git remote add upstream https://github.com/mapSnapIO/mapSnap.git
+git remote add upstream https://github.com/TownHalls/TownHall.git
 ~~~~
 
 4) Install npm and bower dependencies
