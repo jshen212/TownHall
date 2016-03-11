@@ -1,0 +1,36 @@
+{
+  "name": "townhall",
+  "description": "a project management and communications app",
+  "main": "index.js",
+  "authors": [
+    "Daniel Kim",
+    "Jeff Shen",
+    "Daniel Russell",
+    "Richard Yu"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "trello",
+    "slack",
+    "project",
+    "management"
+  ],
+  "homepage": "https://github.com/jshen212/TownHall",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.0",
+    "angular-animate": "^1.5.0",
+    "angular-aria": "^1.5.0",
+    "angular-material": "^1.0.6",
+    "angular-messages": "^1.5.0",
+    "angular-ui-router": "^0.2.18",
+    "underscore": "^1.8.3"
+  }
+}
