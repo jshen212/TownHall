@@ -11,12 +11,14 @@ var TownHall = angular.module('TownHall', ['ui.router', 'ngMaterial'])
   .state('signup', {
     url: '/signup',
     templateUrl: 'app/auth/signup.html',
+    controller: 'authCtrl',
     authenticate: false
   })
 
   .state('signin', {
     url: '/signin',
     templateUrl: 'app/auth/signin.html',
+    controller: 'authCtrl',
     authenticate: false
   })
 
