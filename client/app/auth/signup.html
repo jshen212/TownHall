@@ -1,0 +1,19 @@
+<div class="container">
+  <md-content layout-padding layout="column" layout-align="center center">
+    <h2>Create a Town Hall Account</h2>
+    <md-input-container>
+      <label>Name</label>
+      <input ng-model="user.name">
+    </md-input-container>
+    <md-input-container>
+      <label>Email</label>
+      <input ng-model="user.email">
+    </md-input-container>
+    <md-input-container>
+      <label>Password</label>
+      <input ng-model="user.password" type="password">
+    </md-input-container>
+    <md-button class="md-raised md-primary" ng-click="signup()">Create New Account</md-button>
+    <p>Have an account already? <a href="#/signin">Sign in</a></p>
+  </md-content>
+</div>

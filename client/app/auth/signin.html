@@ -1,1 +1,15 @@
-<h1>hello world</h1>
+<div class="container">
+  <md-content layout-padding layout="column" layout-align="center center">
+    <h2>Sign in to Town Hall</h2>
+    <md-input-container>
+      <label>Email</label>
+      <input ng-model="user.email">
+    </md-input-container>
+    <md-input-container>
+      <label>Password</label>
+      <input ng-model="user.password" type="password">
+    </md-input-container>
+    <md-button class="md-raised md-primary" ng-click="signin()">Sign In</md-button>
+    <p>Don't have an account? <a href="#/signup">Create an account</a></p>
+  </md-content>
+</div>
