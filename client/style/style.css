@@ -1,0 +1,23 @@
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+
+
+a{
+  text-decoration: none;
+}
+
+#signin a {
+  color: white;
+}
+
+#signup a {
+  color: rgb(63,81,181);
+  font-weight: bold;
+}
+
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
