@@ -1,4 +1,5 @@
 TownHall.controller('boardCtrl', function($scope, $window, $state) {
+
   $scope.lists = [
     [{
     createdBy: 'Richard',

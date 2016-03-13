@@ -1,16 +1,26 @@
 <div class="boardContainer" layout="row" ng-controller="boardCtrl">
   <div class="listContainer">
     <ul layout="row">
-      <li ng-repeat="list in lists">
+      <li class="list" ng-repeat="list in lists">
         <ul layout="column">
-          <li ng-repeat="card in list">
-            {{card.createdBy}}
-            {{card.body}}
+          <li class="card" ng-repeat="card in list">
+            <md-card>
+              <md-card-title>
+                <md-card-title-text>
+                  <span class="md-headline">{{card.body}}</span>
+                  <span class="md-subhead">{{card.createdBy}}</span>
+                </md-card-title-text>
+              </md-card-title>
+              <md-card-actions layout="row" layout-align="end center">
+                <md-button>Edit</md-button>
+                <md-button>Remove</md-button>
+              </md-card-actions>
+            </md-card>
           </li>
           <md-button ng-click="addCard(list)">Add Card</md-button>
         </ul>
       </li>
-      <li><md-button ng-click="addList()">Add List</md-button></li>
+      <li class="list"><md-button ng-click="addList()">Add List</md-button></li>
     </ul>
   </div>
 </div>
