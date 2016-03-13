@@ -24,8 +24,9 @@ var TownHall = angular.module('TownHall', ['ui.router', 'ngMaterial'])
 
   .state('dashboard', {
     url: '/dashboard',
-    templateUrl: 'app/dashboard/dashboard.html',
-    authenticate: true
+    templateUrl: 'app/board/board.html',
+    controller: 'dashboardCtrl',
+    authenticate: false
   });
 
   $urlRouterProvider.otherwise('/');

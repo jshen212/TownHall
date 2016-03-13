@@ -1,0 +1,16 @@
+<div class="boardContainer" layout="row" ng-controller="boardCtrl">
+  <div class="listContainer">
+    <ul layout="row">
+      <li ng-repeat="list in lists">
+        <ul layout="column">
+          <li ng-repeat="card in list">
+            {{card.createdBy}}
+            {{card.body}}
+          </li>
+          <md-button ng-click="addCard(list)">Add Card</md-button>
+        </ul>
+      </li>
+      <li><md-button ng-click="addList()">Add List</md-button></li>
+    </ul>
+  </div>
+</div>
