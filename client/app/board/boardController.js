@@ -1,4 +1,4 @@
-TownHall.controller('boardCtrl', function($scope, $window, $state) {
+TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state) {
 
   $scope.lists = [
     [{
@@ -23,5 +23,20 @@ TownHall.controller('boardCtrl', function($scope, $window, $state) {
     list.push({createdBy: 'DK',
       body: 'card4'});
   };
+
+  $scope.editCard = function(card) {
+    $mdDialog.show({
+      clickOutsideToClose: true,
+      locals: {card: card},
+      templateUrl: 'app/board/cardModal.html',
+      controller: 'cardModalCtrl'
+
+    });
+
+  };
+
+
+
+
 
 });
