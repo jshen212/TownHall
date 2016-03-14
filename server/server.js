@@ -26,7 +26,11 @@ io.on('connection', function(socket) {
   });
 });
 
-// module.exports = app;
+require('./routes/routes.js')(app, express);
+
+
+
 module.exports = io;
+module.exports = app;
 
 console.log('chat app now listening on localhost:3000');
