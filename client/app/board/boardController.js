@@ -1,46 +1,41 @@
 TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state) {
 
   $scope.lists = [
-    [{
-      createdBy: 'Richard',
-      body: 'card 1'
-    }, {
-      createdBy: 'Daniel',
-      body: 'card5'
-    }],
-    [{
-      createdBy: 'Jeff',
-      body: 'card2'
-    }
-  ]
-];
+    {title: 'LIST ONE', cards: [{createdBy: 'jeff', body: 'card 1'}, {createdBy: 'richard', body: 'card 2'}]},
+    {title: 'LIST TWO', cards: [{createdBy: 'daniel', body: 'card 3'}, {createdBy: 'DK', body: 'card 4'}]}
+  ];
 
-$scope.addList = function() {
-  $scope.lists.push([]);
-};
+  $scope.addList = function() {
+    $scope.lists.push([]);
+  };
 
-$scope.addCard = function(list) {
-  list.push({createdBy: 'DK',
-  body: 'card4'});
-};
+  $scope.addCard = function(list) {
+    list.cards.push({createdBy: 'DK',
+    body: 'card4'});
+  };
 
-$scope.editCard = function(card) {
-  $mdDialog.show({
-    clickOutsideToClose: true,
-    locals: {card: card},
-    templateUrl: 'app/board/cardModal.html',
-    controller: 'cardModalCtrl'
+  $scope.editCard = function(card) {
+    $mdDialog.show({
+      clickOutsideToClose: true,
+      locals: {card: card},
+      templateUrl: 'app/board/cardModal.html',
+      controller: 'cardModalCtrl'
 
-  });
-};
+    });
+  };
 
-$scope.listConfig = {
-  animation: 150
-};
+  $scope.removeCard = function(list, index) {
+    console.log(index);
+    list.cards.splice(index, 1);
+  };
 
-$scope.listConfig2 = {
-  group: 'asdf',
-  animation: 150
-};
+  $scope.listConfig = {
+    animation: 150
+  };
+
+  $scope.listConfig2 = {
+    group: 'asdf',
+    animation: 150
+  };
 
 });
