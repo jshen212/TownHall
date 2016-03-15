@@ -1,4 +1,4 @@
-var boardController = require('../controllers/boardController.js');
+var boardController = require('../controllers/boardSQLController.js');
 
 module.exports = function(app) {
   // make board

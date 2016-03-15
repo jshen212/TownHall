@@ -4,9 +4,9 @@ var profileController = require('../controllers/profileController.js');
 
 module.exports = function(app) {
   // add profile
-  app.post('/add', profileController.addProfile);
+  app.post('/signup', profileController.addProfile);
   // get profile
-  app.get('/user', profileController.getUserProfile);
+  app.get('/signin', profileController.getUserProfile);
   // update profile
   app.post('/update', profileController.updateProfile);
 };

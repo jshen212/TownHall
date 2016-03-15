@@ -1,7 +1,7 @@
 var knex = require('knex')({
   client: 'mysql',
   connection: {
-    host: mysqlcluster6.registeredsite.com,
+    host: 'mysqlcluster6.registeredsite.com',
     user: 'townhalladmin',
     password: '!Qaz2wsx',
     database: 'townhallthesis',
