@@ -4,7 +4,7 @@ var Promise = require('bluebird');
 var _ = require('underscore');
 var knex = require('../db/schema.js').knex;
 
-var helpers = {
+module.exports = {
   createBoard: function(req, res, next) {
     // var newBoard = new Board({})
   },
@@ -16,5 +16,3 @@ var helpers = {
   }
 
 };
-
-module.exports = helpers;
