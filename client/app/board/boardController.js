@@ -35,8 +35,4 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state) {
 
   };
 
-
-
-
-
 });
