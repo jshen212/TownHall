@@ -1,6 +1,6 @@
 // when user wants to update profile,
 // update sql db with updated information
-var profileController = require('../controllers/profileController.js');
+var profileController = require('../controllers/userMongoController.js');
 
 module.exports = function(app) {
   // add profile
