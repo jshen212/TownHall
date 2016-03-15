@@ -1,7 +1,7 @@
 var knex = require('knex')({
   client: 'mysql',
   connection: {
-    host: mysqlcluster6.registeredsite.com,
+    host: 'mysqlcluster6.registeredsite.com',
     user: 'townhalladmin',
     password: '!Qaz2wsx',
     database: 'townhallthesis',
@@ -19,6 +19,7 @@ knex.schema.hasTable('Users').then(function(exists) {
       table.string('email', 100).unique();
       table.string('firstname', 100);
       table.string('lastname', 100);
+      table.string('image', 2000).defaultTo('https://about.udemy.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png');
       table.string('uid', 500).unique();
       table.timestamps();
     }).then(function(table) {

@@ -6,14 +6,16 @@ var boardSchema = new mongoose.Schema({
     uid: String,
     firstname: String,
     lastname: String,
-    email: String
+    email: String,
+    image: String
   },
   boardName: String,
   boardMembers: [{
     uid: String,
     firstname: String,
     lastname: String,
-    email: String
+    email: String,
+    image: String
   }],
   lists: [{
     title: String,
