@@ -1,8 +1,8 @@
 <div class="boardContainer" layout="row" ng-controller="boardCtrl">
   <div class="listContainer">
-    <ul layout="row">
+    <ul layout="row" ng-sortable="listConfig">
       <li class="list" ng-repeat="list in lists">
-        <ul layout="column">
+        <ul layout="column" ng-sortable="listConfig2">
           <li class="card" ng-repeat="card in list">
             <md-card>
               <md-card-title>

@@ -1,4 +1,4 @@
-var TownHall = angular.module('TownHall', ['ui.router', 'ngMaterial', 'xeditable'])
+var TownHall = angular.module('TownHall', ['ui.router', 'ngMaterial', 'xeditable', 'ng-sortable'])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
   $stateProvider
   .state('landing', {
