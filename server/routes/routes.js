@@ -11,6 +11,6 @@ module.exports = function(app, express) {
   app.use(helpers.errorLogger);
   app.use(helpers.errorHandler);
 
-  require('./boardRoute.js');
-  require('./profileRoute.js');
+  require('./boardRoute.js')(boardRouter);
+  require('./profileRoute.js')(profileRouter);
 };
