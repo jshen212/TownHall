@@ -2,8 +2,9 @@
   <div class="listContainer">
     <ul layout="row" ng-sortable="listConfig">
       <li class="list" ng-repeat="list in lists">
+        <div>{{list.title}}</div>
         <ul layout="column" ng-sortable="listConfig2">
-          <li class="card" ng-repeat="card in list">
+          <li class="card" ng-repeat="card in list.cards">
             <md-card>
               <md-card-title>
                 <md-card-title-text>
@@ -13,7 +14,7 @@
               </md-card-title>
               <md-card-actions layout="row" layout-align="end center">
                 <md-button ng-click="editCard(card)">Edit</md-button>
-                <md-button>Remove</md-button>
+                <md-button ng-click="removeCard(list, $index)">Remove</md-button>
               </md-card-actions>
             </md-card>
           </li>
