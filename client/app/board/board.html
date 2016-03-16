@@ -3,7 +3,7 @@
     <ul layout="row" ng-sortable="listConfig">
       <li class="list" ng-repeat="list in lists">
         <div ng-click="editTitle(list)">{{list.title}}</div>
-        <ul layout="column" ng-sortable="listConfig2">
+        <ul layout="column" ng-sortable="cardConfig">
           <li class="card" ng-repeat="card in list.cards">
             <md-card>
               <md-card-title>
@@ -18,6 +18,7 @@
               </md-card-actions>
             </md-card>
           </li>
+          <li class="unsortable" ng-show=!list.cards.length></li>
           <md-button ng-click="addCard(list)">Add Card</md-button>
           <md-button ng-click="removeList(lists, $index)">Remove List</md-button>
         </ul>

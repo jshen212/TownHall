@@ -2,10 +2,12 @@
   font-family: 'Roboto', sans-serif;
 }
 
-
-
-a{
+a {
   text-decoration: none;
+}
+
+li {
+  list-style-type: none;
 }
 
 #signin a {
@@ -17,16 +19,15 @@ a{
   font-weight: bold;
 }
 
-.card {
-  list-style-type: none;
-}
-
 .list {
-  list-style-type: none;
   background-color: lightgreen;
   margin: 3px;
 }
 
+.unsortable {
+  height: 20px;
+
+}
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
