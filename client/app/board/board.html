@@ -1,8 +1,8 @@
 <div class="boardContainer" layout="row" ng-controller="boardCtrl">
-  <div class="listContainer">
+  <div class="listContainer" layout="row">
     <ul layout="row" ng-sortable="listConfig">
       <li class="list" ng-repeat="list in lists">
-        <div>{{list.title}}</div>
+        <div ng-click="editTitle(list)">{{list.title}}</div>
         <ul layout="column" ng-sortable="listConfig2">
           <li class="card" ng-repeat="card in list.cards">
             <md-card>
@@ -21,7 +21,7 @@
           <md-button ng-click="addCard(list)">Add Card</md-button>
         </ul>
       </li>
-      <li class="list"><md-button ng-click="addList()">Add List</md-button></li>
     </ul>
+    <md-button class="list" ng-click="addList()">Add List</md-button>
   </div>
 </div>
