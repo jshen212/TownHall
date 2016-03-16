@@ -20,7 +20,6 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state) {
       locals: {list: list},
       templateUrl: 'app/board/titleModal.html',
       controller: 'titleModalCtrl'
-
     });
   };
 
@@ -30,13 +29,18 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state) {
       locals: {card: card},
       templateUrl: 'app/board/cardModal.html',
       controller: 'cardModalCtrl'
-
     });
   };
 
   $scope.removeCard = function(list, index) {
     console.log(index);
     list.cards.splice(index, 1);
+  };
+
+  $scope.removeList = function(lists, index) {
+    lists.splice(index, 1);
+
+    console.log(lists);
   };
 
   $scope.listConfig = {
