@@ -5,7 +5,7 @@ var knex = require('knex')({
     user: 'townhalladmin',
     password: '!Qaz2wsx',
     database: 'townhallthesis',
-    charset: 'utf8'
+    charset: 'latin1'
   }
 });
 
@@ -33,7 +33,7 @@ knex.schema.hasTable('Boards').then(function(exists) {
     knex.schema.createTable('Boards', function(table) {
       table.increments('id').primary();
       table.string('board_title', 100);
-      table.string('board_createdby');
+      table.integer('board_createdby');
       table.json('board_lists');
       table.timestamps();
     }).then(function(table) {
@@ -42,7 +42,7 @@ knex.schema.hasTable('Boards').then(function(exists) {
   }
 });
 
-knex.schema.hasTable('Userboardjoin').then(function(exists) {
+knex.schema.hasTable('Joined').then(function(exists) {
   if (!exists) {
     knex.schema.createTable('Joined', function(table) {
       table.integer('user_id').unsigned();

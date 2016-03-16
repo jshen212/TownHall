@@ -2,7 +2,7 @@ var db = require('../db/schema.js').db;
 var Promise = require('bluebird');
 
 var Userboardjoin = db.Model.extend({
-  tableName: 'Userboardjoin',
+  tableName: 'Joined',
   hasTimestamps: true,
   initialize: function() {
     console.log('User to board connection is created.');
