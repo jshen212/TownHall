@@ -6,12 +6,22 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state) {
   ];
 
   $scope.addList = function() {
-    $scope.lists.push([]);
+    $scope.lists.push({title: 'LIST NEW', cards: []});
   };
 
   $scope.addCard = function(list) {
     list.cards.push({createdBy: 'DK',
     body: 'card4'});
+  };
+
+  $scope.editTitle = function(list) {
+    $mdDialog.show({
+      clickOutsideToClose: true,
+      locals: {list: list},
+      templateUrl: 'app/board/titleModal.html',
+      controller: 'titleModalCtrl'
+
+    });
   };
 
   $scope.editCard = function(card) {
