@@ -5,7 +5,7 @@ var knex = require('knex')({
     user: 'townhalladmin',
     password: '!Qaz2wsx',
     database: 'townhallthesis',
-    charset: 'latin1'
+    charset: 'utf8'
   }
 });
 
@@ -20,7 +20,7 @@ knex.schema.hasTable('Users').then(function(exists) {
       table.string('firstname', 100);
       table.string('lastname', 100);
       table.string('image', 2000).defaultTo('https://about.udemy.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png');
-      table.string('uid', 500).unique();
+      table.string('uid', 100);
       table.timestamps();
     }).then(function(table) {
       console.log('Created Table', table);
