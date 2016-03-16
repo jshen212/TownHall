@@ -47,8 +47,9 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state) {
     animation: 150
   };
 
-  $scope.listConfig2 = {
-    group: 'asdf',
+  $scope.cardConfig = {
+    group: 'cards',
+    filter: '.unsortable',
     animation: 150
   };
 
