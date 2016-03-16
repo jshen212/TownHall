@@ -1,0 +1,15 @@
+<div class="profileContainer">
+  <div class="navBar" layout="row">
+    <h1>LogoGoesHere</h1>
+    <div class="navButtons">
+      <md-button ng-click="clicked()">Profile</md-button>
+      <md-button>Sign Out</md-button>
+    </div>
+  </div>
+
+  <div class="boardList" ng-repeat="board in boards">
+    <div class="board">
+      {{board}}
+    </div>
+  </div>
+</div>

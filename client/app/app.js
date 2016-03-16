@@ -27,6 +27,13 @@ var TownHall = angular.module('TownHall', ['ui.router', 'ngMaterial', 'xeditable
     templateUrl: 'app/board/board.html',
     controller: 'dashboardCtrl',
     authenticate: false
+  })
+
+  .state('profile', {
+    url: '/profile',
+    templateUrl: 'app/profile/profile.html',
+    controller: 'profileCtrl',
+    authenticate: false
   });
 
   $urlRouterProvider.otherwise('/');
