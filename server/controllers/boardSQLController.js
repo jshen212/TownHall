@@ -4,10 +4,12 @@ var Promise = require('bluebird');
 var _ = require('underscore');
 var knex = require('../db/schema.js').knex;
 
-module.exports = {
+var helpers = {
   createBoard: function(req, res, next) {
     var newBoard = new Board({
-      boardname: req.body.boardname
+      board_title: req.body.boardname,
+      board_createdby: req.body.id,
+      board_lists: JSON.stringify([])
     });
     newBoard.save()
     .then(function(newBoard) {
@@ -19,26 +21,64 @@ module.exports = {
       console.log('error in creating Board', err);
     });
   },
-  getBoard: function(req, res, next) {
+  //When user logs in, this function gets all board ids and title related to the user.
+  getDashboardview: function(req, res, next) {
+    var boardIdArray = [];
     console.log('sending board...');
+    helpers.getBoardsIds(req, function(boardIds) {
+      boardIds.forEach(function(boardId) {
+        boardIdArray.push(boardId.board_id);
+      });
+      knex('Boards')
+      .whereIn('id', boardIdArray)
+      .select('id', 'board_title')
+      .then(function(boards) {
+        res.send(boards);
+      })
+      .catch(function(err) {
+        console.log('error in getting dashboard view', err);
+      });
+    });
+  },
+  getBoard: function (req, res, next) {
     knex('Boards')
-    .whereIn('id', req.body.id)
-    .select('id', 'boardname')
+    .whereIn('id', req.body.board_id)
+    .select()
     .then(function(board) {
-      console.log('++line 28 board knex db query result is: ', board);
       res.send(board);
+    })
+    .catch(function(err) {
+      console.log('error in getting board', err);
     });
   },
   updateBoard: function(req, res, next) {
     knex('Boards')
-    .whereIn('id', req.body.id)
+    .whereIn('id', req.body.board_id)
     .update({
-      boardname: req.body.boardname
+      board_title: req.body.board_title,
+      board_lists: JSON.stringify(req.body.board_lists)
     })
     .then(function() {
       console.log('board updated');
       res.status(201).send('board updated');
+    })
+    .catch(function(err) {
+      console.log('error in updating board', err);
+    });
+  },
+  getBoardIds: function(req, res, callback) {
+    knex('Userboardjoin')
+    .whereIn('user_id', req.body.id)
+    .select('board_id')
+    .then(function(boardIds) {
+      console.log('board knex db query result is: ', boardIds);
+      callback(boardIds);
+    })
+    .catch(function(err) {
+      console.log('error in getting board ids', err);
     });
   }
 
 };
+
+module.exports = helpers;
