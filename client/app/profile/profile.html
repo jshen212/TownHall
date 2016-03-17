@@ -8,8 +8,8 @@
   </div>
 
   <div class="boardList" ng-repeat="board in boards">
-    <div class="board">
-      {{board}}
+    <div class="board" ng-click="loadBoard(board)">
+      {{board.boardName}}
     </div>
   </div>
 </div>

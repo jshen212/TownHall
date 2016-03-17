@@ -3,11 +3,11 @@ TownHall.factory('profileFactory', function($http) {
   var loadBoard = function(board, callback) {
     console.log('loadBoard firing');
     $http({
-      method: 'GET',
-      url: '/board',
+      method: 'POST',
+      url: 'api/board/board',
       data: board
     }).then(function success(data) {
-      console.log(data);
+      console.log('++line10 profileFactory', data);
       callback(data);
     });
   };

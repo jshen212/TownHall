@@ -41,6 +41,7 @@ var helpers = {
     });
   },
   getBoard: function (req, res, next) {
+    console.log('line44 boardSQLController', req);
     knex('Boards')
     .whereIn('id', req.body.board_id)
     .select()
