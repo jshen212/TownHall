@@ -1,29 +1,35 @@
 TownHall.factory('Auth', function($http, $window, $state, $firebaseAuth) {
 
-  var createProfile = function(user) {
+  return {};
+
+})
+
+.factory('User', function($http, $window, $state, $firebaseAuth) {
+
+  var sendUser = function(user) {
     return $http({
       method: 'POST',
       url: 'api/profile/signup',
       data: user
     }).then(function(res) {
-      return res.data;
+      console.log("added user to database", res.data);
     });
   };
 
-  var signin = function(user) {
+  var getUser = function(user) {
     return $http({
       method: 'POST',
       url: 'api/profile/signin',
       data: user
-    })
-    .then(function(res) {
+    }).then(function(res) {
+      console.log('we got the user!', res.data);
       return res.data;
     });
   };
 
   return {
-    createProfile: createProfile,
-    signin: signin
+    sendUser: sendUser,
+    getUser: getUser
   };
 
 });

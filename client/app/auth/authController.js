@@ -9,7 +9,7 @@ TownHall.controller('authCtrl', function($scope, Auth, User, $firebaseAuth, $win
     ref.authWithPassword({
       email: $scope.user.email,
       password: $scope.user.password
-    }, function(error, authData) {
+    }, function(err, authData) {
       if (err) {
         switch (err.code) {
           case 'INVALID_EMAIL':
@@ -36,6 +36,7 @@ TownHall.controller('authCtrl', function($scope, Auth, User, $firebaseAuth, $win
     ref.createUser({email: $scope.user.email, password: $scope.user.password}, function(err, user) {
       if (err === null) {
         console.log(user);
+        user.email = $scope.user.email;
         user.name = $scope.user.name;
         User.sendUser(user);
         $scope.signin();
