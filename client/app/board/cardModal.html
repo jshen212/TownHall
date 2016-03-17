@@ -1,3 +1,8 @@
 <div class="cardModal">
-  <p editable-textarea=card.body>{{card.body}}</p>
+  <p class="cardModalText" editable-textarea=card.text>{{card.text}}</p>
+  <ul>
+    <li ng-repeat="comment in card.comments">
+      {{comment.text}}
+    </li>
+  </ul>
 </div>

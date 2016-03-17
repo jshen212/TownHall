@@ -21,12 +21,17 @@ li {
 
 .list {
   background-color: lightgreen;
+  height: 100%;
   margin: 3px;
 }
 
 .unsortable {
   height: 70px;
+}
 
+.cardModalText:hover {
+  background-color: pink;
+  cursor: pointer;
 }
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
