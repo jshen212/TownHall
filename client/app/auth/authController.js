@@ -46,8 +46,9 @@ TownHall.controller('authCtrl', function($scope, Auth, User, $firebaseAuth, $win
     });
   };
 
-  $scope.logout = function() {
-    Auth.logout();
+  $scope.signout = function() {
+    Auth.signout();
+    $state.go('signin');
   };
 
   $scope.auth = function() {
