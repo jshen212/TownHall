@@ -1,7 +1,9 @@
 TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $stateParams,
   profileFactory) {
 
-    $scope.board = {};
+    $scope.boardTitle = '';
+    $scope.createdBy = '';
+    $scope.boardLists = [];
 
     $scope.addList = function() {
       $scope.lists.push({title: 'LIST NEW', cards: []});
@@ -52,7 +54,11 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $s
     };
 
     $scope.getBoard = function() {
-      $scope.board = $stateParams.obj;
+      $scope.board = $stateParams.obj.board_lists;
+      $scope.boardTitle = $stateParams.obj.board_title;
+      $scope.createdBy = $stateParams.obj.board_createdby;
+      $scope.boardLists = JSON.parse($stateParams.obj.board_lists);
+      console.log('++line61 boardCtrl', JSON.parse($scope.board));
     };
 
   });

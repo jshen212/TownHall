@@ -1,15 +1,14 @@
 <div class="boardContainer" layout="row" ng-controller="boardCtrl" ng-init="getBoard()">
   <div class="listContainer" layout="row">
     <ul layout="row" ng-sortable="listConfig">
-      <li class="list" ng-repeat="list in lists">
+      <li class="list" ng-repeat="list in boardLists">
         <div ng-click="editTitle(list)">{{list.title}}</div>
         <ul layout="column" ng-sortable="cardConfig">
           <li class="card" ng-repeat="card in list.cards">
             <md-card>
               <md-card-title>
                 <md-card-title-text>
-                  <span class="md-headline">{{card.body}}</span>
-                  <span class="md-subhead">{{card.createdBy}}</span>
+                  <span class="md-headline">{{card.text}}</span>
                 </md-card-title-text>
               </md-card-title>
               <md-card-actions layout="row" layout-align="end center">
