@@ -1,6 +1,37 @@
 TownHall.factory('Auth', function($http, $window, $state, $firebaseAuth) {
 
-  return {};
+  var ref = new Firebase('https://townhallapp.firebaseio.com');
+  var auth = $firebaseAuth(ref);
+  var authRef = new Firebase('https://townhallapp.firebaseio.com/.info/authenticated');
+
+  var signout = function() {
+    $window.currentUser = {};
+    ref.unauth();
+  };
+
+  var checkAuth = function() {
+    authRef.on('value', function(snap) {
+      if (snap.val() === true) {
+        console.log('authenticated');
+        return true;
+      }
+      else {
+        console.log('not authenticated');
+        return false;
+      }
+    });
+  };
+
+  var googleLogin = function() {
+
+  };
+
+
+  return {
+    signout: signout,
+    checkAuth: checkAuth,
+    googleLogin: googleLogin
+  };
 
 })
 

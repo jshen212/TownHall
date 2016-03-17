@@ -1,12 +1,8 @@
+var sql = require('../../config.js');
+
 var knex = require('knex')({
   client: 'mysql',
-  connection: {
-    host: 'mysqlcluster6.registeredsite.com',
-    user: 'townhalladmin',
-    password: '!Qaz2wsx',
-    database: 'townhallthesis',
-    charset: 'utf8'
-  }
+  connection: sql.sql_server_connection
 });
 
 var Bookshelf = require('bookshelf')(knex);
