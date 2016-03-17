@@ -17,8 +17,7 @@ knex.schema.hasTable('Users').then(function(exists) {
     knex.schema.createTable('Users', function(table) {
       table.increments('id').primary();
       table.string('email', 100).unique();
-      table.string('firstname', 100);
-      table.string('lastname', 100);
+      table.string('name', 100);
       table.string('image', 2000).defaultTo('https://about.udemy.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png');
       table.string('uid', 100);
       table.timestamps();

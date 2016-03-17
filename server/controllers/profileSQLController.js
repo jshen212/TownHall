@@ -10,8 +10,7 @@ module.exports = {
     console.log('creating a new user!');
     var newUser = new User({
       email: req.body.email,
-      firstname: req.body.firstname,
-      lastname: req.body.lastname,
+      name: req.body.name,
       image: req.body.image,
       uid: req.body.uid
     });
@@ -30,7 +29,7 @@ module.exports = {
     console.log('sending user...');
     knex('Users')
     .whereIn('uid', req.body.uid)
-    .select('email', 'firstname', 'lastname', 'image', 'uid')
+    .select('email', 'name', 'image', 'uid')
     .then(function(user) {
       console.log('++line 35 user knex db query result is: ', user);
       res.send(user);
@@ -40,8 +39,7 @@ module.exports = {
     knex('Users')
     .whereIn('uid', req.body.uid)
     .update({
-      firstname: req.body.firstname,
-      lastname: req.body.lastname,
+      name: req.body.name,
       image: req.body.image
     })
     .then(function() {
