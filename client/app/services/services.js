@@ -1,0 +1,1 @@
+Townhall.factory('Auth', function)
