@@ -25,7 +25,10 @@ var TownHall = angular.module('TownHall', ['ui.router', 'ngMaterial', 'xeditable
   .state('dashboard', {
     url: '/dashboard',
     templateUrl: 'app/board/board.html',
-    controller: 'dashboardCtrl',
+    controller: 'boardCtrl',
+    params: {
+      obj: null
+    },
     authenticate: false
   })
 
