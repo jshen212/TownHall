@@ -7,8 +7,11 @@ TownHall.factory('profileFactory', function($http) {
       url: 'api/board/board',
       data: board
     }).then(function success(data) {
-      console.log('++line10 profileFactory', data);
-      callback(data);
+      var board = data.data[0];
+      console.log(board);
+      callback(board);
+    }, function error(response) {
+      console.log('error', response);
     });
   };
 

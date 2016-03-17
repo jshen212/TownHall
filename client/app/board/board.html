@@ -1,4 +1,4 @@
-<div class="boardContainer" layout="row" ng-controller="boardCtrl">
+<div class="boardContainer" layout="row" ng-controller="boardCtrl" ng-init="getBoard()">
   <div class="listContainer" layout="row">
     <ul layout="row" ng-sortable="listConfig">
       <li class="list" ng-repeat="list in lists">
