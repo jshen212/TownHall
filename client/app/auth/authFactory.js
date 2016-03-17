@@ -21,13 +21,9 @@ TownHall.factory('Auth', function($http, $window, $state, $firebaseAuth) {
     });
   };
 
-  var logout = function() {
-    ref.unauth();
+  return {
+    createProfile: createProfile,
+    signin: signin
   };
 
-  var auth = function() {
-    Auth.checkAuth();
-  }
-
-
-}
+});

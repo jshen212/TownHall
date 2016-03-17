@@ -13,6 +13,13 @@
       <label>Password</label>
       <input ng-model="user.password" type="password">
     </md-input-container>
+    <md-input-container>
+      <label>Confirm Password</label>
+      <input ng-model="confirmpw" ng-required type="password">
+      <div>
+      <span ng-show="user.password !== confirmpw">passwords must match</span>
+    </div>
+    </md-input-container>
     <md-button class="md-raised md-primary" ng-click="signup()">Create New Account</md-button>
     <p>Have an account already? <a href="#/signin">Sign in</a></p>
   </md-content>

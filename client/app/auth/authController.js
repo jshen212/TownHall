@@ -36,14 +36,25 @@ TownHall.controller('authCtrl', function($scope, Auth, User, $firebaseAuth, $win
     ref.createUser({email: $scope.user.email, password: $scope.user.password}, function(err, user) {
       if (err === null) {
         console.log(user);
-        user.firstname = $scope.user.firstname;
-        user.lastname = $scope.user.lastname;
+        user.name = $scope.user.name;
         User.sendUser(user);
         $scope.signin();
       } else {
         console.log("error creating user:", err);
       }
     });
+  };
+
+  $scope.logout = function() {
+    Auth.logout();
+  };
+
+  $scope.auth = function() {
+    Auth.checkAuth();
+  };
+
+  $scope.fbLogin = function() {
+    Auth.fbLogin();
   };
 
 
