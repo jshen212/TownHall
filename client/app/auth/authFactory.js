@@ -22,15 +22,21 @@ TownHall.factory('Auth', function($http, $window, $state, $firebaseAuth) {
     });
   };
 
-  var googleLogin = function() {
-
+  var googleSignin = function() {
+    ref.authWithOAuthPopup("google", function(error, authData) {
+      if (error) {
+        console.log("Login Failed!", error);
+      } else {
+        console.log("Authenticated successfully with payload:", authData);
+      }
+    });
   };
 
 
   return {
     signout: signout,
     checkAuth: checkAuth,
-    googleLogin: googleLogin
+    googleSignin: googleSignin
   };
 
 })

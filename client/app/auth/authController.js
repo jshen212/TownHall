@@ -55,8 +55,10 @@ TownHall.controller('authCtrl', function($scope, Auth, User, $firebaseAuth, $win
     Auth.checkAuth();
   };
 
-  $scope.fbLogin = function() {
-    Auth.fbLogin();
+  $scope.googleSignin = function() {
+    Auth.googleSignin();
+    $state.go('profile');
+    console.log('goog auth');
   };
 
 
