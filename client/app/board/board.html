@@ -1,6 +1,6 @@
 <div class="boardContainer" layout="row" ng-controller="boardCtrl" ng-init="loadBoard()">
   <div class="listContainer" layout="row">
-    <div layout="row" ng-sortable="listConfig">
+    <div layout="row">
       <div class="list" ng-repeat="list in boardLists">
         <div ng-click="editTitle(list)">{{list.title}}</div>
         <div layout="column" ng-sortable="cardConfig">
@@ -20,7 +20,7 @@
           <div class="unsortable" ng-show=!list.cards.length></div>
         </div>
         <md-button ng-click="addCard(list)">Add Card</md-button>
-        <md-button ng-click="removeList(lists, $index)">Remove List</md-button>
+        <md-button ng-click="removeList($index)">Remove List</md-button>
       </div>
     </div>
     <md-button class="list" ng-click="addList()">Add List</md-button>
