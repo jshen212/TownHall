@@ -1,18 +1,31 @@
 TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $stateParams, dataFactory) {
 
-    $scope.board = {};
     $scope.boardID = '';
     $scope.boardTitle = '';
     $scope.createdBy = '';
     $scope.boardLists = [];
 
+    $scope.cardConfig = {
+      group: 'cards',
+      filter: '.unsortable',
+      animation: 150,
+      onUpdate: function() {
+        $scope.updateBoard();
+      },
+      onAdd: function() {
+        $scope.updateBoard();
+      }
+    };
+
     $scope.addList = function() {
-      $scope.lists.push({title: 'LIST NEW', cards: []});
+      $scope.boardLists.push({title: 'New List Title', cards: []});
+      $scope.updateBoard();
     };
 
     $scope.addCard = function(list) {
-      list.cards.push({createdBy: 'DK',
-      body: 'card4'});
+      list.cards.push({comments: [{attachments: '', createdBy: 'user information holder', text: 'first comment'}],
+      text: 'card4'});
+      $scope.updateBoard();
     };
 
     $scope.editTitle = function(list) {
@@ -34,28 +47,16 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $s
     };
 
     $scope.removeCard = function(list, index) {
-      console.log(index);
       list.cards.splice(index, 1);
+      $scope.updateBoard();
     };
 
-    $scope.removeList = function(lists, index) {
-      lists.splice(index, 1);
-
-      console.log(lists);
-    };
-
-    $scope.listConfig = {
-      animation: 150
-    };
-
-    $scope.cardConfig = {
-      group: 'cards',
-      filter: '.unsortable',
-      animation: 150
+    $scope.removeList = function(index) {
+      $scope.boardLists.splice(index, 1);
+      $scope.updateBoard();
     };
 
     $scope.parseBoard = function(board) {
-      $scope.board = board;
       $scope.boardID = board.id;
       $scope.boardTitle = board.board_title;
       $scope.createdBy = board.board_createdby;
@@ -63,7 +64,10 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $s
     };
 
     $scope.getBoardFromDB = function() {
-      var id = sessionStorage["tempStorage"];
+      if(!sessionStorage.tempStorage){
+        $state.go('profile');
+      }
+      var id = sessionStorage.tempStorage;
       var board = {board_id: id};
       dataFactory.loadBoard(board, function(fetchedData) {
         $scope.parseBoard(fetchedData);
@@ -77,6 +81,17 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $s
       } else {
         $scope.getBoardFromDB();
       }
-    }
+    };
+
+    $scope.updateBoard = function() {
+      var board = {
+        board_id: $scope.boardID,
+        board_title: $scope.boardTitle,
+        board_lists: $scope.boardLists
+      };
+      dataFactory.updateBoard(board);
+    };
+
+
 
   });
