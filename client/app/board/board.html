@@ -2,7 +2,7 @@
   <div class="listContainer" layout="row">
     <div layout="row">
       <div class="list" ng-repeat="list in boardLists">
-        <div ng-click="editTitle(list)">{{list.title}}</div>
+        <div inline-edit=list.title inline-edit-placeholder="Untitled List" inline-edit-on-blur="save" inline-edit-btn-edit="" inline-edit-callback='editTitle(newValue, list)' inline-edit-on-click></div>
         <div layout="column" ng-sortable="cardConfig">
           <div class="card" ng-repeat="card in list.cards">
             <md-card>
