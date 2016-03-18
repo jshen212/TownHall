@@ -22,15 +22,12 @@ TownHall.factory('Auth', function($http, $window, $state, $firebaseAuth) {
     });
   };
 
-  var googleLogin = function() {
 
-  };
 
 
   return {
     signout: signout,
-    checkAuth: checkAuth,
-    googleLogin: googleLogin
+    checkAuth: checkAuth
   };
 
 })

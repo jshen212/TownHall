@@ -55,8 +55,23 @@ TownHall.controller('authCtrl', function($scope, Auth, User, $firebaseAuth, $win
     Auth.checkAuth();
   };
 
-  $scope.fbLogin = function() {
-    Auth.fbLogin();
+  $scope.googleSignin = function() {
+    ref.authWithOAuthPopup("google", function(error, authData) {
+      if (error) {
+        console.log("Login Failed!", error);
+      } else {
+        console.log("Authenticated successfully with payload:", authData);
+        var user = {
+          uid: authData.uid,
+          email: 'update email',
+          name: authData.google.displayName,
+          image: authData.google.profileImageURL
+        };
+        User.sendUser(user);
+        $state.go('profile');
+        console.log('goog auth');
+      }
+    });
   };
 
 
