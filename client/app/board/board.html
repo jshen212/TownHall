@@ -2,7 +2,10 @@
   <div class="listContainer" layout="row">
     <div layout="row">
       <div class="list" ng-repeat="list in boardLists">
-        <div inline-edit=list.title inline-edit-placeholder="Untitled List" inline-edit-on-blur="save" inline-edit-btn-edit="" inline-edit-callback='editTitle(newValue, list)' inline-edit-on-click></div>
+        <div layout="row">
+          <div flex="90" inline-edit=list.title inline-edit-placeholder="Untitled List" inline-edit-on-blur="save" inline-edit-btn-edit="" inline-edit-callback='editTitle(newValue, list)' inline-edit-on-click></div>
+          <md-button ng-click="removeList($event, $index)">X</md-button>
+        </div>
         <div layout="column" ng-sortable="cardConfig">
           <div class="card" ng-repeat="card in list.cards">
             <md-card>
@@ -19,8 +22,8 @@
           </div>
           <div class="unsortable" ng-show=!list.cards.length></div>
         </div>
-        <md-button ng-click="addCard(list)">Add Card</md-button>
-        <md-button ng-click="removeList($index)">Remove List</md-button>
+        <div id="addCard" class="unsortable" inline-edit="" inline-edit-placeholder="Add New Card" inline-edit-on-blur="save" inline-edit-btn-edit="" inline-edit-callback='addCard(newValue, list)' inline-edit-on-click></div>
+        <!-- <md-button ng-click="addCard(list)">Add Card</md-button> -->
       </div>
     </div>
     <md-button class="list" ng-click="addList()">Add List</md-button>
