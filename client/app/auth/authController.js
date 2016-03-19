@@ -13,17 +13,16 @@ TownHall.controller('authCtrl', function($scope, Auth, User, $firebaseAuth, $win
       if (err) {
         switch (err.code) {
           case 'INVALID_EMAIL':
-            console.log('The specified user account email is invalid.');
+            sweetAlert("Oops", "The specified user account email is invalid.", "error");
             break;
           case 'INVALID_PASSWORD':
-            console.log('The specified user account password is incorrect.');
+            sweetAlert("Oops", "The specified user account password is incorrect.", "error");
             break;
           case 'INVALID_USER':
-            console.log('The specified user account does not exist.');
+            sweetAlert("Oops", "The specified user account does not exist.", "error");
             break;
           default:
-            console.log('Error logging user in:', error);
-        }
+            sweetAlert("Oops...", "Something went wrong!", "error");        }
       } else {
         $window.currentUser = User.getUser(authData);
         console.log('Authenticated successfully with payload:', authData);
