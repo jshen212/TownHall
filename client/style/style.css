@@ -34,8 +34,10 @@ li {
   cursor: pointer;
 }
 
-[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-  display: none !important;
+.comment {
+  white-space: pre-wrap;
+  background-color: grey;
+  margin: 5px;
 }
 
 /**
@@ -80,4 +82,7 @@ li {
   height: 25px;
   position: fixed;
   bottom: 0;
+/* leave at end of css */
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
 }
