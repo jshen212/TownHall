@@ -1,0 +1,3 @@
+TownHall.controller('chatCtrl', function(){
+
+});
