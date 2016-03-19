@@ -24,12 +24,19 @@ var TownHall = angular.module('TownHall', ['firebase', 'ui.router', 'ngMaterial'
 
   .state('dashboard', {
     url: '/dashboard',
-    templateUrl: 'app/board/board.html',
-    controller: 'boardCtrl',
-    params: {
-      obj: null
-    },
-    authenticate: false
+    views: {
+      '': {
+        templateUrl: 'app/dashboard/dashboard.html'
+      },
+      'board@dashboard': {
+        templateUrl: 'app/board/board.html',
+        controller: 'boardCtrl'
+      },
+      'chat@dashboard': {
+        templateUrl: 'app/chat/chat.html',
+        controller: 'chatCtrl'
+      }
+    }
   })
 
   .state('profile', {
