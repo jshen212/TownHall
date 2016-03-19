@@ -88,7 +88,7 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $s
       $scope.getBoardFromDB();
     }
   };
-  
+
   $scope.updateBoard = function() {
     var board = {
       board_id: $scope.boardID,
