@@ -13,13 +13,13 @@ TownHall.controller('authCtrl', function($scope, Auth, User, $firebaseAuth, $win
       if (err) {
         switch (err.code) {
           case 'INVALID_EMAIL':
-            sweetAlert("Oops", "The specified user account email is invalid.", "error");
+            sweetAlert("Oops...", "The specified user account email is invalid.", "error");
             break;
           case 'INVALID_PASSWORD':
-            sweetAlert("Oops", "The specified user account password is incorrect.", "error");
+            sweetAlert("Oops...", "The specified user account password is incorrect.", "error");
             break;
           case 'INVALID_USER':
-            sweetAlert("Oops", "The specified user account does not exist.", "error");
+            sweetAlert("Oops...", "The specified user account does not exist.", "error");
             break;
           default:
             sweetAlert("Oops...", "Something went wrong!", "error");        }
@@ -57,6 +57,7 @@ TownHall.controller('authCtrl', function($scope, Auth, User, $firebaseAuth, $win
   $scope.googleSignin = function() {
     ref.authWithOAuthPopup("google", function(error, authData) {
       if (error) {
+        sweetAlert("Login Failed!", "", "error");
         console.log("Login Failed!", error);
       } else {
         console.log("Authenticated successfully with payload:", authData);
