@@ -12,16 +12,16 @@
   chat
 </div>
 </md-content> -->
-
-<div class="row">
-  <!-- COLUMN ONE NAMED VIEW -->
-  <div class="col-sm-6">
-    <div ui-view="board"></div>
-  </div>
-  <!-- COLUMN TWO NAMED VIEW -->
-  <div class="col-sm-6">
-    <div ui-view="chat"></div>
+<div class="viewsContainer">
+  <div layout="row">
+    <!-- COLUMN ONE NAMED VIEW -->
+    <div class="boardView" flex="75">
+      <div ui-view="board"></div>
+    </div>
+    <!-- COLUMN TWO NAMED VIEW -->
+    <div class="chatView" flex="25" hide-sm>
+      <div ui-view="chat"></div>
+    </div>
   </div>
 </div>
-
 </div>

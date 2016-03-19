@@ -38,8 +38,6 @@ li {
   display: none !important;
 }
 
-
-
 /**
  * ng-inline-edit v0.7.0 (http://tamerayd.in/ng-inline-edit)
  * Copyright 2015 Tamer Aydin (http://tamerayd.in)
@@ -57,4 +55,29 @@ li {
 }
 .ng-inline-edit__button {
   cursor: pointer;
+}
+
+.boardView {
+  overflow: scroll;
+  height: 1000px;
+}
+
+.chatView {
+  background-color: white;
+  position: fixed;
+  top: 35px;
+  right: 0;
+  width: 30%;
+  /*border: 3px solid #73AD21;*/
+  height: 10000px;
+}
+​
+.chatInput {
+  margin: 0 auto;
+  display: block;
+  border: 1px solid darkgrey;
+  width: 450px;
+  height: 25px;
+  position: fixed;
+  bottom: 0;
 }
