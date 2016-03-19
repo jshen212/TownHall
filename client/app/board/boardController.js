@@ -1,4 +1,4 @@
-TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $stateParams, dataFactory) {
+TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $stateParams, User, dataFactory) {
 
   $scope.boardID = '';
   $scope.boardTitle = '';
@@ -20,6 +20,7 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $s
   $scope.addList = function() {
     $scope.boardLists.push({title: '', cards: []});
     $scope.updateBoard();
+    console.log(User.userInfo);
   };
 
   $scope.addCard = function(val, list) {
@@ -88,7 +89,7 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $s
       $scope.getBoardFromDB();
     }
   };
-  
+
   $scope.updateBoard = function() {
     var board = {
       board_id: $scope.boardID,
