@@ -34,8 +34,6 @@ TownHall.factory('Auth', function($http, $window, $state, $firebaseAuth) {
 
 .factory('User', function($http, $window, $state, $firebaseAuth) {
 
-  var userInfo;
-
   var sendUser = function(user) {
     return $http({
       method: 'POST',
@@ -53,13 +51,11 @@ TownHall.factory('Auth', function($http, $window, $state, $firebaseAuth) {
       data: user
     }).then(function(res) {
       console.log('we got the user!', res.data);
-      var userInfo = res.data;
       return res.data;
     });
   };
 
   return {
-    userInfo: userInfo,
     sendUser: sendUser,
     getUser: getUser
   };

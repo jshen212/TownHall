@@ -24,7 +24,7 @@ TownHall.controller('authCtrl', function($scope, Auth, User, $firebaseAuth, $win
           default:
             sweetAlert("Oops...", "Something went wrong!", "error");        }
       } else {
-        $window.currentUser = User.getUser(authData);
+        $window.userInfo = User.getUser(authData);
         console.log('Authenticated successfully with payload:', authData);
         $state.go('profile');
       }

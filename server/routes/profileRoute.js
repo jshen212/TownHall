@@ -6,7 +6,7 @@ module.exports = function(app) {
   // add profile
   app.post('/signup', profileController.addProfile);
   // get profile
-  app.get('/signin', profileController.getUserProfile);
+  app.post('/signin', profileController.getUserProfile);
   // update profile
   app.post('/update', profileController.updateProfile);
 };
