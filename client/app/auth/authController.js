@@ -60,7 +60,7 @@ TownHall.controller('authCtrl', function($scope, Auth, User, $firebaseAuth, $win
   $scope.googleSignin = function() {
     ref.authWithOAuthPopup('google', function(error, authData) {
       if (error) {
-        console.log('Login Failed!', error);
+        console.log("Login Failed!", error);
       } else {
         console.log('Authenticated successfully with payload:', authData);
         var user = {
