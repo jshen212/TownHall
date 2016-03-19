@@ -29,7 +29,7 @@ module.exports = {
     console.log('sending user...');
     knex('Users')
     .whereIn('uid', req.body.uid)
-    .select('email', 'name', 'image', 'uid')
+    .select('email', 'name', 'image', 'uid', 'id')
     .then(function(user) {
       console.log('++line 35 user knex db query result is: ', user);
       res.send(user);
