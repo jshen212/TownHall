@@ -44,14 +44,14 @@ TownHall.factory('Auth', function($http, $window, $state, $firebaseAuth) {
     });
   };
 
-  var getUser = function(user) {
+  var getUser = function(user, callback) {
     return $http({
       method: 'POST',
       url: 'api/profile/signin',
       data: user
     }).then(function(res) {
-      console.log('we got the user!', res.data);
-      return res.data;
+      console.log(res.data);
+      callback(res.data);
     });
   };
 

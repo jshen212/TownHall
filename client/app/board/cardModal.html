@@ -1,8 +1,21 @@
 <div class="cardModal">
+  <h3>Details</h3>
   <p class="cardModalText" editable-textarea=card.text>{{card.text}}</p>
-  <ul>
-    <li ng-repeat="comment in card.comments">
-      {{comment.text}}
-    </li>
-  </ul>
+  <div layout="row">
+    <div class="commentSection" layout="column">
+      <form>
+        <md-input-container>
+          <label>Add Comment</label>
+          <textarea ng-model="comment" md-select-on-focus></textarea>
+          <md-button ng-click="addComment(comment)">Save</md-button>
+        </md-input-container>
+      </form>
+      <ul>
+        <li class="comment" ng-repeat="comment in card.comments">{{comment.createdBy.name}}: {{comment.text}}</li>
+      </ul>
+    </div>
+    <div class="buttons" layout="column">
+      <md-button>Add Member</md-button>
+    </div>
+  </div>
 </div>

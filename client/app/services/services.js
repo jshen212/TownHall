@@ -8,7 +8,6 @@ TownHall.factory('dataFactory', function($http) {
       data: board
     }).then(function success(data) {
       var board = data.data[0];
-      console.log(board);
       callback(board);
     }, function error(response) {
       console.log('error', response);
