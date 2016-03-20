@@ -11,7 +11,7 @@
         </md-input-container>
       </form>
       <ul>
-        <li class="comment" ng-repeat="comment in card.comments">{{comment.text}}</li>
+        <li class="comment" ng-repeat="comment in card.comments">{{comment.createdBy.name}}: {{comment.text}}</li>
       </ul>
     </div>
     <div class="buttons" layout="column">

@@ -6,7 +6,8 @@ TownHall.controller('profileCtrl', function($scope, Auth, $state, dataFactory) {
   };
 
   $scope.loadBoard = function(board) {
-    sessionStorage["tempStorage"] = board.board_id;
+    var boardID = board.board_id;
+    sessionStorage.setItem('boardID', boardID);
     dataFactory.loadBoard(board, function(fetchedData) {
       $state.go('dashboard', {obj: fetchedData});
     });

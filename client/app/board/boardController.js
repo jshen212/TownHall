@@ -38,7 +38,10 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $s
   $scope.editCard = function(card) {
     $mdDialog.show({
       clickOutsideToClose: true,
-      locals: {card: card},
+      locals: {
+        card: card,
+        updateBoard: $scope.updateBoard
+      },
       templateUrl: 'app/board/cardModal.html',
       controller: 'cardModalCtrl'
     });
@@ -71,10 +74,10 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $s
   };
 
   $scope.getBoardFromDB = function() {
-    if(!sessionStorage.tempStorage){
+    if(!sessionStorage.boardID){
       $state.go('profile');
     }
-    var id = sessionStorage.tempStorage;
+    var id = sessionStorage.boardID;
     var board = {board_id: id};
     dataFactory.loadBoard(board, function(fetchedData) {
       $scope.parseBoard(fetchedData);

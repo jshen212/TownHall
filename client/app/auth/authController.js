@@ -24,9 +24,12 @@ TownHall.controller('authCtrl', function($scope, Auth, User, $firebaseAuth, $win
           default:
             sweetAlert("Oops...", "Something went wrong!", "error");        }
       } else {
-        $window.userInfo = User.getUser(authData);
-        console.log('Authenticated successfully with payload:', authData);
-        $state.go('profile');
+        User.getUser(authData, function(fetchedData) {
+          var userInfo = JSON.stringify(fetchedData[0]);
+          localStorage.setItem('userInfo', userInfo);
+          console.log('Authenticated successfully with payload:', authData);
+          $state.go('profile');
+        });
       }
     });
   };
