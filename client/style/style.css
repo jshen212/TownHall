@@ -42,6 +42,11 @@ button {
  text-align: center;
 }
 
+.cardList {
+  max-height: 800px;
+  overflow: scroll;
+}
+
 .card {
  height: 100%;
  padding: 15px;
