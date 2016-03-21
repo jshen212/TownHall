@@ -1,32 +1,147 @@
 * {
-  font-family: 'Roboto', sans-serif;
+ font-family: 'Roboto', sans-serif;
 }
 
 a {
-  text-decoration: none;
+ text-decoration: none;
 }
 
 li {
-  list-style-type: none;
+ list-style-type: none;
 }
 
 #signin a {
-  color: white;
+ color: white;
 }
 
 #signup a {
-  color: rgb(63,81,181);
-  font-weight: bold;
+ color: rgb(63,81,181);
+ font-weight: bold;
+}
+
+/********** Board Styling ********************/
+
+button {
+ height: 50px;
+ /*padding: 15px;*/
+ width: 100px;
+ background-color: #ddd;
+ text-align: center;
+ border: none;
+ border-radius: 8px;
 }
 
 .list {
-  background-color: lightgreen;
-  height: 100%;
-  margin: 3px;
+ background-color:  #eee;
+ width: 300px;
+ height: 100%;
+ margin: 3px;
+ display: inline;
+ float: left;
+ padding: 10px;
+ text-align: center;
 }
 
-.unsortable {
-  height: 70px;
+.card {
+ height: 100%;
+ padding: 15px;
+ width: 200px;
+ background-color: #fff;
+ text-align: left;
+ /*margin: 5px;*/
+}
+
+/******************** Drag and Drop Styles ***********************/
+.board .mainContainer {
+ width: 2000px;
+ overflow-x: scroll;
+}
+/**
+* For the correct positioning of the placeholder element, the dnd-list and
+* it's children must have position: relative
+*/
+
+.board ul[dnd-list],
+.board ul[dnd-list] > li {
+ position: relative;
+ /*border: 1px solid black;*/
+ float: left;
+ margin: 5px;
+ margin-left: -2px;
+}
+
+/**** mainContainer Stylying *****/
+/**
+* The dnd-list should always have a min-height,
+* otherwise you can't drop to it once it's empty
+*/
+
+.board .mainContainer ul[dnd-list] {
+  min-width: 200px;
+  min-height: 50px;
+}
+
+/**
+* The dnd-lists's child elements currently MUST have
+* position: relative. Otherwise we can not determine
+* whether the mouse pointer is in the upper or lower
+* half of the element we are dragging over. In other
+* browsers we can use event.offsetY for this.
+*/
+
+.board .mainContainer li {
+ display: block;
+ /*border: 1px solid black;*/
+ border-radius: 8px;
+ /*padding: 10px;*/
+}
+
+/**
+* The dndDraggingSource class will be applied to the source element of a drag
+* operation. It makes sense to hide it to give the user the feeling that he's
+* actually moving it. Note that the source element has also .dndDragging class.
+*/
+
+.board .mainContainer .dndDraggingSource {
+   display: none;
+}
+
+/**
+* An element with .dndPlaceholder class will be added as child of the dnd-list
+* while the user is dragging over it.
+*/
+
+.board .mainContainer .dndPlaceholder {
+  background-color: white !important;
+  /*min-height: 50px;*/
+  border: none;
+  width: 300px;
+  display: block;
+}
+
+.board .mainContainer li .dndPlaceholder {
+  background-color: #ddd !important;
+  min-height: 50px;
+  width: 235px;
+  /*display: block;*/
+}
+
+/****** Element type specific styles *******/
+
+.board .mainContainer .list {
+ min-height: 120px !important;
+ /*padding: 10px;*/
+ margin: 10px;
+}
+
+.board .mainContainer .list > li {
+ margin: 0 auto;
+ display: inline-block;
+ border-radius: 8px;
+ color: #fff;
+ height: 500px;
+ width: 200px;
+ text-align: center;
 }
 
 .cardModalText:hover {
@@ -40,24 +155,8 @@ li {
   margin: 5px;
 }
 
-/**
- * ng-inline-edit v0.7.0 (http://tamerayd.in/ng-inline-edit)
- * Copyright 2015 Tamer Aydin (http://tamerayd.in)
- * Licensed under MIT
- */
-.ng-inline-edit__input {
-  border: 0;
-  outline: 0;
-  display: inline-block;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-}
-.ng-inline-edit__inner-container {
-  display: inline-block;
-}
-.ng-inline-edit__button {
-  cursor: pointer;
-}
+
+/************* master styles for main dashboard view **************/
 
 .boardView {
   overflow: scroll;
@@ -82,6 +181,26 @@ li {
   height: 25px;
   position: fixed;
   bottom: 0;
+
+/**
+ * ng-inline-edit v0.7.0 (http://tamerayd.in/ng-inline-edit)
+ * Copyright 2015 Tamer Aydin (http://tamerayd.in)
+ * Licensed under MIT
+ */
+.ng-inline-edit__input {
+  border: 0;
+  outline: 0;
+  display: inline-block;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+.ng-inline-edit__inner-container {
+  display: inline-block;
+}
+.ng-inline-edit__button {
+  cursor: pointer;
+}
+
 /* leave at end of css */
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;

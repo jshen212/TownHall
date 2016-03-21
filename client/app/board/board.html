@@ -1,3 +1,41 @@
+<div class="boardContainer" layout="row" ng-controller="boardCtrl">
+ <div class="board" >
+   <ul class="mainContainer" dnd-list="board"
+       dnd-allowed-types="['listType']"
+       dnd-external-sources="true"
+       dnd-dragover="dragoverCallback(event, index, external, type)"
+       dnd-drop="dropCallback(event, index, item, external, type, 'listType')">
+       <li class="list" ng-repeat="list in board"
+           dnd-draggable="list"
+           dnd-type="'listType'"
+           dnd-effect-allowed="copyMove"
+           dnd-moved="board.splice($index, 1)">
+           <div class="">
+             <h3>{{list.listTitle}}</h3>
+             <ul dnd-list="list.cards"
+                 dnd-allowed-types="['cardType']"
+                 dnd-horizontal-list="true"
+                 dnd-external-sources="true"
+                 dnd-dragover="dragoverCallback(event, index, external, type)"
+                 dnd-drop="dropCallback(event, index, item, external, type, 'cardType')" class="cardList">
+                 <li ng-repeat="card in list.cards"
+                     dnd-draggable="card"
+                     dnd-type="'cardType'"
+                     dnd-effect-allowed="copyMove"
+                     dnd-moved="list.cards.splice($index, 1)"
+                     class="card">
+                   {{card.text}}
+                 </li>
+             </ul>
+             <button ng-click="addCard($index)">add card</button>
+           </div>
+       </li>
+   </ul>
+   <button ng-click="addList()">add list</button>
+ </div>
+</div>
+
+<!--
 <div class="boardContainer" layout="row" ng-controller="boardCtrl" ng-init="loadBoard()">
   <div class="listContainer" layout="row">
     <div layout="row">
@@ -23,42 +61,11 @@
           <div class="unsortable" ng-show=!list.cards.length></div>
         </div>
         <div id="addCard" class="unsortable" inline-edit="" inline-edit-placeholder="Add New Card" inline-edit-on-blur="save" inline-edit-btn-edit="" inline-edit-callback='addCard(newValue, list)' inline-edit-on-click></div>
-        <!-- <md-button ng-click="addCard(list)">Add Card</md-button> -->
       </div>
     </div>
     <md-button class="list" ng-click="addList()">Add List</md-button>
   </div>
 </div>
+ -->
 
 
-
-
-<!-- <div class="boardContainer" layout="row" ng-controller="boardCtrl" ng-init="loadBoard()">
-<div class="listContainer" layout="row">
-<ul layout="row" ng-sortable="listConfig">
-<li class="list" ng-repeat="list in boardLists">
-<div ng-click="editTitle(list)">{{list.title}}</div>
-<ul layout="column" ng-sortable="cardConfig">
-<li class="card" ng-repeat="card in list.cards">
-<md-card>
-<md-card-title>
-<md-card-title-text>
-<span class="md-headline">{{card.text}}</span>
-</md-card-title-text>
-</md-card-title>
-<md-card-actions layout="row" layout-align="end center">
-<md-button ng-click="editCard(card)">Edit</md-button>
-<md-button ng-click="removeCard(list, $index)">Remove</md-button>
-</md-card-actions>
-</md-card>
-</li>
-<li class="unsortable" ng-show=!list.cards.length></li>
-</ul>
-<md-button ng-click="addCard(list)">Add Card</md-button>
-<md-button ng-click="removeList(lists, $index)">Remove List</md-button>
-</li>
-</ul>
-<md-button class="list" ng-click="addList()">Add List</md-button>
-</div>
-</div>
--->
