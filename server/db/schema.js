@@ -51,6 +51,21 @@ knex.schema.hasTable('Joined').then(function(exists) {
   }
 });
 
+knex.schema.hasTable('Invitations').then(function(exists) {
+  if (!exists) {
+    knex.schema.createTable('Invitations', function(table) {
+      table.integer('user_id').unsigned();
+      table.integer('board_id').unsigned();
+      table.integer('response').defaultTo(0);
+      table.foreign('user_id').references('id').inTable('Users');
+      table.foreign('board_id').references('id').inTable('Boards');
+      table.timestamps();
+    }).then(function(table) {
+      console.log('Created Table', table);
+    });
+  }
+});
+
 module.exports = {
   db: db,
   knex: knex
