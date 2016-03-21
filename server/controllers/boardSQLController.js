@@ -1,5 +1,7 @@
 var Board = require('../models/boardSQL.js');
 var Boards = require('../collections/boardCollection.js');
+var Joinuser = require('../models/userboardSQL.js');
+var Joinusers = require('../collections/userboardcollection.js');
 var Promise = require('bluebird');
 var _ = require('underscore');
 var knex = require('../db/schema.js').knex;
@@ -15,7 +17,9 @@ var helpers = {
     .then(function(newBoard) {
       Boards.add(newBoard);
       console.log('new board has been created!', newBoard);
-      res.status(201).send();
+      // helpers.addJoin(req, newBoard);
+      helpers.addJoin(req, newBoard);
+      res.status(201).send('board added');
     })
     .catch(function(err) {
       console.log('error in creating Board', err);
@@ -68,7 +72,7 @@ var helpers = {
     });
   },
   getBoardIds: function(req, res, callback) {
-    knex('Userboardjoin')
+    knex('Joined')
     .whereIn('user_id', req.body.id)
     .select('board_id')
     .then(function(boardIds) {
@@ -77,6 +81,17 @@ var helpers = {
     })
     .catch(function(err) {
       console.log('error in getting board ids', err);
+    });
+  },
+  addJoin: function(req, board, next) {
+    var newJoined = new Joinuser({
+      user_id: req.body.id,
+      board_id: board.id
+    });
+    newJoined.save()
+    .then(function(joined) {
+      Joinusers.add(joined);
+      console.log('new user board connection has been created', joined);
     });
   }
 
