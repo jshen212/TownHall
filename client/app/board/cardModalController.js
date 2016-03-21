@@ -1,14 +1,12 @@
-TownHall.controller('cardModalCtrl', function($scope, $window, $state, $mdDialog, card, updateBoard) {
+TownHall.controller('cardModalCtrl', function($scope, $window, $state, $mdDialog, card) {
 
   $scope.card = card;
-  $scope.updateBoard = updateBoard;
   $scope.comment = "";
 
   $scope.addComment = function(comment) {
     var user = JSON.parse(localStorage.getItem('userInfo'));
     if(user) {
       card.comments.push({attachments: "", createdBy: user, text: comment});
-      $scope.updateBoard();
       $scope.comment = "";
     } else {
       var confirm = $mdDialog.confirm()

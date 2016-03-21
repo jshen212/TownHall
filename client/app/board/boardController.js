@@ -5,34 +5,43 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $s
   $scope.createdBy = '';
   $scope.boardLists = [];
 
-  $scope.cardConfig = {
-    group: 'cards',
-    filter: '.unsortable',
-    animation: 150,
-    onUpdate: function() {
-      $scope.updateBoard();
-    },
-    onAdd: function() {
-      $scope.updateBoard();
-    }
+  $scope.dragoverCallback = function(event, index, external, type) {
+   return index < 10;
+  };
+
+  $scope.dropCallback = function(event, index, item, external, type, allowedType) {
+   if (external) {
+    if (allowedType === 'cardType' && !item.text) return false;
+    if (allowedType === 'containerType' && !angular.isArray(item)) return false;
+   }
+   return item;
   };
 
   $scope.addList = function() {
     $scope.boardLists.push({title: '', cards: []});
-    $scope.updateBoard();
-    console.log(User.userInfo);
+  };
+
+  $scope.removeList = function(ev, index) {
+    var confirm = $mdDialog.confirm()
+    .title('Remove List')
+    .textContent('Are you sure?  You cannot undo.')
+    .ariaLabel('Remove List')
+    .targetEvent(ev)
+    .ok('Delete')
+    .cancel('Cancel');
+    $mdDialog.show(confirm).then(function() {
+      $scope.boardLists.splice(index, 1);
+      $scope.updateBoard();
+    });
+  };
+
+  $scope.editTitle = function(val, list) {
+    list.title = val;
   };
 
   $scope.addCard = function(val, list) {
     list.cards.push({comments: [{attachments: '', createdBy: 'user information holder', text: 'first comment'}],
     text: val});
-    $scope.updateBoard();
-  };
-
-  $scope.editTitle = function(val, list) {
-    list.title = val;
-    $scope.updateBoard();
-
   };
 
   $scope.editCard = function(card) {
@@ -49,21 +58,6 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $s
 
   $scope.removeCard = function(list, index) {
     list.cards.splice(index, 1);
-    $scope.updateBoard();
-  };
-
-  $scope.removeList = function(ev, index) {
-    var confirm = $mdDialog.confirm()
-    .title('Remove List')
-    .textContent('Are you sure?  You cannot undo.')
-    .ariaLabel('Remove List')
-    .targetEvent(ev)
-    .ok('Delete')
-    .cancel('Cancel');
-    $mdDialog.show(confirm).then(function() {
-      $scope.boardLists.splice(index, 1);
-      $scope.updateBoard();
-    });
   };
 
   $scope.parseBoard = function(board) {
@@ -87,6 +81,7 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $s
   $scope.loadBoard = function(){
     if($stateParams.obj){
       var board = $stateParams.obj;
+      console.log(board);
       $scope.parseBoard(board);
     } else {
       $scope.getBoardFromDB();
@@ -101,4 +96,9 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $s
     };
     dataFactory.updateBoard(board);
   };
+
+  $scope.$watch('boardLists', function(){
+    $scope.updateBoard();
+  }, true);
+
 });
