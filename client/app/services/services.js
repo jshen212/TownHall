@@ -15,14 +15,12 @@ TownHall.factory('dataFactory', function($http) {
   };
 
   var createBoard = function(board, callback) {
-    console.log('createBoard firing');
     $http({
       method: 'POST',
       url: 'api/board/create',
       data: board
-    }).then(function success() {
-      console.log('board created');
-      callback();
+    }).then(function success(board) {
+      callback(board.data);
     }, function error(response) {
       console.log('error', response);
     });

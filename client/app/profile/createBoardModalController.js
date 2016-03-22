@@ -1,4 +1,4 @@
-TownHall.controller('createBoardModalCtrl', function($scope, $state, dataFactory) {
+TownHall.controller('createBoardModalCtrl', function($scope, $state, dataFactory, loadBoard, $mdDialog) {
 
   $scope.newBoardName = '';
 
@@ -8,9 +8,13 @@ TownHall.controller('createBoardModalCtrl', function($scope, $state, dataFactory
       boardname: $scope.newBoardName,
       id: user.id
     };
-    dataFactory.createBoard(board, function() {
-      console.log('board successfully added to database. we should redirect to the board now')
-      // $state.go('dashboard');
+    dataFactory.createBoard(board, function(boardData) {
+      var formattedBoard = {
+        board_id: boardData.id,
+        boardName: boardData.board_title
+      };
+      loadBoard(formattedBoard);
+      $mdDialog.hide();
     });
   };
 

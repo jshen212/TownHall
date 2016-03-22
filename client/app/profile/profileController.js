@@ -21,6 +21,7 @@ TownHall.controller('profileCtrl', function($scope, Auth, $state, dataFactory, $
   $scope.openCreateBoardModal = function() {
     $mdDialog.show({
       clickOutsideToClose: true,
+      locals: {loadBoard: $scope.loadBoard},
       templateUrl: 'app/profile/createBoardModal.html',
       controller: 'createBoardModalCtrl'
     });
