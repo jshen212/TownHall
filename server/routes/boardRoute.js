@@ -6,7 +6,7 @@ module.exports = function(app) {
   //
   app.post('/board', boardController.getBoard);
   // get
-  app.post('/dashboard', boardController.getDashboardview);
+  app.post('/profileView', boardController.getProfileView);
   // update board
   app.post('/update', boardController.updateBoard);
   // send invites(create invitations)
