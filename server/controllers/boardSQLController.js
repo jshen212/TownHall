@@ -81,7 +81,6 @@ var helpers = {
       boards.forEach(function(boardId) {
         invitedBoards.push(boardId.board_id);
       });
-    });
     knex('Boards')
     .whereIn('id', invitedBoards)
     .select('id', 'board_title', 'board_createdby')
@@ -92,6 +91,7 @@ var helpers = {
     .catch(function(err) {
       console.log('error grabbing invited boards', err);
     });
+  });
   },
   getInviteIds: function(req, res, callback) {
     knex('Invitations')
