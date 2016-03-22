@@ -1,16 +1,54 @@
-<div class="profileContainer">
-  <div class="navBar" layout="row">
-    <h1 flex="66" ng-click="loadProfile()" class="logo"><i class="fa fa-university"></i>Town Hall</h1>
-    <div class="navButtons">
-      <md-button ng-click="openCreateBoardModal()">+</md-button>
-      <md-button ng-click="loadProfile()">Profile</md-button>
-      <md-button ng-click="signout()">Sign Out</md-button>
-    </div>
-  </div>
+<div class="profileContainer" ng-init="getInvites()">
+  <md-toolbar class="md-medium">
+    <div class="md-toolbar-tools" layout="row" flex>
+      <h1 ng-click="loadProfile()" class="logo"><i class="fa fa-university"></i>Town Hall</h1>
 
+      <span flex></span>
+      <md-menu md-offset="0 60">
+        <md-button class="md-icon-button" style="float:right;" aria-label="Open menu" ng-click="$mdOpenMenu($event)">
+          <md-icon class="fa fa-bell"></md-icon>
+        </md-button>
+        <md-menu-content width="4">
+          <md-menu-item ng-repeat="invitation in invitations">
+            <div class="invitation">{{invitation.board_createdby}} invited you to join {{invitation.board_title}}
+              <md-button class="join">Join</md-button>
+              <md-button class="deny">Deny</md-button>
+            </div>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+
+      <md-menu md-position-mode="target-right target" md-offset="0 60">
+        <md-button class="md-icon-button" style="float:right;" aria-label="Open menu" ng-click="$mdOpenMenu($event)">
+          <md-icon class="fa fa-bars"></md-icon>
+        </md-button>
+        <md-menu-content width="4">
+          <md-menu-item>
+            <md-button ng-click="openCreateBoardModal()">
+              <div>Create New Board</div>
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button ng-click="loadProfile()">
+              <div>Profile</div>
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button ng-click="signout()">
+              <div>Sign Out</div>
+            </md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+    </div>
+  </md-toolbar>
   <div class="boardList" ng-repeat="board in boards">
     <div class="boardThumbnail" ng-click="loadBoard(board)">
       <p>{{board.boardName}}</p>
     </div>
   </div>
+
+
+
+
 </div>
