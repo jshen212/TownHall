@@ -61,6 +61,7 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $s
   };
 
   $scope.parseBoard = function(board) {
+    console.log('boardd in parseBoard', board);
     $scope.boardID = board.id;
     $scope.boardTitle = board.board_title;
     $scope.createdBy = board.board_createdby;
@@ -81,7 +82,6 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $s
   $scope.loadBoard = function(){
     if($stateParams.obj){
       var board = $stateParams.obj;
-      console.log(board);
       $scope.parseBoard(board);
     } else {
       $scope.getBoardFromDB();

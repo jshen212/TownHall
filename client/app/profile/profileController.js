@@ -1,4 +1,4 @@
-TownHall.controller('profileCtrl', function($scope, Auth, $state, dataFactory) {
+TownHall.controller('profileCtrl', function($scope, Auth, $state, dataFactory, $mdDialog) {
   $scope.boards = [{board_id: 1, boardName: 'board1'}, {board_id: 3, boardName: 'board3'}, {board_id: 7, boardName: 'board7'}];
 
   $scope.loadProfile = function() {
@@ -18,9 +18,13 @@ TownHall.controller('profileCtrl', function($scope, Auth, $state, dataFactory) {
     });
   };
 
-  $scope.createNewBoard = function() {
-    console.log('createNewBoard firing');
-    dataFactory.createBoard();
+  $scope.openCreateBoardModal = function() {
+    $mdDialog.show({
+      clickOutsideToClose: true,
+      locals: {loadBoard: $scope.loadBoard},
+      templateUrl: 'app/profile/createBoardModal.html',
+      controller: 'createBoardModalCtrl'
+    });
   };
 
 });

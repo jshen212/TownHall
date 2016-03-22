@@ -21,7 +21,7 @@ var helpers = {
       console.log('new board has been created!', newBoard);
       // helpers.addJoin(req, newBoard);
       helpers.addJoin(req, newBoard);
-      res.status(201).send('board added');
+      res.status(201).send(newBoard);
     })
     .catch(function(err) {
       console.log('error in creating Board', err);
