@@ -33,13 +33,17 @@ button {
 
 .list {
  background-color:  #eee;
- width: 300px;
+ width: 250px;
  height: 100%;
- margin: 3px;
+ /*margin: 3px;*/
  display: inline;
  float: left;
  padding: 10px;
  text-align: center;
+}
+
+.removeList {
+  margin-left: 115px;
 }
 
 .cardList {
@@ -54,6 +58,28 @@ button {
  background-color: #fff;
  text-align: left;
  /*margin: 5px;*/
+}
+
+.cardText {
+  text-align: left;
+  width: 250px;
+}
+
+.editCard {
+  margin: 0 auto;
+  display: block;
+  font-size: .65em;
+  height: auto;
+  width: auto;
+}
+
+.removeCard {
+  margin-left: 110px;
+  display: block;
+  height: auto;
+  width: auto;
+  font-size: .5em;
+  clear: both;
 }
 
 /******************** Drag and Drop Styles ***********************/
@@ -72,7 +98,7 @@ button {
  /*border: 1px solid black;*/
  float: left;
  margin: 5px;
- margin-left: -2px;
+ margin-left: -15px;
 }
 
 /**** mainContainer Stylying *****/
@@ -83,7 +109,7 @@ button {
 
 .board .mainContainer ul[dnd-list] {
   min-width: 200px;
-  min-height: 50px;
+  min-height: 100px;
 }
 
 /**
@@ -120,14 +146,14 @@ button {
   background-color: white !important;
   /*min-height: 50px;*/
   border: none;
-  width: 300px;
+  width: 250px;
   display: block;
 }
 
 .board .mainContainer li .dndPlaceholder {
   background-color: #ddd !important;
-  min-height: 50px;
-  width: 235px;
+  min-height: 100px;
+  width: 230px;
   /*display: block;*/
 }
 
@@ -136,7 +162,7 @@ button {
 .board .mainContainer .list {
  min-height: 120px !important;
  /*padding: 10px;*/
- margin: 10px;
+ margin: 5px;
 }
 
 .board .mainContainer .list > li {

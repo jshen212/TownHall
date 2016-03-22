@@ -10,8 +10,8 @@
           dnd-type="'listType'"
           dnd-effect-allowed="copyMove"
           dnd-moved="boardLists.splice($index, 1)">
-          <div flex="90" inline-edit=list.title inline-edit-placeholder="Untitled List" inline-edit-on-blur="save" inline-edit-btn-edit="" inline-edit-callback='editTitle(newValue, list)' inline-edit-on-click></div>
-          <md-button ng-click="removeList($event, $index)">X</md-button>
+          <md-button class="removeList" ng-click="removeList($event, $index)">x</md-button>
+          <div class="listTitle" flex="90" inline-edit=list.title inline-edit-placeholder="Untitled List" inline-edit-on-blur="save" inline-edit-btn-edit="" inline-edit-callback='editTitle(newValue, list)' inline-edit-on-click></div>
           <ul dnd-list="list.cards"
               dnd-allowed-types="['cardType']"
               dnd-horizontal-list="true"
@@ -24,9 +24,10 @@
                   dnd-effect-allowed="copyMove"
                   dnd-moved="list.cards.splice($index, 1)"
                   class="card">
-                  {{card.text}}
-                <md-button ng-click="editCard(card)">Edit</md-button>
-                <md-button ng-click="removeCard(list, $index)">Remove</md-button>
+                <md-button class="removeCard" ng-click="removeCard(list, $index)">x</md-button>
+                  <p class="cardText">{{card.text}}</p>
+                <md-button class="editCard" ng-click="editCard(card)">Edit</md-button>
+
               </li>
           </ul>
           <div id="addCard" class="unsortable" inline-edit="" inline-edit-placeholder="Add New Card" inline-edit-on-blur="save" inline-edit-btn-edit="" inline-edit-callback='addCard(newValue, list)' inline-edit-on-click></div>
