@@ -1,7 +1,7 @@
-<div class="profileContainer" ng-init="getInvites()">
+<div class="profileContainer" ng-init="loadProfile()">
   <md-toolbar class="md-medium">
     <div class="md-toolbar-tools" layout="row" flex>
-      <h1 ng-click="loadProfile()" class="logo"><i class="fa fa-university"></i>Town Hall</h1>
+      <h1 ng-click="refreshProfile()" class="logo"><i class="fa fa-university"></i>Town Hall</h1>
 
       <span flex></span>
       <md-menu md-offset="0 60">
@@ -29,7 +29,7 @@
             </md-button>
           </md-menu-item>
           <md-menu-item>
-            <md-button ng-click="loadProfile()">
+            <md-button ng-click="refreshProfile()">
               <div>Profile</div>
             </md-button>
           </md-menu-item>

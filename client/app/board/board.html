@@ -1,4 +1,5 @@
 <div class="boardContainer" layout="row" ng-controller="boardCtrl" ng-init="loadBoard()">
+  <h1>{{boardTitle}}</h1>
   <div class="board" >
     <ul class="mainContainer" dnd-list="boardLists"
         dnd-allowed-types="['listType']"

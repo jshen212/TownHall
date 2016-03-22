@@ -28,10 +28,10 @@ var helpers = {
     });
   },
   //When user logs in, this function gets all board ids and title related to the user.
-  getDashboardview: function(req, res, next) {
+  getProfileView: function(req, res, next) {
     var boardIdArray = [];
     console.log('sending board...');
-    helpers.getBoardsIds(req, function(boardIds) {
+    helpers.getBoardIds(req, res, function(boardIds) {
       boardIds.forEach(function(boardId) {
         boardIdArray.push(boardId.board_id);
       });

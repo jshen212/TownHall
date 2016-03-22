@@ -1,5 +1,5 @@
 TownHall.controller('dashboardCtrl', function($scope, $window, $state, Auth) {
-  $scope.loadProfile = function() {
+  $scope.goProfile = function() {
     $state.go('profile');
   };
 
