@@ -10,6 +10,11 @@ li {
  list-style-type: none;
 }
 
+.logo {
+  cursor: pointer;
+  outline: none;
+}
+
 #signin a {
  color: white;
 }
