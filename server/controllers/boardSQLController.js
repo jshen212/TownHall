@@ -64,7 +64,7 @@ var helpers = {
     .select('id')
     .then(function(userId) {
       var invitation = new Invite({
-        user_id: userId,
+        user_id: userId[0].id,
         board_id: req.body.board_id
       });
       invitation.save()
