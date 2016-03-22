@@ -22,9 +22,6 @@ li {
 /********** Board Styling ********************/
 
 button {
- height: 50px;
- /*padding: 15px;*/
- width: 100px;
  background-color: #ddd;
  text-align: center;
  border: none;
@@ -33,22 +30,22 @@ button {
 
 .list {
  background-color:  #eee;
- width: 250px;
+ width: 300px;
  height: 100%;
- /*margin: 3px;*/
+ margin: 3px;
  display: inline;
  float: left;
  padding: 10px;
  text-align: center;
 }
 
-.removeList {
-  margin-left: 115px;
+.editListTitle {
+  margin: 0 auto;
 }
 
-.cardList {
-  max-height: 800px;
-  overflow: scroll;
+.removeList {
+  margin-left: 150px;
+  margin-right: 0;
 }
 
 .card {
@@ -57,29 +54,17 @@ button {
  width: 200px;
  background-color: #fff;
  text-align: left;
+ word-wrap: break-word;
  /*margin: 5px;*/
 }
 
-.cardText {
-  text-align: left;
-  width: 250px;
-}
-
-.editCard {
+.addNewCard {
+  width: 150px;
   margin: 0 auto;
-  display: block;
-  font-size: .65em;
-  height: auto;
-  width: auto;
 }
 
 .removeCard {
-  margin-left: 110px;
-  display: block;
-  height: auto;
-  width: auto;
-  font-size: .5em;
-  clear: both;
+  float: right;
 }
 
 /******************** Drag and Drop Styles ***********************/
@@ -98,7 +83,7 @@ button {
  /*border: 1px solid black;*/
  float: left;
  margin: 5px;
- margin-left: -15px;
+ margin-left: -2px;
 }
 
 /**** mainContainer Stylying *****/
@@ -109,7 +94,7 @@ button {
 
 .board .mainContainer ul[dnd-list] {
   min-width: 200px;
-  min-height: 100px;
+  min-height: 50px;
 }
 
 /**
@@ -146,14 +131,14 @@ button {
   background-color: white !important;
   /*min-height: 50px;*/
   border: none;
-  width: 250px;
+  width: 300px;
   display: block;
 }
 
 .board .mainContainer li .dndPlaceholder {
   background-color: #ddd !important;
-  min-height: 100px;
-  width: 230px;
+  min-height: 50px;
+  width: 235px;
   /*display: block;*/
 }
 
@@ -162,7 +147,7 @@ button {
 .board .mainContainer .list {
  min-height: 120px !important;
  /*padding: 10px;*/
- margin: 5px;
+ margin: 10px;
 }
 
 .board .mainContainer .list > li {
@@ -200,7 +185,6 @@ button {
   top: 35px;
   right: 0;
   width: 30%;
-  /*border: 3px solid #73AD21;*/
   height: 10000px;
 }
 ​
