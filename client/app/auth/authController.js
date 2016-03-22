@@ -13,20 +13,20 @@ TownHall.controller('authCtrl', function($scope, Auth, User, $firebaseAuth, $win
       if (err) {
         switch (err.code) {
           case 'INVALID_EMAIL':
-            sweetAlert("Oops", "The specified user account email is invalid.", "error");
+            sweetAlert('Oops', 'The specified user account email is invalid.', 'error');
             break;
           case 'INVALID_PASSWORD':
-            sweetAlert("Oops", "The specified user account password is incorrect.", "error");
+            sweetAlert('Oops', 'The specified user account password is incorrect.', 'error');
             break;
           case 'INVALID_USER':
-            sweetAlert("Oops", "The specified user account does not exist.", "error");
+            sweetAlert('Oops', 'The specified user account does not exist.', 'error');
             break;
           default:
-            sweetAlert("Oops...", "Something went wrong!", "error");        }
+            sweetAlert('Oops...', 'Something went wrong!', 'error');
+        }
       } else {
         User.getUser(authData, function(fetchedData) {
-          var userInfo = JSON.stringify(fetchedData[0]);
-          localStorage.setItem('userInfo', userInfo);
+          $scope.saveUserLocalStorage(fetchedData);
           console.log('Authenticated successfully with payload:', authData);
           $state.go('profile');
         });
@@ -43,7 +43,7 @@ TownHall.controller('authCtrl', function($scope, Auth, User, $firebaseAuth, $win
         User.sendUser(user);
         $scope.signin();
       } else {
-        console.log("error creating user:", err);
+        console.log('error creating user:', err);
       }
     });
   };
@@ -58,23 +58,41 @@ TownHall.controller('authCtrl', function($scope, Auth, User, $firebaseAuth, $win
   };
 
   $scope.googleSignin = function() {
-    ref.authWithOAuthPopup("google", function(error, authData) {
+    ref.authWithOAuthPopup('google', function(error, authData) {
       if (error) {
-        console.log("Login Failed!", error);
+        console.log('Login Failed!', error);
       } else {
-        console.log("Authenticated successfully with payload:", authData);
+        console.log('Authenticated successfully with payload:', authData);
         var user = {
           uid: authData.uid,
-          email: 'update email',
+          email: authData.google.email,
           name: authData.google.displayName,
           image: authData.google.profileImageURL
         };
-        User.sendUser(user);
-        $state.go('profile');
-        console.log('goog auth');
+        User.getUser(user, function(fetchedData) {
+          if (!fetchedData) {
+            User.getUser(user, function(fetchedData) {
+              console.log(fetchedData);
+              $scope.saveUserLocalStorage(fetchedData);
+              console.log('2nd google auth with payload:', authData);
+              $state.go('profile');
+            });
+          } else {
+            $scope.saveUserLocalStorage(fetchedData);
+            console.log('google auth with payload:', authData);
+            $state.go('profile');
+          }
+        });
+        // User.sendUser(user);
       }
+    }, {
+      scope: 'email'
     });
   };
 
+  $scope.saveUserLocalStorage = function(fetchedData) {
+    var userInfo = JSON.stringify(fetchedData[0]);
+    localStorage.setItem('userInfo', userInfo);
+  };
 
 });
