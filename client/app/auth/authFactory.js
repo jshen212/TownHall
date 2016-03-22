@@ -47,7 +47,6 @@ TownHall.factory('Auth', function($http, $window, $state, $firebaseAuth) {
       data: user
     }).then(function success(res) {
       if (res.data.length === 0) {
-        sendUser(user);
         callback(false);
       } else {
         console.log(res.data);
