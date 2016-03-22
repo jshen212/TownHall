@@ -2,6 +2,8 @@ var Board = require('../models/boardSQL.js');
 var Boards = require('../collections/boardCollection.js');
 var Joinuser = require('../models/userboardSQL.js');
 var Joinusers = require('../collections/userboardcollection.js');
+var Invite = require('../models/invite.js');
+var Invites = require('../collections/inviteCollection.js');
 var Promise = require('bluebird');
 var _ = require('underscore');
 var knex = require('../db/schema.js').knex;
@@ -44,7 +46,7 @@ var helpers = {
       });
     });
   },
-  getBoard: function (req, res, next) {
+  getBoard: function(req, res, next) {
     console.log('line44 boardSQLController', req);
     knex('Boards')
     .whereIn('id', req.body.board_id)
@@ -54,6 +56,23 @@ var helpers = {
     })
     .catch(function(err) {
       console.log('error in getting board', err);
+    });
+  },
+  sendInvite: function(req, res, next) {
+    knex('Users')
+    .whereIn('email', req.body.email)
+    .select('id')
+    .then(function(userId) {
+      var invitation = new Invite({
+        user_id: userId[0].id,
+        board_id: req.body.board_id
+      });
+      invitation.save()
+      .then(function(invite) {
+        Invites.add(invite);
+        console.log("invite link has been created!", invite);
+        res.status(201).send("Invite has been made!");
+      });
     });
   },
   updateBoard: function(req, res, next) {

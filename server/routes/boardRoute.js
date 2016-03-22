@@ -9,4 +9,6 @@ module.exports = function(app) {
   app.post('/dashboard', boardController.getDashboardview);
   // update board
   app.post('/update', boardController.updateBoard);
+  // send invites(create invitations)
+  app.post('/invite', boardController.sendInvite);
 };
