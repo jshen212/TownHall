@@ -14,6 +14,20 @@ TownHall.factory('dataFactory', function($http) {
     });
   };
 
+  var createBoard = function(board, callback) {
+    console.log('createBoard firing');
+    $http({
+      method: 'POST',
+      url: 'api/board/create',
+      data: board
+    }).then(function success() {
+      console.log('board created');
+      callback();
+    }, function error(response) {
+      console.log('error', response);
+    });
+  };
+
   var updateBoard = function(board) {
     console.log('updateBoard firing');
     $http({
@@ -28,18 +42,6 @@ TownHall.factory('dataFactory', function($http) {
 
   };
 
-  var createBoard = function(board) {
-    console.log('createBoard firing');
-    $http({
-      method: 'POST',
-      url: 'api/board/createBoard',
-      data: board
-    }).then(function success() {
-      console.log('board created');
-    }, function error(response) {
-      console.log('error', response);
-    });
-  };
 
   return {
     loadBoard: loadBoard,
