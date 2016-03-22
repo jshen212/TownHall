@@ -29,7 +29,8 @@ var TownHall = angular.module('TownHall', ['firebase', 'ui.router', 'ngMaterial'
     },
     views: {
       '': {
-        templateUrl: 'app/dashboard/dashboard.html'
+        templateUrl: 'app/dashboard/dashboard.html',
+        controller: 'dashboardCtrl'
       },
       'board@dashboard': {
         templateUrl: 'app/board/board.html',
