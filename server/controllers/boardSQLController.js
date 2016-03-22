@@ -75,6 +75,37 @@ var helpers = {
       });
     });
   },
+  getInviteBoards: function(req, res, next) {
+    var invitedBoards = [];
+    helpers.getInviteIds(req, res, function(boards) {
+      boards.forEach(function(boardId) {
+        invitedBoards.push(boardId.board_id);
+      });
+    });
+    knex('Boards')
+    .whereIn('id', invitedBoards)
+    .select('id', 'board_title', 'board_createdby')
+    .then(function(boards) {
+      console.log('invited boards have been sent!', boards);
+      res.send(boards);
+    })
+    .catch(function(err) {
+      console.log('error grabbing invited boards', err);
+    });
+  },
+  getInviteIds: function(req, res, callback) {
+    knex('Invitations')
+    .whereIn('user_id', req.body.id)
+    .whereIn('response', 0)
+    .select('board_id')
+    .then(function(boards) {
+      console.log("fetched boards", boards);
+      callback(boards);
+    })
+    .catch(function(err) {
+      console.log('error in getting invitation board ids', err);
+    });
+  },
   updateBoard: function(req, res, next) {
     knex('Boards')
     .whereIn('id', req.body.board_id)
