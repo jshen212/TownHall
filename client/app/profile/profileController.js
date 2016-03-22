@@ -17,4 +17,10 @@ TownHall.controller('profileCtrl', function($scope, Auth, $state, dataFactory) {
       $state.go('dashboard', {obj: fetchedData});
     });
   };
+
+  $scope.createNewBoard = function() {
+    console.log('createNewBoard firing');
+    dataFactory.createBoard();
+  };
+
 });

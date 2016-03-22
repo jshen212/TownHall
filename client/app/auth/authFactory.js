@@ -22,9 +22,6 @@ TownHall.factory('Auth', function($http, $window, $state, $firebaseAuth) {
     });
   };
 
-
-
-
   return {
     signout: signout,
     checkAuth: checkAuth
