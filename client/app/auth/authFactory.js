@@ -14,8 +14,7 @@ TownHall.factory('Auth', function($http, $window, $state, $firebaseAuth) {
       if (snap.val() === true) {
         console.log('authenticated');
         return true;
-      }
-      else {
+      } else {
         console.log('not authenticated');
         return false;
       }
@@ -37,7 +36,7 @@ TownHall.factory('Auth', function($http, $window, $state, $firebaseAuth) {
       url: 'api/profile/signup',
       data: user
     }).then(function(res) {
-      console.log("added user to database", res.data);
+      console.log('added user to database', res.data);
     });
   };
 
@@ -46,9 +45,14 @@ TownHall.factory('Auth', function($http, $window, $state, $firebaseAuth) {
       method: 'POST',
       url: 'api/profile/signin',
       data: user
-    }).then(function(res) {
-      console.log(res.data);
-      callback(res.data);
+    }).then(function success(res) {
+      if (res.data.length === 0) {
+        sendUser(user);
+        callback(false);
+      } else {
+        console.log(res.data);
+        callback(res.data);
+      }
     });
   };
 
