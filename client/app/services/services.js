@@ -28,9 +28,23 @@ TownHall.factory('dataFactory', function($http) {
 
   };
 
+  var createBoard = function(board) {
+    console.log('createBoard firing');
+    $http({
+      method: 'POST',
+      url: 'api/board/createBoard',
+      data: board
+    }).then(function success() {
+      console.log('board created');
+    }, function error(response) {
+      console.log('error', response);
+    });
+  };
+
   return {
     loadBoard: loadBoard,
-    updateBoard: updateBoard
+    updateBoard: updateBoard,
+    createBoard: createBoard
   };
 
 });
