@@ -60,7 +60,7 @@ TownHall.controller('authCtrl', function($scope, Auth, User, $firebaseAuth, $win
   $scope.googleSignin = function() {
     ref.authWithOAuthPopup('google', function(error, authData) {
       if (error) {
-        console.log("Login Failed!", error);
+        console.log('Login Failed!', error);
       } else {
         console.log('Authenticated successfully with payload:', authData);
         var user = {
@@ -69,21 +69,25 @@ TownHall.controller('authCtrl', function($scope, Auth, User, $firebaseAuth, $win
           name: authData.google.displayName,
           image: authData.google.profileImageURL
         };
-        User.getUser(user, function(fetchedData) {
-          if (!fetchedData) {
-            User.getUser(user, function(fetchedData) {
-              console.log(fetchedData);
-              $scope.saveUserLocalStorage(fetchedData);
-              console.log('2nd google auth with payload:', authData);
-              $state.go('profile');
-            });
-          } else {
-            $scope.saveUserLocalStorage(fetchedData);
-            console.log('google auth with payload:', authData);
+        var createdUser = false;
+        var checkIfUserExists = function(data) {
+          console.log('checking if user exists');
+          if (data) {
+            $scope.saveUserLocalStorage(data);
             $state.go('profile');
+          } else {
+            if (!createdUser) {
+              User.sendUser(user);
+              createdUser = true;
+            }
+            User.getUser(user, function(fetchedData) {
+              checkIfUserExists(fetchedData);
+            });
           }
+        };
+        User.getUser(user, function(fetchedData) {
+          checkIfUserExists(fetchedData);
         });
-        // User.sendUser(user);
       }
     }, {
       scope: 'email'
