@@ -13,13 +13,13 @@
 
           <md-button class="removeList" ng-click="removeList($event, $index)">x</md-button>
           <div class="editListTitle" inline-edit=list.title inline-edit-placeholder="Untitled List" inline-edit-on-blur="save" inline-edit-btn-edit="" inline-edit-callback='editTitle(newValue, list)' inline-edit-on-click></div>
-
+          <div class="cardList">
           <ul dnd-list="list.cards"
               dnd-allowed-types="['cardType']"
               dnd-horizontal-list="true"
               dnd-external-sources="true"
               dnd-dragover="dragoverCallback(event, index, external, type)"
-              dnd-drop="dropCallback(event, index, item, external, type, 'cardType')" class="cardList">
+              dnd-drop="dropCallback(event, index, item, external, type, 'cardType')">
               <li ng-repeat="card in list.cards"
                   dnd-draggable="card"
                   dnd-type="'cardType'"
@@ -31,9 +31,12 @@
                 <!-- <md-button>Edit</md-button> -->
               </li>
           </ul>
-          <div id="addCard" class="addNewCard" inline-edit="" inline-edit-placeholder="Add New Card" inline-edit-on-blur="save" inline-edit-btn-edit="" inline-edit-callback='addCard(newValue, list)' inline-edit-on-click></div>
+          <div class="addNewCard">
+            <div id="addCard"  inline-edit="" inline-edit-placeholder="Add New Card" inline-edit-on-blur="save" inline-edit-btn-edit="" inline-edit-callback='addCard(newValue, list)' inline-edit-on-click></div>
+          </div>
+        </div>
       </li>
+      <button class="addList" ng-click="addList()">add list</button>
     </ul>
-    <button ng-click="addList()">add list</button>
   </div>
 </div>
