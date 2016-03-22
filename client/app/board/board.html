@@ -10,8 +10,10 @@
           dnd-type="'listType'"
           dnd-effect-allowed="copyMove"
           dnd-moved="boardLists.splice($index, 1)">
-          <div flex="90" inline-edit=list.title inline-edit-placeholder="Untitled List" inline-edit-on-blur="save" inline-edit-btn-edit="" inline-edit-callback='editTitle(newValue, list)' inline-edit-on-click></div>
-          <md-button ng-click="removeList($event, $index)">X</md-button>
+
+          <md-button class="removeList" ng-click="removeList($event, $index)">x</md-button>
+          <div class="editListTitle" inline-edit=list.title inline-edit-placeholder="Untitled List" inline-edit-on-blur="save" inline-edit-btn-edit="" inline-edit-callback='editTitle(newValue, list)' inline-edit-on-click></div>
+
           <ul dnd-list="list.cards"
               dnd-allowed-types="['cardType']"
               dnd-horizontal-list="true"
@@ -23,13 +25,13 @@
                   dnd-type="'cardType'"
                   dnd-effect-allowed="copyMove"
                   dnd-moved="list.cards.splice($index, 1)"
-                  class="card">
+                  class="card" ng-click="editCard(card)">
+                  <md-button class="removeCard" ng-click="removeCard(list, $index)">x</md-button>
                   {{card.text}}
-                <md-button ng-click="editCard(card)">Edit</md-button>
-                <md-button ng-click="removeCard(list, $index)">Remove</md-button>
+                <!-- <md-button>Edit</md-button> -->
               </li>
           </ul>
-          <div id="addCard" class="unsortable" inline-edit="" inline-edit-placeholder="Add New Card" inline-edit-on-blur="save" inline-edit-btn-edit="" inline-edit-callback='addCard(newValue, list)' inline-edit-on-click></div>
+          <div id="addCard" class="addNewCard" inline-edit="" inline-edit-placeholder="Add New Card" inline-edit-on-blur="save" inline-edit-btn-edit="" inline-edit-callback='addCard(newValue, list)' inline-edit-on-click></div>
       </li>
     </ul>
     <button ng-click="addList()">add list</button>
