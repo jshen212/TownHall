@@ -27,7 +27,7 @@
                   dnd-effect-allowed="move"
                   dnd-moved="list.cards.splice($index, 1)"
                   class="card" ng-click="editCard(card)">
-                  <button class="removeCard" ng-click="removeCard(list, $index)"><i class="fa fa-times"></i></button>
+                  <button class="removeCard" ng-click="removeCard(list, $index)"><i class="fa fa-times removeCard"></i></button>
                   <p class="cardText">{{card.text}}</p>
                 <!-- <md-button>Edit</md-button> -->
               </li>
