@@ -81,17 +81,17 @@ var helpers = {
       boards.forEach(function(boardId) {
         invitedBoards.push(boardId.board_id);
       });
-    knex('Boards')
-    .whereIn('id', invitedBoards)
-    .select('id', 'board_title', 'board_createdby')
-    .then(function(boards) {
-      console.log('invited boards have been sent!', boards);
-      res.send(boards);
-    })
-    .catch(function(err) {
-      console.log('error grabbing invited boards', err);
+      knex('Boards')
+      .whereIn('id', invitedBoards)
+      .select('id', 'board_title', 'board_createdby')
+      .then(function(boards) {
+        console.log('invited boards have been sent!', boards);
+        res.send(boards);
+      })
+      .catch(function(err) {
+        console.log('error grabbing invited boards', err);
+      });
     });
-  });
   },
   getInviteIds: function(req, res, callback) {
     knex('Invitations')
@@ -143,8 +143,41 @@ var helpers = {
       Joinusers.add(joined);
       console.log('new user board connection has been created', joined);
     });
+  },
+  joinInvited: function(req, res, callback) {
+    var newJoined = new Joinuser({
+      user_id: req.body.userId,
+      board_id: req.body.boardId
+    });
+    newJoined.save()
+    .then(function(joined) {
+      Joinusers.add(joined);
+      console.log('new user board connection has been created', joined);
+      callback();
+    });
+  },
+  updateInvite: function(req, res, next) {
+    console.log(req.body);
+    if(req.body.answer === 'yes'){
+      helpers.joinInvited(req, res, function() {
+        knex('Invitations')
+        .update({
+          response: 1
+        })
+        .then(function() {
+          res.status(201).send('hi');
+        });
+      });
+    } else {
+      console.log('hi before knex invitations');
+      knex('Invitations')
+      .where({user_id: req.body.userId, board_id: req.body.boardId})
+      .del()
+      .then(function() {
+        res.status(201).send('deleting record');
+      });
+    }
   }
-
 };
 
 module.exports = helpers;

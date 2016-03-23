@@ -55,4 +55,21 @@ TownHall.controller('profileCtrl', function($scope, Auth, $state, dataFactory, p
     $scope.getInvites(user);
     $scope.getBoards(user);
   };
+
+  $scope.join = function(boardId) {
+    var user = JSON.parse(localStorage.getItem('userInfo'));
+    var userId = user.id;
+
+    profileFactory.inviteResponse({userId: userId, boardId: boardId, answer: "yes"}).then(function() {
+      $scope.getInvites(userId);
+    });
+  };
+
+  $scope.deny = function(boardId) {
+    var user = JSON.parse(localStorage.getItem('userInfo'));
+    var userId = user.id;
+    console.log(boardId);
+
+    profileFactory.inviteResponse({userId: userId, boardId: boardId, answer: "no"});
+  };
 });

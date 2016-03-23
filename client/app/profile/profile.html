@@ -11,8 +11,8 @@
         <md-menu-content width="4">
           <md-menu-item ng-repeat="invitation in invitations">
             <div class="invitation">{{invitation.board_createdby}} invited you to join {{invitation.board_title}}
-              <md-button class="join">Join</md-button>
-              <md-button class="deny">Deny</md-button>
+              <md-button class="join" ng-click="join(invitation.id)">Join</md-button>
+              <md-button class="deny" ng-click="deny(invitation.id)">Deny</md-button>
             </div>
           </md-menu-item>
         </md-menu-content>
