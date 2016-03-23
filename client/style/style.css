@@ -2,6 +2,10 @@
  font-family: 'Roboto', sans-serif;
 }
 
+*::-webkit-scrollbar {
+  display: none;
+}
+
 a {
  text-decoration: none;
 }
@@ -117,7 +121,7 @@ button {
 /******************** Drag and Drop Styles ***********************/
 .board .mainContainer {
  width: 2000px;
- overflow-x: scroll;
+ overflow-x: auto;
 }
 /**
 * For the correct positioning of the placeholder element, the dnd-list and
@@ -223,7 +227,8 @@ button {
 
 .boardView {
   overflow: scroll;
-  height: 650px;
+  height: 100%;
+  width: 100%;
 }
 
 .chatView {
@@ -250,6 +255,7 @@ button {
  * Copyright 2015 Tamer Aydin (http://tamerayd.in)
  * Licensed under MIT
  */
+
 .ng-inline-edit__input {
   border: 0;
   outline: 0;

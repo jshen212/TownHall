@@ -20,7 +20,19 @@ TownHall.factory('profileFactory', function($http) {
     });
   };
 
+  var inviteResponse = function(inviteData) {
+    return $http({
+      method: 'POST',
+      url: 'api/board/updateInvite',
+      data: inviteData
+    }).then(function(res) {
+      console.log(res.data);
+      return res.data;
+    });
+  };
+
   return {
+    inviteResponse: inviteResponse,
     getBoards: getBoards,
     getInvites: getInvites
   };
