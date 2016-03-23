@@ -12,7 +12,7 @@
           dnd-effect-allowed="move"
           dnd-moved="boardLists.splice($index, 1)">
 
-          <md-button class="removeList" ng-click="removeList($event, $index)">x</md-button>
+          <button class="removeList" ng-click="removeList($event, $index)"><i class="fa fa-times"></i></button>
           <div class="editListTitle" inline-edit=list.title inline-edit-placeholder="Untitled List" inline-edit-on-blur="save" inline-edit-btn-edit="" inline-edit-callback='editTitle(newValue, list)' inline-edit-on-click></div>
           <div class="cardList">
           <ul dnd-list="list.cards"
@@ -27,8 +27,8 @@
                   dnd-effect-allowed="move"
                   dnd-moved="list.cards.splice($index, 1)"
                   class="card" ng-click="editCard(card)">
-                  <md-button class="removeCard" ng-click="removeCard(list, $index)">x</md-button>
-                  {{card.text}}
+                  <button class="removeCard" ng-click="removeCard(list, $index)"><i class="fa fa-times"></i></button>
+                  <p class="cardText">{{card.text}}</p>
                 <!-- <md-button>Edit</md-button> -->
               </li>
           </ul>

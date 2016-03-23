@@ -57,7 +57,7 @@ button {
 
 .list {
  background-color:  #eee;
- width: 300px;
+ width: 250px;
  height: 100%;
  max-height: calc(100vh - 100px);
  display: inline;
@@ -89,16 +89,24 @@ button {
 }
 
 .removeList {
-  margin-left: 150px;
+  margin-left: 200px;
   margin-right: 0;
+  border-radius: 2px;
+  height: 25px;
+  width: 25px;
 }
 
 .card {
- padding: 15px;
- width: 200px;
+ padding: 5px;
+ width: 175px;
+ min-height: 30px;
  background-color: #fff;
  text-align: left;
  word-wrap: break-word;
+}
+
+.cardText {
+  font-size: .8em;
 }
 
 .addNewCard {
@@ -115,11 +123,16 @@ button {
 }
 
 .removeCard {
+  border-radius: 2px;
+  height: 20px;
+  width: 20px;
   float: right;
+  font-size: .7em;
+  background-color: white;
 }
 
 /******************** Drag and Drop Styles ***********************/
-.board .mainContainer {
+.mainContainer {
  width: 2000px;
  overflow-x: auto;
 }
@@ -128,13 +141,12 @@ button {
 * it's children must have position: relative
 */
 
-.board ul[dnd-list],
-.board ul[dnd-list] > li {
+ul[dnd-list],
+ul[dnd-list] > li {
  position: relative;
  /*border: 1px solid black;*/
  float: left;
  margin: 5px;
- margin-left: -2px;
 }
 
 /**** mainContainer Stylying *****/
@@ -143,9 +155,12 @@ button {
 * otherwise you can't drop to it once it's empty
 */
 
-.board .mainContainer ul[dnd-list] {
+.mainContainer ul[dnd-list] {
   min-width: 200px;
   min-height: 50px;
+  padding: 10px 15px;
+  /*border: 1px solid black;*/
+  /*margin-left: 15px;*/
 }
 
 /**
@@ -156,7 +171,7 @@ button {
 * browsers we can use event.offsetY for this.
 */
 
-.board .mainContainer li {
+.mainContainer li {
  display: block;
  /*border: 1px solid black;*/
  border-radius: 8px;
@@ -169,7 +184,7 @@ button {
 * actually moving it. Note that the source element has also .dndDragging class.
 */
 
-.board .mainContainer .dndDraggingSource {
+.mainContainer .dndDraggingSource {
    display: none;
 }
 
@@ -178,7 +193,7 @@ button {
 * while the user is dragging over it.
 */
 
-.board .mainContainer .dndPlaceholder {
+.mainContainer .dndPlaceholder {
   background-color: white !important;
   /*min-height: 50px;*/
   border: none;
@@ -186,22 +201,23 @@ button {
   display: block;
 }
 
-.board .mainContainer li .dndPlaceholder {
+.mainContainer li .dndPlaceholder {
   background-color: #ddd !important;
-  min-height: 90px;
-  width: 235px;
+  min-height: 60px;
+  margin: 5px;
+  width: 200px;
   /*display: block;*/
 }
 
 /****** Element type specific styles *******/
 
-.board .mainContainer .list {
+.mainContainer .list {
  min-height: 120px !important;
  /*padding: 10px;*/
  margin: 5px;
 }
 
-.board .mainContainer .list > li {
+.mainContainer .list > li {
  margin: 0 auto;
  display: inline-block;
  border-radius: 8px;
