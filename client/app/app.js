@@ -5,21 +5,43 @@ var TownHall = angular.module('TownHall', ['firebase', 'ui.router', 'ngMaterial'
     url: '/',
     templateUrl: 'app/landing/landing.html',
     controller: 'landingCtrl',
-    authenticate: false
+    resolve: {
+      requireNoAuth: function($state, Auth) {
+        return Auth.auth.$requireAuth().then(function(auth) {
+          $state.go('profile');
+        }, function(error) {
+          return;
+        });
+      }
+    }
   })
-
   .state('signup', {
     url: '/signup',
     templateUrl: 'app/auth/signup.html',
     controller: 'authCtrl',
-    authenticate: false
+    resolve: {
+      requireNoAuth: function($state, Auth) {
+        return Auth.auth.$requireAuth().then(function(auth) {
+          $state.go('profile');
+        }, function(error) {
+          return;
+        });
+      }
+    }
   })
-
   .state('signin', {
     url: '/signin',
     templateUrl: 'app/auth/signin.html',
     controller: 'authCtrl',
-    authenticate: false
+    resolve: {
+      requireNoAuth: function($state, Auth) {
+        return Auth.auth.$requireAuth().then(function(auth) {
+          $state.go('profile');
+        }, function(error) {
+          return;
+        });
+      }
+    }
   })
 
   .state('dashboard', {
@@ -40,6 +62,13 @@ var TownHall = angular.module('TownHall', ['firebase', 'ui.router', 'ngMaterial'
         templateUrl: 'app/chat/chat.html',
         controller: 'chatCtrl'
       }
+    },
+    resolve: {
+      currentAuth: function($state, Auth) {
+        return Auth.auth.$requireAuth().catch(function() {
+          $state.go('signin');
+        });
+      }
     }
   })
 
@@ -47,8 +76,15 @@ var TownHall = angular.module('TownHall', ['firebase', 'ui.router', 'ngMaterial'
     url: '/profile',
     templateUrl: 'app/profile/profile.html',
     controller: 'profileCtrl',
-    authenticate: false
+    resolve: {
+      currentAuth: function($state, Auth) {
+        return Auth.auth.$requireAuth().catch(function() {
+          $state.go('signin');
+        });
+      }
+    }
   });
 
   $urlRouterProvider.otherwise('/');
-});
+})
+.constant('FirebaseUrl', 'https://townhallapp.firebaseio.com/');
