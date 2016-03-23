@@ -161,6 +161,7 @@ var helpers = {
     if(req.body.answer === 'yes'){
       helpers.joinInvited(req, res, function() {
         knex('Invitations')
+        .where({user_id: req.body.userId, board_id: req.body.boardId})
         .update({
           response: 1
         })

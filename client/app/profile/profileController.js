@@ -60,9 +60,7 @@ TownHall.controller('profileCtrl', function($scope, Auth, $state, dataFactory, p
     var user = JSON.parse(localStorage.getItem('userInfo'));
     var userId = user.id;
 
-    profileFactory.inviteResponse({userId: userId, boardId: boardId, answer: "yes"}).then(function() {
-      $scope.getInvites(userId);
-    });
+    profileFactory.inviteResponse({userId: userId, boardId: boardId, answer: "yes"});
   };
 
   $scope.deny = function(boardId) {
