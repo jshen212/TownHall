@@ -9,4 +9,6 @@ module.exports = function(app) {
   app.post('/signin', profileController.getUserProfile);
   // update profile
   app.post('/update', profileController.updateProfile);
+  // verify member exists
+  app.post('/verify', profileController.verifyMember);
 };
