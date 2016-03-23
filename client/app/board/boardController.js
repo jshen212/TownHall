@@ -1,4 +1,4 @@
-TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $stateParams, User, dataFactory) {
+TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $stateParams, User, dataFactory, Socket) {
 
   $scope.boardID = '';
   $scope.boardTitle = '';
@@ -6,15 +6,19 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $s
   $scope.boardLists = [];
 
   $scope.dragoverCallback = function(event, index, external, type) {
-   return index < 10;
+    return index < 10;
   };
 
   $scope.dropCallback = function(event, index, item, external, type, allowedType) {
-   if (external) {
-    if (allowedType === 'cardType' && !item.text) return false;
-    if (allowedType === 'containerType' && !angular.isArray(item)) return false;
-   }
-   return item;
+    if (external) {
+      if (allowedType === 'cardType' && !item.text) {
+        return false;
+      }
+      if (allowedType === 'containerType' && !angular.isArray(item)) {
+        return false;
+      }
+    }
+    return item;
   };
 
   $scope.addList = function() {
@@ -40,8 +44,7 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $s
   };
 
   $scope.addCard = function(val, list) {
-    list.cards.push({comments: [{attachments: '', createdBy: 'user information holder', text: 'first comment'}],
-    text: val});
+    list.cards.push({comments: [{attachments: '', createdBy: 'user information holder', text: 'first comment'}], text: val});
   };
 
   $scope.editCard = function(card) {
@@ -69,7 +72,7 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $s
   };
 
   $scope.getBoardFromDB = function() {
-    if(!sessionStorage.boardID){
+    if (!sessionStorage.boardID) {
       $state.go('profile');
     }
     var id = sessionStorage.boardID;
@@ -79,8 +82,8 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $s
     });
   };
 
-  $scope.loadBoard = function(){
-    if($stateParams.obj){
+  $scope.loadBoard = function() {
+    if ($stateParams.obj) {
       var board = $stateParams.obj;
       $scope.parseBoard(board);
     } else {
@@ -94,10 +97,15 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $s
       board_title: $scope.boardTitle,
       board_lists: $scope.boardLists
     };
+    Socket.emit('boardChange', $scope.boardLists);
     dataFactory.updateBoard(board);
   };
 
-  $scope.$watch('boardLists', function(){
+  Socket.on('board', function(board) {
+    $scope.boardLists = board;
+  });
+
+  $scope.$watch('boardLists', function() {
     $scope.updateBoard();
   }, true);
 

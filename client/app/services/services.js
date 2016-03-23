@@ -46,7 +46,7 @@ TownHall.factory('dataFactory', function($http) {
       url: 'api/profile/verify',
       data: email
     }).then(function success(user) {
-      if(user.data.length === 0){
+      if (user.data.length === 0) {
         return callback(false);
       }
       return callback(true);
@@ -69,13 +69,42 @@ TownHall.factory('dataFactory', function($http) {
     });
   };
 
-
   return {
     loadBoard: loadBoard,
     updateBoard: updateBoard,
     createBoard: createBoard,
     verifyMember: verifyMember,
     sendInvite: sendInvite
+  };
+
+})
+.factory('Socket', function($rootScope) {
+
+  var socket = io.connect();
+
+  var on = function(eventName, callback) {
+    socket.on(eventName, function() {
+      var args = arguments;
+      $rootScope.$apply(function() {
+        callback.apply(socket, args);
+      });
+    });
+  };
+
+  var emit = function(eventName, data, callback) {
+    socket.emit(eventName, data, function() {
+      var args = arguments;
+      $rootScope.$apply(function() {
+        if (callback) {
+          callback.apply(socket, args);
+        }
+      });
+    });
+  };
+
+  return {
+    on: on,
+    emit: emit
   };
 
 });

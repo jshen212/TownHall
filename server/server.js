@@ -21,14 +21,12 @@ mongoose.connect('mongodb://' + 'townhall' + ':' + 'makersquare32' + '@ds011369.
 console.log('Connected to Mongoose');
 
 io.on('connection', function(socket) {
-  socket.on('change', function(card) {
-    socket.broadcast.emit('card', card);
+  socket.on('boardChange', function(board) {
+    socket.broadcast.emit('board', board);
   });
 });
 
 require('./routes/routes.js')(app, express);
-
-
 
 module.exports = io;
 module.exports = app;
