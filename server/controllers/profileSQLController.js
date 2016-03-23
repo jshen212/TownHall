@@ -46,5 +46,14 @@ module.exports = {
       console.log('user updated');
       res.status(201).send('user updated');
     });
+  },
+  verifyMember: function(req, res, next) {
+    knex('Users')
+    .whereIn('email', req.body.email)
+    .select('email', 'name', 'image', 'uid', 'id')
+    .then(function(user) {
+      console.log('++line 55 user knex db query result is: ', user);
+      res.send(user);
+    });
   }
 };

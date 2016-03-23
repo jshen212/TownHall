@@ -37,14 +37,45 @@ TownHall.factory('dataFactory', function($http) {
     }, function error(response) {
       console.log('error', response);
     });
+  };
 
+  var verifyMember = function(email, callback) {
+    console.log('verify member factory func firing...');
+    $http({
+      method: 'POST',
+      url: 'api/profile/verify',
+      data: email
+    }).then(function success(user) {
+      if(user.data.length === 0){
+        return callback(false);
+      }
+      return callback(true);
+      // console.log(user);
+    }, function error(response) {
+      console.log('error', response);
+    });
+  };
+
+  var sendInvite = function(email) {
+    console.log('sendInvite factory func firing...');
+    $http({
+      method: 'POST',
+      url: 'api/board/invite',
+      data: email
+    }).then(function success() {
+      console.log('invite in factory sent');
+    }, function error(response) {
+      console.log('error', response);
+    });
   };
 
 
   return {
     loadBoard: loadBoard,
     updateBoard: updateBoard,
-    createBoard: createBoard
+    createBoard: createBoard,
+    verifyMember: verifyMember,
+    sendInvite: sendInvite
   };
 
 });
