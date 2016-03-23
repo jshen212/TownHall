@@ -6,6 +6,7 @@ TownHall.factory('Auth', function($http, $window, $state, $firebaseAuth) {
 
   var signout = function() {
     $window.currentUser = {};
+    localStorage.removeItem('userInfo');
     ref.unauth();
   };
 
@@ -23,7 +24,8 @@ TownHall.factory('Auth', function($http, $window, $state, $firebaseAuth) {
 
   return {
     signout: signout,
-    checkAuth: checkAuth
+    checkAuth: checkAuth,
+    auth: auth
   };
 
 })
