@@ -97,12 +97,14 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $s
       board_title: $scope.boardTitle,
       board_lists: $scope.boardLists
     };
-    Socket.emit('boardChange', $scope.boardLists);
     dataFactory.updateBoard(board);
+    Socket.emit('boardChange', board);
   };
 
   Socket.on('board', function(board) {
-    $scope.boardLists = board;
+    if (board.board_id === $scope.boardID){
+      $scope.boardLists = board.board_lists;
+    }
   });
 
   $scope.$watch('boardLists', function() {
