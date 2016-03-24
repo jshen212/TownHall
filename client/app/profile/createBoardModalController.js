@@ -3,6 +3,7 @@ TownHall.controller('createBoardModalCtrl', function($scope, $state, dataFactory
   $scope.newBoardName = '';
   $scope.boardMembers = [];
   $scope.inviteMember = '';
+  $scope.userExists = true;
 
   $scope.createBoard = function() {
     var user = JSON.parse(localStorage.getItem('userInfo'));
@@ -31,10 +32,12 @@ TownHall.controller('createBoardModalCtrl', function($scope, $state, dataFactory
       if (boolean) {
         $scope.boardMembers.push(email);
         $scope.inviteMember = '';
+        $scope.userExists = true;
         console.log('invite sent');
         console.log($scope.boardMembers);
       }
       else {
+        $scope.userExists = false;
         $scope.inviteMember = '';
         console.log('user does not exist');
      }

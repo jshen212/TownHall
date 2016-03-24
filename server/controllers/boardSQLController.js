@@ -126,14 +126,12 @@ var helpers = {
     .whereIn('board_id', req.body.board_id)
     .del()
     .then(function() {
-      console.log('join board deleted');
-
+      console.log('joined board deleted');
       knex('Invitations')
       .whereIn('board_id', req.body.board_id)
       .del()
       .then(function() {
         console.log('invitations board deleted');
-
         knex('Boards')
         .whereIn('id', req.body.board_id)
         .del()
@@ -142,19 +140,15 @@ var helpers = {
           res.status(201).send('board deleted');
         })
         .catch(function(err) {
-          console.log('error in deleting board', err);
+          console.log('error in deleting boards board', err);
         });
-
-        // res.status(201).send('board deleted');
       })
       .catch(function(err) {
-        console.log('error in deleting board', err);
+        console.log('error in deleting invitations board', err);
       });
-
-      // res.status(201).send('board deleted');
     })
     .catch(function(err) {
-      console.log('error in deleting board', err);
+      console.log('error in deleting joined board', err);
     });
 
 

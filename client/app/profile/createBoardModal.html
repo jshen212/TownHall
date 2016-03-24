@@ -8,17 +8,18 @@
   </form>
 
   <form ng-submit="addInvite()">
-  <md-input-container>
-    <label>Add Members</label>
-    <input ng-model="inviteMember" type="text"></input>
-    <md-button type="submit">+</md-button>
-  </md-input-container>
+    <md-input-container>
+      <label>Add Members</label>
+      <input ng-model="inviteMember" type="text"></input>
+      <md-button type="submit">+</md-button>
+    </md-input-container>
   </form>
 
   <div class="invitedBoardMembers">
     <p ng-repeat="member in boardMembers" ng-click="unInvite($index)">
       {{ member.email }}
     </p>
+    <p ng-show="userExists">*** user does not exist on TownHall</p>
   </div>
 
   <md-button ng-click="createBoard()">Create Board</md-button>
