@@ -46,6 +46,21 @@ li {
  font-weight: bold;
 }
 
+.createBoardModal {
+  padding: 15px;
+}
+
+.successfulInvite {
+  color: green;
+}
+
+.userDoesntExist {
+  color: red;
+}
+
+.cardModal {
+  padding: 15px;
+}
 /********** Board Styling ********************/
 
 button {

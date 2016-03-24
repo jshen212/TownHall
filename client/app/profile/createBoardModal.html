@@ -1,4 +1,4 @@
-<div>
+<div class="createBoardModal">
   <h3>Create a New Board</h3>
   <form>
     <md-input-container>
@@ -16,10 +16,11 @@
   </form>
 
   <div class="invitedBoardMembers">
-    <p ng-repeat="member in boardMembers" ng-click="unInvite($index)">
+    <h4>Invites:</h4>
+    <p class="successfulInvite" ng-repeat="member in boardMembers" ng-click="unInvite($index)">
       {{ member.email }}
     </p>
-    <p ng-show="userExists">*** user does not exist on TownHall</p>
+    <p class="userDoesntExist" ng-show="!userExists">*** {{inviteMember}} does not exist</p>
   </div>
 
   <md-button ng-click="createBoard()">Create Board</md-button>

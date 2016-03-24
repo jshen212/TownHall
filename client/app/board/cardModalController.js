@@ -19,7 +19,7 @@ TownHall.controller('cardModalCtrl', function($scope, $window, $state, $mdDialog
         $state.go('signin');
       });
     }
-  }
+  };
 
 
 });
