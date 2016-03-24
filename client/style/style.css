@@ -291,8 +291,7 @@ ul[dnd-list] > li {
   height: 25px;
   position: fixed;
   bottom: 0;
-
-
+}
 /**
  * ng-inline-edit v0.7.0 (http://tamerayd.in/ng-inline-edit)
  * Copyright 2015 Tamer Aydin (http://tamerayd.in)
