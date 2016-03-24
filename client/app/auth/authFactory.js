@@ -30,7 +30,35 @@ TownHall.factory('Auth', function($http, $window, $state, $firebaseAuth) {
 
 })
 
-.factory('User', function($http, $window, $state, $firebaseAuth) {
+.factory('User', function($http, $window, $state, $firebaseAuth, $firebaseArray, $firebaseObject, FirebaseUrl) {
+
+  var usersRef = new Firebase(FirebaseUrl + 'users');
+  var users = $firebaseArray(usersRef);
+  var Users = {
+    getProfile: function(uid) {
+      return $firebaseObject(usersRef.child(uid));
+    },
+    getDisplayName: function(uid) {
+      return users.$getRecord(uid).displayName;
+    },
+    all: users,
+    gravatar: function(uid) {
+      return '//www.gravatar.com/avatar/' + users.$getRecord(uid).emailHash;
+    },
+    // sets the property of online whenever someone is loggedin.
+    setOnline: function(uid) {
+      var connected = $firebaseObject(connectedRef);
+      var online = $firebaseArray(usersRef.child(uid + '/online'));
+
+      connected.$watch(function() {
+        if (connected.$value === true) {
+          online.$add(true).then(function(connectedRef) {
+            connectedRef.onDisconnect().remove();
+          });
+        }
+      });
+    }
+  };
 
   var sendUser = function(user) {
     return $http({
@@ -59,7 +87,8 @@ TownHall.factory('Auth', function($http, $window, $state, $firebaseAuth) {
 
   return {
     sendUser: sendUser,
-    getUser: getUser
+    getUser: getUser,
+    Users: Users
   };
 
 });

@@ -21,6 +21,7 @@ TownHall.controller('profileCtrl', function($scope, Auth, $state, dataFactory, p
     });
   };
 
+
   $scope.openCreateBoardModal = function() {
     $mdDialog.show({
       clickOutsideToClose: true,
