@@ -28,12 +28,12 @@ TownHall.factory('dataFactory', function($http) {
 
   var updateBoard = function(board) {
     console.log('updateBoard firing');
-    $http({
+    return $http({
       method: 'POST',
       url: 'api/board/update',
       data: board
     }).then(function success() {
-      console.log('board updated');
+      return true;
     }, function error(response) {
       console.log('error', response);
     });
