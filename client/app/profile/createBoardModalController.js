@@ -48,7 +48,7 @@ TownHall.controller('createBoardModalCtrl', function($scope, $state, dataFactory
     $scope.boardMembers.splice(index, 1);
   };
 
-  $scope.sendInvites = function(members, boardID) {
+  $scope.sendInvites = function(members, boardID, callback) {
     members.forEach(function(member) {
       var data = {
         email: member.email,
