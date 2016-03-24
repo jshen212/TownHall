@@ -1,4 +1,4 @@
-TownHall.controller('createBoardModalCtrl', function($scope, $state, dataFactory, loadBoard, $mdDialog) {
+TownHall.controller('createBoardModalCtrl', function($scope, $state, dataFactory, loadBoard, $mdDialog, Chat) {
 
   $scope.newBoardName = '';
   $scope.boardMembers = [];
@@ -15,7 +15,9 @@ TownHall.controller('createBoardModalCtrl', function($scope, $state, dataFactory
         board_id: boardData.id,
         boardName: boardData.board_title
       };
-      $scope.sendInvites($scope.boardMembers, boardData.id);
+      $scope.sendInvites($scope.boardMembers, boardData.id, function() {
+        Chat.createChat(boardData.id);
+      });
       loadBoard(formattedBoard);
       $mdDialog.hide();
     });
@@ -38,7 +40,7 @@ TownHall.controller('createBoardModalCtrl', function($scope, $state, dataFactory
     });
   };
 
-  $scope.sendInvites = function(members, boardID) {
+  $scope.sendInvites = function(members, boardID, callback) {
 
     members.forEach(function(member) {
       var data = {
@@ -47,6 +49,7 @@ TownHall.controller('createBoardModalCtrl', function($scope, $state, dataFactory
       };
       dataFactory.sendInvite(data);
     });
+    callback();
   };
 
 });
