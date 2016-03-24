@@ -11,4 +11,6 @@ module.exports = function(app) {
   app.post('/update', profileController.updateProfile);
   // verify member exists
   app.post('/verify', profileController.verifyMember);
+  //get user name from user id
+  app.post('/username', profileController.getUserName);
 };

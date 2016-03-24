@@ -20,13 +20,22 @@ TownHall.factory('profileFactory', function($http) {
     });
   };
 
+  var getUserName = function(user) {
+    return $http({
+      method: 'POST',
+      url: 'api/profile/username',
+      data: user
+    }).then(function(res) {
+      return res.data[0];
+    });
+  };
+
   var inviteResponse = function(inviteData) {
     return $http({
       method: 'POST',
       url: 'api/board/updateInvite',
       data: inviteData
     }).then(function(res) {
-      console.log(res.data);
       return res.data;
     });
   };
@@ -34,6 +43,7 @@ TownHall.factory('profileFactory', function($http) {
   return {
     inviteResponse: inviteResponse,
     getBoards: getBoards,
-    getInvites: getInvites
+    getInvites: getInvites,
+    getUserName: getUserName
   };
 });
