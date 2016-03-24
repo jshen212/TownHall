@@ -38,7 +38,7 @@ TownHall.controller('createBoardModalCtrl', function($scope, $state, dataFactory
       }
       else {
         $scope.userExists = false;
-        $scope.inviteMember = '';
+        // $scope.inviteMember = '';
         console.log('user does not exist');
      }
     });
