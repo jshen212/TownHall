@@ -1,12 +1,11 @@
 <div class="chat-view">
   <div>
-    <h1 class="chat-title">
+    <!-- <h1 class="chat-title">chat</h1> -->
+      <div class="messageContainer">
+        <p class="message" ng-repeat="message in messages">{{message.name}}: {{message.message}}</p>
+      </div>
       <form class="messageInput" ng-submit="sendMessage()">
         <input ng-model="chat.message" type="text" placeholder="enter a message">
       </form>
-      <div>
-        <span ng-repeat="message in messages">{{message.name}} {{message.message}}</span>
-      </div>
-    </h1>
   </div>
 </div>

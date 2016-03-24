@@ -142,6 +142,7 @@ button {
  display: inline;
  float: left;
  padding: 10px;
+ padding-left: 5px;
  text-align: center;
  overflow: hidden;
 }
@@ -180,7 +181,7 @@ button {
 
 .card {
  padding: 5px 0px 5px 15px;
- width: 185px;
+ width: 210px;
  min-height: 30px;
  background-color: #fff;
  text-align: left;
@@ -248,7 +249,7 @@ ul[dnd-list] > li {
   min-width: 200px;
   min-height: 50px;
   padding: 10px 5px;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
   /*border: 1px solid black;*/
   /*margin-left: 15px;*/
 }
@@ -295,7 +296,7 @@ ul[dnd-list] > li {
   background-color: #ddd !important;
   min-height: 60px;
   margin: 5px;
-  width: 200px;
+  width: 225px;
   /*display: block;*/
 }
 
@@ -344,18 +345,36 @@ ul[dnd-list] > li {
   right: 0;
   width: 30%;
   height: 650px;
-  background-color: lightblue;
+  /*background-color: lightblue;*/
   z-index: 2;
 }
+
+.message {
+  margin: 0 auto;
+  margin-bottom: 5px;
+  padding: 5px;
+  padding-left: 10px;
+  height: 25px;
+  background-color: #eee;
+  color: #616161;
+  border-radius: 10px;
+  border-bottom-left-radius: 5px;
+  width: 75%;
+}
 ​
-.chatInput {
+.messageInput {
   margin: 0 auto;
   display: block;
   border: 1px solid darkgrey;
   width: 450px;
   height: 25px;
-  position: fixed;
+  /*position: fixed;*/
+  position: absolute;
   bottom: 0;
+}
+
+.messageContainer {
+  overflow: scroll;
 }
 /**
  * ng-inline-edit v0.7.0 (http://tamerayd.in/ng-inline-edit)
