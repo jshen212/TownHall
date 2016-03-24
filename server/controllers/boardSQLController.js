@@ -121,6 +121,44 @@ var helpers = {
       console.log('error in updating board', err);
     });
   },
+  deleteBoard: function(req, res, next) {
+    knex('Joined')
+    .whereIn('board_id', req.body.board_id)
+    .del()
+    .then(function() {
+      console.log('join board deleted');
+
+      knex('Invitations')
+      .whereIn('board_id', req.body.board_id)
+      .del()
+      .then(function() {
+        console.log('invitations board deleted');
+
+        knex('Boards')
+        .whereIn('id', req.body.board_id)
+        .del()
+        .then(function() {
+          console.log('boards board deleted');
+          res.status(201).send('board deleted');
+        })
+        .catch(function(err) {
+          console.log('error in deleting board', err);
+        });
+
+        // res.status(201).send('board deleted');
+      })
+      .catch(function(err) {
+        console.log('error in deleting board', err);
+      });
+
+      // res.status(201).send('board deleted');
+    })
+    .catch(function(err) {
+      console.log('error in deleting board', err);
+    });
+
+
+  },
   getBoardIds: function(req, res, callback) {
     knex('Joined')
     .whereIn('user_id', req.body.id)

@@ -1,8 +1,5 @@
 <div class="boardContainer" layout="row" ng-controller="boardCtrl" ng-init="loadBoard()">
 
-
-
-
   <div class="boardMenu">
     <h1 class="boardTitle">{{boardTitle}}</h1>
     <md-menu>
@@ -12,6 +9,7 @@
       <md-menu-content width="4">
         <md-menu-item>
             <md-button class="join" ng-click="openCreateBoardModal()">Add Members</md-button>
+            <md-button class="join" ng-click="deleteBoard()">Delete Board</md-button>
         </md-menu-item>
       </md-menu-content>
     </md-menu>
@@ -57,4 +55,5 @@
       <button class="addList" ng-click="addList()">add list</button>
     </ul>
   </div>
+
 </div>

@@ -9,10 +9,13 @@ module.exports = function(app) {
   app.post('/profileView', boardController.getProfileView);
   // update board
   app.post('/update', boardController.updateBoard);
+  // delete board
+  app.post('/delete', boardController.deleteBoard);
   // send invites(create invitations)
   app.post('/invite', boardController.sendInvite);
   // get invititations
   app.post('/invitations', boardController.getInviteBoards);
   // update invitations
   app.post('/updateInvite', boardController.updateInvite);
+
 };
