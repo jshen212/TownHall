@@ -39,6 +39,20 @@ TownHall.factory('dataFactory', function($http) {
     });
   };
 
+  var deleteBoard = function(id) {
+    console.log(id);
+    return $http({
+      method: 'POST',
+      url: 'api/board/delete',
+      data: id
+    }).then(function success() {
+      console.log('board deleted...in dataFactory');
+      // response.send(200);
+    }, function error(response) {
+      console.log('error', response);
+    });
+  };
+
   var verifyMember = function(email, callback) {
     console.log('verify member factory func firing...');
     $http({
@@ -73,6 +87,7 @@ TownHall.factory('dataFactory', function($http) {
     loadBoard: loadBoard,
     updateBoard: updateBoard,
     createBoard: createBoard,
+    deleteBoard: deleteBoard,
     verifyMember: verifyMember,
     sendInvite: sendInvite
   };
