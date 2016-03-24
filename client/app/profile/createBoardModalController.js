@@ -35,13 +35,17 @@ TownHall.controller('createBoardModalCtrl', function($scope, $state, dataFactory
         console.log($scope.boardMembers);
       }
       else {
-       console.log('user does not exist');
+        $scope.inviteMember = '';
+        console.log('user does not exist');
      }
     });
   };
 
-  $scope.sendInvites = function(members, boardID, callback) {
+  $scope.unInvite = function(index) {
+    $scope.boardMembers.splice(index, 1);
+  };
 
+  $scope.sendInvites = function(members, boardID) {
     members.forEach(function(member) {
       var data = {
         email: member.email,
@@ -51,5 +55,4 @@ TownHall.controller('createBoardModalCtrl', function($scope, $state, dataFactory
     });
     callback();
   };
-
 });

@@ -1,51 +1,22 @@
-<!-- <md-toolbar class="md-medium">
-  <div class="md-toolbar-tools" layout="row" flex>
-    <h1 ng-click="refreshProfile()" class="logo"><i class="fa fa-university"></i>Town Hall</h1>
+<div class="boardContainer" layout="row" ng-controller="boardCtrl" ng-init="loadBoard()">
 
-    <span flex></span>
-    <md-menu md-offset="0 60">
-      <md-button class="md-icon-button" style="float:right;" aria-label="Open menu" ng-click="$mdOpenMenu($event)">
-        <md-icon class="fa fa-bell"></md-icon>
-      </md-button>
-      <md-menu-content width="4">
-        <md-menu-item ng-repeat="invitation in invitations">
-          <div class="invitation">{{invitation.board_createdby}} invited you to join {{invitation.board_title}}
-            <md-button class="join" ng-click="join(invitation.id)">Join</md-button>
-            <md-button class="deny" ng-click="deny(invitation.id)">Deny</md-button>
-          </div>
-        </md-menu-item>
-      </md-menu-content>
-    </md-menu>
 
-    <md-menu md-position-mode="target-right target" md-offset="0 60">
+
+
+  <div class="boardMenu">
+    <h1 class="boardTitle">{{boardTitle}}</h1>
+    <md-menu>
       <md-button class="md-icon-button" style="float:right;" aria-label="Open menu" ng-click="$mdOpenMenu($event)">
-        <md-icon class="fa fa-bars"></md-icon>
+        <md-icon class="fa fa-cog"></md-icon>
       </md-button>
       <md-menu-content width="4">
         <md-menu-item>
-          <md-button ng-click="openCreateBoardModal()">
-            <div>Create New Board</div>
-          </md-button>
-        </md-menu-item>
-        <md-menu-item>
-          <md-button ng-click="refreshProfile()">
-            <div>Profile</div>
-          </md-button>
-        </md-menu-item>
-        <md-menu-item>
-          <md-button ng-click="signout()">
-            <div>Sign Out</div>
-          </md-button>
+            <md-button class="join" ng-click="openCreateBoardModal()">Add Members</md-button>
         </md-menu-item>
       </md-menu-content>
     </md-menu>
   </div>
-</md-toolbar> -->
 
-
-
-<div class="boardContainer" layout="row" ng-controller="boardCtrl" ng-init="loadBoard()">
-  <h1>{{boardTitle}}</h1>
   <div class="board" >
     <ul class="mainContainer" dnd-list="boardLists"
         dnd-allowed-types="['listType']"

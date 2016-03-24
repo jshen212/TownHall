@@ -55,6 +55,10 @@ button {
  border-radius: 8px;
 }
 
+.boardTitle {
+  font-size: 1.5em;
+}
+
 .list {
  background-color:  #eee;
  width: 250px;

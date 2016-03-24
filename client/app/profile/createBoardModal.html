@@ -16,7 +16,7 @@
   </form>
 
   <div class="invitedBoardMembers">
-    <p ng-repeat="member in boardMembers">
+    <p ng-repeat="member in boardMembers" ng-click="unInvite($index)">
       {{ member.email }}
     </p>
   </div>
