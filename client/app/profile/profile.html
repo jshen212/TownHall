@@ -5,14 +5,14 @@
 
       <span flex></span>
       <md-menu md-offset="0 60">
-        <md-button class="md-icon-button" style="float:right;" aria-label="Open menu" ng-click="$mdOpenMenu($event)">
+        <md-button ng-show="invitations.length" class="md-icon-button" style="float:right;" aria-label="Open menu" ng-click="$mdOpenMenu($event)">
           <md-icon class="fa fa-bell"></md-icon>
         </md-button>
         <md-menu-content width="4">
           <md-menu-item ng-repeat="invitation in invitations">
-            <div class="invitation">{{invitation.board_createdby}} invited you to join {{invitation.board_title}}
-              <md-button class="join" ng-click="join(invitation.id)">Join</md-button>
-              <md-button class="deny" ng-click="deny(invitation.id)">Deny</md-button>
+            <div class="invitation">{{invitation.board_createdby.name}} invited you to join {{invitation.board_title}}
+              <md-button class="join" ng-click="respondToInvite(invitation.id, $index, 'yes')">Join</md-button>
+              <md-button class="deny" ng-click="respondToInvite(invitation.id, $index, 'no')">Deny</md-button>
             </div>
           </md-menu-item>
         </md-menu-content>

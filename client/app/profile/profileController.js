@@ -21,7 +21,6 @@ TownHall.controller('profileCtrl', function($scope, Auth, $state, dataFactory, p
     });
   };
 
-
   $scope.openCreateBoardModal = function() {
     $mdDialog.show({
       clickOutsideToClose: true,
@@ -33,6 +32,14 @@ TownHall.controller('profileCtrl', function($scope, Auth, $state, dataFactory, p
 
   $scope.getInvites = function(user) {
     profileFactory.getInvites(user).then(function(invitations) {
+      invitations.forEach(function(invitation) {
+        var user = {
+          id: invitation.board_createdby
+        };
+        profileFactory.getUserName(user).then(function(fetchedData) {
+          invitation.board_createdby = fetchedData;
+        });
+      });
       $scope.invitations = invitations;
     });
   };
@@ -50,25 +57,24 @@ TownHall.controller('profileCtrl', function($scope, Auth, $state, dataFactory, p
   };
 
   $scope.loadProfile = function() {
-    var userId = localStorage.getItem('userInfo');
-    var user = JSON.parse(userId);
+    var userID = localStorage.getItem('userInfo');
+    var user = JSON.parse(userID);
 
     $scope.getInvites(user);
     $scope.getBoards(user);
   };
 
-  $scope.join = function(boardId) {
+  $scope.respondToInvite = function(boardID, index, response) {
     var user = JSON.parse(localStorage.getItem('userInfo'));
-    var userId = user.id;
-
-    profileFactory.inviteResponse({userId: userId, boardId: boardId, answer: "yes"});
+    var userID = user.id;
+    $scope.invitations.splice(index, 1);
+    profileFactory.inviteResponse({
+      userId: userID,
+      boardId: boardID,
+      answer: response
+    }).then(function() {
+      $scope.getBoards(user);
+    });
   };
 
-  $scope.deny = function(boardId) {
-    var user = JSON.parse(localStorage.getItem('userInfo'));
-    var userId = user.id;
-    console.log(boardId);
-
-    profileFactory.inviteResponse({userId: userId, boardId: boardId, answer: "no"});
-  };
 });

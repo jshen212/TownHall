@@ -6,11 +6,11 @@ TownHall.factory('Chat', function($http, $firebaseArray, FirebaseUrl, $window, $
     // boardMessagesRef.push({name: "yo"});
   };
 
-  var sendChat = function()
+
 
   return {
-    createChat: createChat,
-    sendChat: sendChat
+    createChat: createChat
+    // sendChat: sendChat
   };
 
 
