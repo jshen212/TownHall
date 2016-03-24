@@ -18,7 +18,7 @@ li {
   cursor: pointer;
   outline: none;
   font-family: 'Satisfy', cursive;
-  color: darkgrey;
+  color: white;
 }
 
 .boardThumbnail {
@@ -46,6 +46,10 @@ li {
  font-weight: bold;
 }
 
+.dashboardMenuBar {
+  z-index: 3;
+}
+
 .createBoardModal {
   padding: 15px;
 }
@@ -70,8 +74,36 @@ button {
  border-radius: 8px;
 }
 
+.boardMenuBar {
+  width: 2000px;
+  height: 35px;
+  background-color: dodgerblue;
+  position: fixed;
+  z-index: 1;
+}
+
 .boardTitle {
-  font-size: 1.5em;
+  font-size: 1.2em;
+  display: inline;
+  float: left;
+  margin: 0;
+  margin-left: 15px;
+  color: white;
+}
+
+.boardMenuIcon {
+  /*padding: 0;*/
+  margin-top: 5px;
+  margin-left: 0;
+  color: white;
+}
+
+.boardMenu {
+  display: inline;
+  float:left;
+  /*color: white;*/
+  /*margin-top: 0;*/
+  /*padding: 0;*/
 }
 
 .list {
@@ -161,6 +193,8 @@ button {
 .mainContainer {
  width: 2000px;
  overflow-x: auto;
+ padding-left: 5px;
+ padding-top: 35px;
 }
 /**
 * For the correct positioning of the placeholder element, the dnd-list and
@@ -184,7 +218,7 @@ ul[dnd-list] > li {
 .mainContainer ul[dnd-list] {
   min-width: 200px;
   min-height: 50px;
-  padding: 10px 15px;
+  padding: 10px 5px;
   /*border: 1px solid black;*/
   /*margin-left: 15px;*/
 }
@@ -281,6 +315,7 @@ ul[dnd-list] > li {
   width: 30%;
   height: 650px;
   background-color: lightblue;
+  z-index: 2;
 }
 ​
 .chatInput {
@@ -291,8 +326,7 @@ ul[dnd-list] > li {
   height: 25px;
   position: fixed;
   bottom: 0;
-
-
+}
 /**
  * ng-inline-edit v0.7.0 (http://tamerayd.in/ng-inline-edit)
  * Copyright 2015 Tamer Aydin (http://tamerayd.in)

@@ -1,18 +1,24 @@
-<div class="boardContainer" layout="row" ng-controller="boardCtrl" ng-init="loadBoard()">
+<div class="boardContainer" ng-controller="boardCtrl" ng-init="loadBoard()">
 
-  <div class="boardMenu">
+  <div class="boardMenuBar md-toolbar-tools">
     <h1 class="boardTitle">{{boardTitle}}</h1>
-    <md-menu>
-      <md-button class="md-icon-button" style="float:right;" aria-label="Open menu" ng-click="$mdOpenMenu($event)">
-        <md-icon class="fa fa-cog"></md-icon>
-      </md-button>
-      <md-menu-content width="4">
-        <md-menu-item>
+    <div class="boardMenu">
+      <md-menu>
+        <md-button class="md-icon-button" style="float:right;" aria-label="Open menu" ng-click="$mdOpenMenu($event)">
+          <md-icon class="fa fa-cog boardMenuIcon"></md-icon>
+        </md-button>
+        <md-menu-content width="4">
+          <md-menu-item>
+
             <md-button class="join" ng-click="openCreateBoardModal()">Add Members</md-button>
+          </md-menu-item>
+            <md-menu-item>
             <md-button class="join" ng-click="deleteBoard()">Delete Board</md-button>
-        </md-menu-item>
-      </md-menu-content>
-    </md-menu>
+
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+    </div>
   </div>
 
   <div class="board" >
