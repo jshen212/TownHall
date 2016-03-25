@@ -374,18 +374,17 @@ ul[dnd-list] > li {
 ​
 input, .messageInput {
   margin: 0 auto;
-  /*display: block;*/
   border: 3px solid #eee;
   width: 80%;
   height: 35px;
-  /*position: fixed;*/
+  padding-left: 10px;
   position: fixed;
   bottom: 0;
 }
 
 .messageContainer {
   /*max-height: 850px;*/
-  max-height: calc(100vh - 45px);
+  min-height: calc(100vh - 45px);
   /*margin-top: 30px;*/
   border: 3px solid #eee;
   overflow: scroll;
