@@ -11,7 +11,7 @@ describe('TownHall Invitation Test', function() {
     element(by.id('signIn')).click();
 
     // waits for page to load and checks that the browser goes to the profile page
-    browser.sleep(3000);
+    browser.sleep(2000);
 
     // checks that the url is the profile page
     expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/#/profile');
@@ -39,7 +39,7 @@ describe('TownHall Invitation Test', function() {
     // clicks create board button
     element(by.id('submitCreateBoard')).click();
 
-    browser.sleep(3000);
+    browser.sleep(2000);
 
     // checks if the new board that is created matches the board name in the form
     expect(element(by.id('boardName')).getText()).toEqual('PROTRACTOR TEST');
@@ -52,7 +52,7 @@ describe('TownHall Invitation Test', function() {
     // clicks the signout button
     element(by.id('signOut')).click();
 
-    browser.sleep(3000);
+    browser.sleep(2000);
 
     // fills in the sign in form fields
     element(by.model('user.email')).sendKeys('test2@test.com');
@@ -61,9 +61,14 @@ describe('TownHall Invitation Test', function() {
     // clicks the sign in button
     element(by.id('signIn')).click();
 
-    browser.sleep(5000);
+    browser.sleep(2000);
 
+    // clicks notifications button
     element(by.id('notificationButton')).click();
+
+    browser.sleep(2000);
+
+    // checks if invitation was received
     expect(element(by.id('boardInvitation')).isPresent()).toBe(true);
   });
 });
