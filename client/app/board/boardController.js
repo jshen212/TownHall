@@ -118,8 +118,10 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $s
     }
   });
 
-  $scope.$watch('boardLists', function() {
-    $scope.updateBoard();
+  $scope.$watch('boardLists', function(newValue, oldValue) {
+    if (newValue !== oldValue) {
+      $scope.updateBoard();
+    }
   }, true);
 
 });
