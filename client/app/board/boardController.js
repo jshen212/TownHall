@@ -120,8 +120,6 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $t
     }
   };
 
-  $scope.checkUserCreatedBoard();
-
   Socket.on('board', function(board) {
     if (board.board_id === $scope.boardID) {
       $scope.boardLists = board.board_lists;
