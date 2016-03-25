@@ -1,6 +1,4 @@
 describe('TownHall Invitation Test', function() {
-  var history = element.all(by.repeater('result in memory'));
-
   it('should successfully sign a user in', function() {
     // navigates to the sign in page
     browser.get('http://localhost:3000/#/signin');
