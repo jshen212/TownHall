@@ -106,10 +106,9 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $t
       board_title: $scope.boardTitle,
       board_lists: $scope.boardLists
     };
-    Socket.emit('boardChange', board);
-    $timeout(function() {
-      dataFactory.updateBoard(board);
-    });
+    dataFactory.updateBoard(board).then(function() {
+     Socket.emit('boardChange', board);
+   });
   };
 
   Socket.on('board', function(board) {
@@ -119,9 +118,7 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $t
   });
 
   $scope.$watch('boardLists', function(newValue, oldValue) {
-    if (newValue !== oldValue) {
-      $scope.updateBoard();
-    }
+    $scope.updateBoard();
   }, true);
 
 });

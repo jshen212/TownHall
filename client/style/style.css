@@ -329,7 +329,6 @@ ul[dnd-list] > li {
   margin: 5px;
 }
 
-
 /************* master styles for main dashboard view **************/
 
 .boardView {
@@ -351,25 +350,54 @@ ul[dnd-list] > li {
 }
 
 .chatUsername {
-  font-weight: bold;
+  /*font-weight: bold;*/
+  font-size: .8em;
+  color: #616161;
+  margin-bottom: 2px;
+  margin-left: 15px;
 }
 
-.message {
-  margin: 0 auto;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  padding: 5px;
-  padding-left: 10px;
+
+.guestChatMessageBody {
+  padding: 15px;
   height: 100%;
   background-color: #eee;
   color: #616161;
   /*background-color: dodgerblue;
-  color: white;*/
+  color: #ECF0F1;*/
   border-radius: 10px;
-  border-bottom-left-radius: 5px;
-  width: 75%;
+  border-bottom-left-radius: 3px;
+  width: 80%;
   word-wrap: break-word;
+  margin-top: 0;
+}
 
+.userChatMessageBody {
+  padding: 15px;
+  height: 100%;
+  /*background-color: #eee;
+  color: #616161;*/
+  background-color: dodgerblue;
+  color: #ECF0F1;
+  border-radius: 10px;
+  border-bottom-right-radius: 3px;
+  width: 80%;
+  word-wrap: break-word;
+  margin-top: 0;
+}
+
+.guestMessage {
+  margin-left: 15px;
+  margin-right: 30%;
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.userMessage {
+  margin-left: 30%;
+  margin-right: 0;
+  margin-top: 0;
+  margin-bottom: 5px;
 }
 ​
 input, .messageInput {
