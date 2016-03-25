@@ -21,6 +21,33 @@ li {
   color: white;
 }
 
+#signin a {
+ color: white;
+}
+
+#signup a {
+ color: rgb(63,81,181);
+ font-weight: bold;
+}
+
+/********** Profile Styling ********************/
+
+.flexContainer {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 35px;
+}
+
+.userContainer {
+  height: 100%;
+  margin: 25px;
+}
+
+.boardsHeader {
+  color: grey;
+  text-align: center;
+}
+
 .boardThumbnail {
   /*border: 1px solid black;*/
   width: 200px;
@@ -37,13 +64,13 @@ li {
   padding-top: 20px;
 }
 
-#signin a {
- color: white;
+.fa.fa-pencil {
+  padding-left: 10px;
+  color: #bbb;
 }
 
-#signup a {
- color: rgb(63,81,181);
- font-weight: bold;
+.fa.fa-ellipsis-v {
+  margin-top: 5px;
 }
 
 .dashboardMenuBar {
@@ -65,6 +92,7 @@ li {
 .cardModal {
   padding: 15px;
 }
+
 /********** Board Styling ********************/
 
 button {

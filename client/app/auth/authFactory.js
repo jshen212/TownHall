@@ -10,6 +10,10 @@ TownHall.factory('Auth', function($http, $window, $state, $firebaseAuth) {
     ref.unauth();
   };
 
+  var getAuth = function() {
+    return ref.getAuth();
+  };
+
   var checkAuth = function() {
     authRef.on('value', function(snap) {
       if (snap.val() === true) {
@@ -24,6 +28,7 @@ TownHall.factory('Auth', function($http, $window, $state, $firebaseAuth) {
 
   return {
     signout: signout,
+    getAuth: getAuth,
     checkAuth: checkAuth,
     auth: auth
   };
