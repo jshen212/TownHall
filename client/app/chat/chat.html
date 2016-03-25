@@ -2,7 +2,17 @@
   <div class="chatViewContainer">
     <!-- <h1 class="chat-title">chat</h1> -->
       <div class="messageContainer" scroll-glue="glued">
-        <p class="message" ng-repeat="message in messages"><span class="chatUsername">{{message.name}}</span>: {{message.message}}</p>
+
+        <div class="guestMessage" ng-repeat="message in messages" ng-class="{'userMessage': message.userId === user.id}">
+          <p class="chatUsername">{{message.name}}</p>
+          <p class="guestChatMessageBody" ng-class="{'userChatMessageBody': message.userId === user.id}">{{message.message}}</p>
+        </div>
+
+        <!-- <div class="userMessage" ng-repeat="message in messages" ng-show="message.name === user.name">
+          <p class="chatUsername">{{message.name}}</p>
+          <p class="userChatMessageBody">{{message.message}}</p>
+        </div> -->
+
       </div>
   </div>
   <form ng-submit="sendMessage()">
