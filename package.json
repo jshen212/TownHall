@@ -32,6 +32,7 @@
     "angular-ui-router": "^0.2.18",
     "angular-xeditable": "0.0.1",
     "angularfire": "^1.1.4",
+    "angularjs-scroll-glue": "^2.0.4",
     "bcrypt": "^0.8.5",
     "bluebird": "^3.3.4",
     "body-parser": "^1.15.0",
