@@ -1,4 +1,4 @@
-describe('TownHall Signout', function() {
+describe('TownHall Signout Test', function() {
   it('signs the user out', function() {
     browser.get('http://localhost:3000/#/signin');
 
