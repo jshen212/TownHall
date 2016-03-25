@@ -385,6 +385,7 @@ input, .messageInput {
 .messageContainer {
   /*max-height: 850px;*/
   min-height: calc(100vh - 45px);
+  max-height: calc(100vh - 45px);
   /*margin-top: 30px;*/
   border: 3px solid #eee;
   overflow: scroll;
