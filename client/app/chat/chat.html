@@ -1,7 +1,7 @@
 <div class="chat-view">
   <div class="chatViewContainer">
     <!-- <h1 class="chat-title">chat</h1> -->
-      <div class="messageContainer">
+      <div class="messageContainer" scroll-glue="glued">
         <p class="message" ng-repeat="message in messages"><span class="chatUsername">{{message.name}}</span>: {{message.message}}</p>
       </div>
   </div>
