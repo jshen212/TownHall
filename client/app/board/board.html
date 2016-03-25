@@ -1,7 +1,7 @@
 <div class="boardContainer" ng-controller="boardCtrl" ng-init="loadBoard()">
 
   <div class="boardMenuBar md-toolbar-tools">
-    <h1 class="boardTitle">{{boardTitle}}</h1>
+    <h1 id="boardName" class="boardTitle">{{boardTitle}}</h1>
     <div class="boardMenu">
       <md-menu>
         <md-button class="md-icon-button" style="float:right;" aria-label="Open menu" ng-click="$mdOpenMenu($event)">
