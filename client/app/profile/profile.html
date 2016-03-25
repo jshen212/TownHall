@@ -42,13 +42,24 @@
       </md-menu>
     </div>
   </md-toolbar>
-  <div class="boardList" ng-repeat="board in boards">
-    <div class="boardThumbnail" ng-click="loadBoard(board)">
-      <p>{{board.boardName}}</p>
+
+  <md-content layout="row">
+    <md-card flex="25" class="userContainer" hide-sm>
+      <img src="{{userImage}}" class="md-card-image" alt="Profile Picture">
+      <md-card-content>
+        <div inline-edit=userName inline-edit-placeholder="Edit Name" inline-edit-on-blur="cancel" inline-edit-btn-edit='<i class="fa fa-pencil"></i>' inline-edit-callback='updateProfile(newValue)'></div>
+      </md-card-content>
+    </md-card>
+    <div>
+      <h3 class="boardsHeader">My Boards</h3>
+      <div class="flexContainer">
+        <div class="boardList" ng-repeat="board in boards">
+          <div class="boardThumbnail" ng-click="loadBoard(board)">
+            <p>{{board.boardName}}</p>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-
-
-
+  </md-content>
 
 </div>

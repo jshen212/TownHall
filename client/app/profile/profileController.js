@@ -1,8 +1,10 @@
-TownHall.controller('profileCtrl', function($scope, Auth, $state, dataFactory, profileFactory, $mdDialog) {
+TownHall.controller('profileCtrl', function($scope, Auth, User, $state, dataFactory, profileFactory, $mdDialog, $mdSidenav) {
   // $scope.boards = [{board_id: 1, boardName: 'board1'}, {board_id: 3, boardName: 'board3'}, {board_id: 7, boardName: 'board7'}];
   $scope.boards = [];
-
   $scope.invitations = [];
+  $scope.userName = '';
+  $scope.userEmail = '';
+  $scope.userImage = '';
 
   $scope.refreshProfile = function() {
     window.location.reload();
@@ -11,6 +13,21 @@ TownHall.controller('profileCtrl', function($scope, Auth, $state, dataFactory, p
   $scope.signout = function() {
     Auth.signout();
     $state.go('signin');
+  };
+
+  $scope.updateProfile = function(val) {
+    var getAuth = Auth.getAuth();
+    var user = {
+      uid: getAuth.uid,
+      name: val
+    };
+    profileFactory.updateProfile(user).then(function() {
+      User.getUser(user, function(fetchedData) {
+        var userInfo = JSON.stringify(fetchedData[0]);
+        localStorage.setItem('userInfo', userInfo);
+        $scope.userName = val;
+      });
+    });
   };
 
   $scope.loadBoard = function(board) {
@@ -28,6 +45,12 @@ TownHall.controller('profileCtrl', function($scope, Auth, $state, dataFactory, p
       templateUrl: 'app/profile/createBoardModal.html',
       controller: 'createBoardModalCtrl'
     });
+  };
+
+  $scope.setUserInfo = function(user) {
+    $scope.userName = user.name;
+    $scope.userEmail = user.email;
+    $scope.userImage = user.image || 'https://about.udemy.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png';
   };
 
   $scope.getInvites = function(user) {
@@ -60,6 +83,7 @@ TownHall.controller('profileCtrl', function($scope, Auth, $state, dataFactory, p
     var userID = localStorage.getItem('userInfo');
     var user = JSON.parse(userID);
 
+    $scope.setUserInfo(user);
     $scope.getInvites(user);
     $scope.getBoards(user);
   };
