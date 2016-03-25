@@ -19,7 +19,7 @@
       </md-menu>
 
       <md-menu md-position-mode="target-right target" md-offset="0 60">
-        <md-button class="md-icon-button" style="float:right;" aria-label="Open menu" ng-click="$mdOpenMenu($event)">
+        <md-button id="profileMenu" class="md-icon-button" style="float:right;" aria-label="Open menu" ng-click="$mdOpenMenu($event)">
           <md-icon class="fa fa-bars"></md-icon>
         </md-button>
         <md-menu-content width="4">
@@ -34,7 +34,7 @@
             </md-button>
           </md-menu-item>
           <md-menu-item>
-            <md-button ng-click="signout()">
+            <md-button id="signOut" ng-click="signout()">
               <div>Sign Out</div>
             </md-button>
           </md-menu-item>
