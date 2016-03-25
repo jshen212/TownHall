@@ -1,4 +1,4 @@
-TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $stateParams, User, dataFactory, Socket) {
+TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $timeout, $stateParams, User, dataFactory, Socket) {
 
   $scope.boardID = '';
   $scope.boardTitle = '';
@@ -106,9 +106,9 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $s
       board_title: $scope.boardTitle,
       board_lists: $scope.boardLists
     };
-
-    dataFactory.updateBoard(board).then(function() {
-      Socket.emit('boardChange', board);
+    Socket.emit('boardChange', board);
+    $timeout(function() {
+      dataFactory.updateBoard(board);
     });
   };
 
