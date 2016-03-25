@@ -12,6 +12,8 @@ describe('TownHall SignUp', function() {
 
     // waits for page to load and checks that the browser goes to the profile page
     browser.sleep(3000);
-    expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/#/a');
+
+    // checks that the url is the profile page
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/#/profile');
   });
 });
