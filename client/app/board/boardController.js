@@ -1,5 +1,5 @@
 TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $timeout, $stateParams, User, dataFactory, Socket) {
-
+  $scope.created = false;
   $scope.boardID = '';
   $scope.boardTitle = '';
   $scope.createdBy = '';
@@ -107,9 +107,20 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $t
       board_lists: $scope.boardLists
     };
     dataFactory.updateBoard(board).then(function() {
-     Socket.emit('boardChange', board);
-   });
+      Socket.emit('boardChange', board);
+    });
   };
+
+  $scope.checkUserCreatedBoard = function() {
+    var userInfo = JSON.parse(localStorage.getItem('userInfo'));
+    var userId = userInfo.id;
+    
+    if(userId === $scope.createdBy) {
+      $scope.created = true;
+    }
+  };
+
+  $scope.checkUserCreatedBoard();
 
   Socket.on('board', function(board) {
     if (board.board_id === $scope.boardID) {
