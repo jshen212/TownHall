@@ -82,10 +82,24 @@ TownHall.controller('profileCtrl', function($scope, Auth, User, $state, dataFact
   $scope.loadProfile = function() {
     var userID = localStorage.getItem('userInfo');
     var user = JSON.parse(userID);
-
-    $scope.setUserInfo(user);
-    $scope.getInvites(user);
-    $scope.getBoards(user);
+    if (user) {
+      $scope.setUserInfo(user);
+      $scope.getInvites(user);
+      $scope.getBoards(user);
+    } else {
+      var getAuth = Auth.getAuth();
+      var uid = {
+        uid: getAuth.uid
+      };
+      User.getUser(uid, function(fetchedData) {
+        var userInfo = JSON.stringify(fetchedData[0]);
+        localStorage.setItem('userInfo', userInfo);
+        user = fetchedData[0];
+        $scope.setUserInfo(user);
+        $scope.getInvites(user);
+        $scope.getBoards(user);
+      });
+    }
   };
 
   $scope.respondToInvite = function(boardID, index, response) {
