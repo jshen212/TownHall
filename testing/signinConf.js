@@ -4,5 +4,5 @@ exports.config = {
   capabilities: {
     'browserName': 'chrome'
   },
-  specs: ['signupSpec.js']
+  specs: ['signinSpec.js']
 };
