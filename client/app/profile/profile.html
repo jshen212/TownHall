@@ -1,31 +1,32 @@
-<div class="profileContainer" ng-init="loadProfile()">
-  <md-toolbar class="md-medium">
-    <div class="md-toolbar-tools" layout="row" flex>
-      <h1 ng-click="refreshProfile()" class="logo"><i class="fa fa-university"></i>Town Hall</h1>
+<div class="navBar">
+  <h1 class="logo" ng-click="refreshProfile()"><i class="fa fa-university"></i>TownHall</h1>
+  <div class="tools">
 
-      <span flex></span>
-      <md-menu md-offset="0 60">
-        <md-button id="notificationButton" ng-show="invitations.length" class="md-icon-button" style="float:right;" aria-label="Open menu" ng-click="$mdOpenMenu($event)">
+    <div class="tool">
+      <md-menu md-offset="0 42">
+        <md-button id="notificationButton" ng-show="invitations.length" class="md-icon-button" aria-label="Open menu" ng-click="$mdOpenMenu($event)">
           <md-icon class="fa fa-bell"></md-icon>
         </md-button>
         <md-menu-content width="4">
           <md-menu-item ng-repeat="invitation in invitations">
-            <div id="boardInvitation" class="invitation">{{invitation.board_createdby.name}} invited you to join {{invitation.board_title}}
+            <div class="invitation">{{invitation.board_createdby.name}} invited you to join {{invitation.board_title}}
               <md-button class="join" ng-click="respondToInvite(invitation.id, $index, 'yes')">Join</md-button>
               <md-button class="deny" ng-click="respondToInvite(invitation.id, $index, 'no')">Deny</md-button>
             </div>
           </md-menu-item>
         </md-menu-content>
       </md-menu>
+    </div>
 
-      <md-menu md-position-mode="target-right target" md-offset="0 60">
-        <md-button id="profileMenu" class="md-icon-button" style="float:right;" aria-label="Open menu" ng-click="$mdOpenMenu($event)">
+    <div class="tool">
+      <md-menu md-position-mode="target-right target" md-offset="0 50">
+        <md-button id="profileMenu" class="md-icon-button" aria-label="Open menu" ng-click="$mdOpenMenu($event)">
           <md-icon class="fa fa-bars"></md-icon>
         </md-button>
         <md-menu-content width="4">
           <md-menu-item>
             <md-button ng-click="openCreateBoardModal()">
-              <div id="createBoard">Create New Board</div>
+              <div>Create New Board</div>
             </md-button>
           </md-menu-item>
           <md-menu-item>
@@ -34,17 +35,20 @@
             </md-button>
           </md-menu-item>
           <md-menu-item>
-            <md-button id="signOut" ng-click="signout()">
-              <div>Sign Out</div>
+            <md-button ng-click="signout()">
+              <div id="signOut">Sign Out</div>
             </md-button>
           </md-menu-item>
         </md-menu-content>
       </md-menu>
     </div>
-  </md-toolbar>
+  </div>
+</div>
+
+<div class="profileContainer" ng-init="loadProfile()">
 
   <md-content layout="row">
-    <md-card flex="25" class="userContainer" hide-sm>
+    <md-card flex="25" class="userContainer" hide-sm hide-xs>
       <img src="{{userImage}}" class="md-card-image" alt="Profile Picture">
       <md-card-content>
         <div inline-edit=userName inline-edit-placeholder="Edit Name" inline-edit-on-blur="cancel" inline-edit-btn-edit='<i class="fa fa-pencil"></i>' inline-edit-callback='updateProfile(newValue)'></div>
