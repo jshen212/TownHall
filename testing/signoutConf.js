@@ -5,4 +5,4 @@ exports.config = {
     'browserName': 'chrome'
   },
   specs: ['signoutSpec.js']
-  };
+};
