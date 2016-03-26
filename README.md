@@ -14,7 +14,7 @@
 > TownHall is a seamless planning utility that streamlines projects from ideation to execution, packaged in an elegant, modern design. Create execution stages, task cards, and send chat messages to team members all in one place!
 
 #### SQL Schema Design
-![TownHall Schema](../TownHall SQL Schema.png)
+![TownHall Schema](/client/assets/TownHall SQL Schema.png)
 
 
 ## Requirements
