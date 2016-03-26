@@ -1,5 +1,5 @@
 describe('TownHall SignUp Test', function() {
-  it('should create user and go to profile page', function() {
+  it('should sign in and go to profile page', function() {
     // navigates to the sign in page
     browser.get('http://localhost:3000/#/signin');
 
