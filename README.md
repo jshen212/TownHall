@@ -11,7 +11,7 @@
 *Note: click names for Github profiles*
 
 ## Usage
-> TownHall is a modern-day planning utility that streamlines the work process from ideation to execution. Create execution stages, task cards, and send chat messages to team members all in one place!
+> TownHall is a seamless planning utility that streamlines projects from ideation to execution, packaged in an elegant, modern design. Create execution stages, task cards, and send chat messages to team members all in one place! 
 
 ## Requirements
 #### Back-End
