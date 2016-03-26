@@ -21,6 +21,18 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $t
     return item;
   };
 
+  $scope.editMembers = function() {
+    $mdDialog.show({
+      clickOutsideToClose: true,
+      locals: {
+        createdBy: $scope.createdBy,
+        boardID: $scope.boardID
+      },
+      templateUrl: 'app/board/membersModal.html',
+      controller: 'membersModalCtrl'
+    });
+  };
+
   $scope.addList = function() {
     $scope.boardLists.push({title: '', cards: []});
   };
@@ -114,7 +126,7 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $t
   $scope.checkUserCreatedBoard = function() {
     var userInfo = JSON.parse(localStorage.getItem('userInfo'));
     var userId = userInfo.id;
-    
+
     if(userId === $scope.createdBy) {
       $scope.created = true;
     }

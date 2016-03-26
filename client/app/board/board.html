@@ -9,16 +9,15 @@
         </md-button>
         <md-menu-content width="4">
           <md-menu-item>
-
             <md-button class="join" ng-click="openInviteMemberModal()">Add Members</md-button>
           </md-menu-item>
-            <md-menu-item>
+          <md-menu-item>
             <md-button class="join" ng-show="created" ng-click="deleteBoard()">Delete Board</md-button>
-
           </md-menu-item>
         </md-menu-content>
       </md-menu>
     </div>
+    <md-icon class="fa fa-users" ng-click="editMembers()"></md-icon>
   </div>
 
   <div class="board" >
