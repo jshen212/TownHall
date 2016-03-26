@@ -57,7 +57,7 @@ TownHall.controller('profileCtrl', function($scope, Auth, User, $state, dataFact
     profileFactory.getInvites(user).then(function(invitations) {
       invitations.forEach(function(invitation) {
         var user = {
-          id: invitation.board_createdby
+          user_id: invitation.board_createdby
         };
         profileFactory.getUserName(user).then(function(fetchedData) {
           invitation.board_createdby = fetchedData;

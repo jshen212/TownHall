@@ -1,13 +1,27 @@
-<div ng-init=loadMembers()>
-  <h3>Board Members</h3>
-  <section>
-    <h5>Created By</h5>
-    <p>{{createdBy.name}}
-  </section>
-  <section>
-    <h5>Current</h5>
-  </section>
-  <section>
-    <h5>Pending</h5>
-  </section>
+<div layout="row" ng-init=loadMembers()>
+  <div class="membersContainer" flex="50">
+    <h3>Board Members</h3>
+    <section>
+      <h5>Joined</h5>
+      <p>{{createdBy.name}} (owner)</p>
+      <p ng-repeat="member in joinedMembers">{{member.name}}</p>
+    </section>
+    <section>
+      <h5>Invited</h5>
+      <p ng-repeat="member in pendingMembers">{{member.name}}</p>
+    </section>
+  </div>
+
+  <div>
+    <h3>Invite Members</h3>
+
+    <form ng-submit="addInvite()">
+      <md-input-container>
+        <label>Email</label>
+        <input ng-model="inviteMember" type="text"></input>
+        <md-button aria-label="inviteMember" ng-click="addInvite()"><i class="fa fa-user-plus"></i></md-button>
+      </md-input-container>
+    </form>
+    <p class="userDoesntExist" ng-show="!userExists">{{inviteError}}</p>
+  </div>
 </div>

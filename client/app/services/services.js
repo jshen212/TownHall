@@ -71,9 +71,21 @@ TownHall.factory('dataFactory', function($http) {
     });
   };
 
+  var getMember = function(email, callback) {
+    return $http({
+      method: 'POST',
+      url: 'api/profile/verify',
+      data: email
+    }).then(function success(user) {
+      return user.data[0];
+    }, function error(response) {
+      console.log('error', response);
+    });
+  };
+
   var sendInvite = function(email) {
     console.log('sendInvite factory func firing...');
-    $http({
+    return $http({
       method: 'POST',
       url: 'api/board/invite',
       data: email
@@ -90,6 +102,7 @@ TownHall.factory('dataFactory', function($http) {
     createBoard: createBoard,
     deleteBoard: deleteBoard,
     verifyMember: verifyMember,
+    getMember: getMember,
     sendInvite: sendInvite
   };
 

@@ -209,13 +209,13 @@ var helpers = {
       });
     }
   },
-  getBoardMembers: function(req, res, callback) {
+  getBoardMembers: function(req, res) {
     knex('Invitations')
     .whereIn('board_id', req.body.boardID)
     .select('user_id', 'response')
     .then(function(users) {
-      console.log('fetched users', boards);
-      callback(users);
+      console.log('fetched users', users);
+      res.send(users);
     })
     .catch(function(err) {
       console.log('error in getting invitation board ids', err);
