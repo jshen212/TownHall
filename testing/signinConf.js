@@ -4,5 +4,10 @@ exports.config = {
   capabilities: {
     'browserName': 'chrome'
   },
-  specs: ['signinSpec.js']
+  specs: ['signinSpec.js'],
+  onPrepare: function() {
+    var SpecReporter = require('jasmine-spec-reporter');
+    // add jasmine spec reporter
+    jasmine.getEnv().addReporter(new SpecReporter({displayStacktrace: 'all'}));
+  }
 };
