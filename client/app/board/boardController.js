@@ -1,8 +1,10 @@
-TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $timeout, $stateParams, User, dataFactory, Socket) {
+TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $timeout, $stateParams, boardFactory, User, dataFactory, Socket) {
   $scope.created = false;
   $scope.boardID = '';
   $scope.boardTitle = '';
   $scope.createdBy = '';
+  $scope.joinedMembers = [];
+  $scope.pendingMembers = [];
   $scope.boardLists = [];
 
   $scope.dragoverCallback = function(event, index, external, type) {
@@ -19,6 +21,26 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $t
       }
     }
     return item;
+  };
+
+  $scope.getMembers = function(id, callback) {
+    boardFactory.getMembers(id).then(function(members) {
+      callback(members);
+    });
+  };
+
+  $scope.editMembers = function() {
+    $mdDialog.show({
+      clickOutsideToClose: true,
+      locals: {
+        createdBy: $scope.createdBy,
+        boardID: $scope.boardID,
+        joinedMembers: $scope.joinedMembers,
+        pendingMembers: $scope.pendingMembers
+      },
+      templateUrl: 'app/board/membersModal.html',
+      controller: 'membersModalCtrl'
+    });
   };
 
   $scope.addList = function() {
@@ -64,17 +86,23 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $t
   };
 
   $scope.parseBoard = function(board) {
-    console.log('boardd in parseBoard', board);
     $scope.boardID = board.id;
     $scope.boardTitle = board.board_title;
     $scope.createdBy = board.board_createdby;
     $scope.boardLists = JSON.parse(board.board_lists);
+    $scope.getMembers({boardID: board.id}, function(members) {
+      members.forEach(function(member) {
+        if (member.response === 1) {
+          $scope.joinedMembers.push(member);
+        }
+        if (member.response === 0) {
+          $scope.pendingMembers.push(member);
+        }
+      });
+    });
   };
 
   $scope.getBoardFromDB = function() {
-    if (!sessionStorage.boardID) {
-      $state.go('profile');
-    }
     var id = sessionStorage.boardID;
     var board = {board_id: id};
     dataFactory.loadBoard(board, function(fetchedData) {
@@ -86,8 +114,10 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $t
     if ($stateParams.obj) {
       var board = $stateParams.obj;
       $scope.parseBoard(board);
-    } else {
+    } else if (sessionStorage.boardID) {
       $scope.getBoardFromDB();
+    } else {
+      $state.go('profile');
     }
   };
 
@@ -114,7 +144,7 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $t
   $scope.checkUserCreatedBoard = function() {
     var userInfo = JSON.parse(localStorage.getItem('userInfo'));
     var userId = userInfo.id;
-    
+
     if(userId === $scope.createdBy) {
       $scope.created = true;
     }

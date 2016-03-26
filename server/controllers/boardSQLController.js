@@ -70,8 +70,8 @@ var helpers = {
       invitation.save()
       .then(function(invite) {
         Invites.add(invite);
-        console.log("invite link has been created!", invite);
-        res.status(201).send("Invite has been made!");
+        console.log('invite link has been created!', invite);
+        res.status(201).send('Invite has been made!');
       });
     });
   },
@@ -99,7 +99,7 @@ var helpers = {
     .whereIn('response', 0)
     .select('board_id')
     .then(function(boards) {
-      console.log("fetched boards", boards);
+      console.log('fetched boards', boards);
       callback(boards);
     })
     .catch(function(err) {
@@ -150,8 +150,6 @@ var helpers = {
     .catch(function(err) {
       console.log('error in deleting joined board', err);
     });
-
-
   },
   getBoardIds: function(req, res, callback) {
     knex('Joined')
@@ -190,7 +188,7 @@ var helpers = {
   },
   updateInvite: function(req, res, next) {
     console.log(req.body);
-    if(req.body.answer === 'yes'){
+    if (req.body.answer === 'yes') {
       helpers.joinInvited(req, res, function() {
         knex('Invitations')
         .where({user_id: req.body.userId, board_id: req.body.boardId})
@@ -210,6 +208,18 @@ var helpers = {
         res.status(201).send('deleting record');
       });
     }
+  },
+  getBoardMembers: function(req, res) {
+    knex('Invitations')
+    .whereIn('board_id', req.body.boardID)
+    .select('user_id', 'response')
+    .then(function(users) {
+      console.log('fetched users', users);
+      res.send(users);
+    })
+    .catch(function(err) {
+      console.log('error in getting invitation board ids', err);
+    });
   }
 };
 

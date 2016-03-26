@@ -303,6 +303,10 @@ button {
   color: darkgrey;
 }
 
+.fa.fa-users {
+  color: white;
+}
+
 
 /******************** Drag and Drop Styles ***********************/
 .mainContainer {

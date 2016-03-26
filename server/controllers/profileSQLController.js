@@ -58,8 +58,8 @@ module.exports = {
   },
   getUserName: function(req, res) {
     knex('Users')
-    .whereIn('id', req.body.id)
-    .select('name', 'image')
+    .whereIn('id', req.body.user_id)
+    .select('name', 'image', 'email')
     .then(function(user) {
       console.log('++line 64 user knex db query result is: ', user);
       res.send(user);
