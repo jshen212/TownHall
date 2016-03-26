@@ -12,8 +12,8 @@ TownHall.controller('dashboardCtrl', function($scope, $window, $state, Auth, $md
     $mdDialog.show({
       clickOutsideToClose: true,
       locals: {loadBoard: $scope.createAndLoadBoard},
-      templateUrl: 'app/profile/createBoardModal.html',
-      controller: 'createBoardModalCtrl'
+      templateUrl: 'app/board/addMemberModal.html',
+      controller: 'addMemberModalCtrl'
     });
   };
 
