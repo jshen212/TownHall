@@ -1,0 +1,19 @@
+<div id="createBoardModalPopup" class="createBoardModal">
+  <form ng-submit="addInvite()">
+    <h4>Invite Members</h4>
+    <md-input-container>
+      <label>Add Members</label>
+      <input ng-model="inviteMember" type="text" placeholder="email"></input>
+      <md-button id="inviteSubmit" type="submit">+</md-button>
+    </md-input-container>
+  </form>
+
+  <div class="invitedBoardMembers">
+    <p class="successfulInvite" id= "invitedMember" ng-repeat="member in boardMembers" ng-click="unInvite($index)">
+      {{ member.email }}
+    </p>
+    <p class="userDoesntExist" ng-show="!userExists">*** {{inviteMember}} does not exist <br> please enter a valid email</p>
+  </div>
+
+  <md-button id="addMembers" ng-click="addMembers()">Add Members</md-button>
+</div>
