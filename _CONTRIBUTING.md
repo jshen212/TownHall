@@ -17,7 +17,7 @@ Add an upstream that points to the main repo
 git remote add upstream https://github.com/TownHalls/TownHall.git
 ~~~~
 
-4) Install npm and bower dependencies
+4) Install npm dependencies
 
 ~~~~
 npm install
@@ -32,7 +32,7 @@ npm install
 git pull --rebase upstream dev
 ~~~~
 
-> Reinstall npm and bower dependencies if necessary.
+> Reinstall npm dependencies if necessary.
 
 2) Create a new branch for your contribution
 
@@ -57,7 +57,7 @@ git commit -m "[type] description of commit"
 ~~~~
 git pull --rebase upstream dev
 ~~~~
->Resolve any conflicts and commit again if neccessary
+>Resolve any conflicts and commit again if necessary
 
 5) Fix any conflicts
 
@@ -89,6 +89,6 @@ Commit Messages: please use **[TYPE]** Description with first letter of type low
 > [feature] added button that allows user to logout
 
 Possible **TYPES** include:
->setup, feature, refactor, bugfix
+>setup, feature, refactor, bug
 
 ## Thanks for your contributions!
