@@ -8,12 +8,21 @@ TownHall.controller('dashboardCtrl', function($scope, $window, $state, Auth, $md
     $state.go('signin');
   };
 
-  $scope.openCreateBoardModal = function() {
+  $scope.openInviteMemberModal = function() {
     $mdDialog.show({
       clickOutsideToClose: true,
       locals: {loadBoard: $scope.createAndLoadBoard},
       templateUrl: 'app/board/addMemberModal.html',
       controller: 'addMemberModalCtrl'
+    });
+  };
+
+  $scope.openCreateBoardModal = function() {
+    $mdDialog.show({
+      clickOutsideToClose: true,
+      locals: {loadBoard: $scope.createAndLoadBoard},
+      templateUrl: 'app/profile/createBoardModal.html',
+      controller: 'createBoardModalCtrl'
     });
   };
 
