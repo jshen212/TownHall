@@ -1,6 +1,6 @@
 # TownHall
 
->company motto
+> *"Plan less, do more"*
 
 ## Team
 
@@ -11,17 +11,20 @@
 *Note: click names for Github profiles*
 
 ## Usage
->Purpose of the app
+> TownHall is a modern-day planning utility that streamlines the work process from ideation to execution. Create execution stages, task cards, and send chat messages to team members all in one place!
 
 ## Requirements
 #### Back-End
-* EXAMPLE
+* [MySQL](https://www.mysql.com/)
+* [Bookshelf.js](http://bookshelfjs.org/)
+* [Node](https://nodejs.org/en/)
+* [Express](http://expressjs.com/)
 
 #### Front-End
-* EXAMPLE
+* [AngularJS](https://angularjs.org/)
 
 #### Utilities
-* EXAMPLE
+* [npm](https://www.npmjs.com/)
 
 #### Dependencies and Running
 ~~~~
