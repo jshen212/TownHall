@@ -5,11 +5,11 @@
     <div class="tool">
       <md-menu md-offset="0 42">
         <md-button id="notificationButton" ng-show="invitations.length" class="md-icon-button" aria-label="Open menu" ng-click="$mdOpenMenu($event)">
-          <md-icon class="fa fa-bell"></md-icon>
+          <md-icon class="fa fa-bell" id="notificationButton"></md-icon>
         </md-button>
         <md-menu-content width="4">
           <md-menu-item ng-repeat="invitation in invitations">
-            <div class="invitation">{{invitation.board_createdby.name}} invited you to join {{invitation.board_title}}
+            <div class="invitation" id="boardInvitation">{{invitation.board_createdby.name}} invited you to join {{invitation.board_title}}
               <md-button class="join" ng-click="respondToInvite(invitation.id, $index, 'yes')">Join</md-button>
               <md-button class="deny" ng-click="respondToInvite(invitation.id, $index, 'no')">Deny</md-button>
             </div>
@@ -26,7 +26,7 @@
         <md-menu-content width="4">
           <md-menu-item>
             <md-button ng-click="openCreateBoardModal()">
-              <div>Create New Board</div>
+              <div id="createBoard">Create New Board</div>
             </md-button>
           </md-menu-item>
           <md-menu-item>
