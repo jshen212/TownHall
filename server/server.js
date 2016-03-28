@@ -1,4 +1,5 @@
 var express = require('express');
+var cors = require('cors');
 var http = require('http');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
@@ -8,6 +9,7 @@ var server = http.createServer(app).listen(process.env.PORT || 3000);
 var io = require('socket.io')(server);
 var mongoose = require('mongoose');
 
+app.use(cors());
 app.use(morgan('dev'));
 app.use(express.static(__dirname + '/../client/'));
 app.use(bodyParser.urlencoded({extended: true}));
