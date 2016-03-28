@@ -1,5 +1,17 @@
 TownHall.factory('dataFactory', function($http) {
 
+  var getMembers = function(boardID) {
+    return $http({
+      method: 'POST',
+      url: 'api/board/populateRoom',
+      data: boardID
+    }).then(function success(res) {
+      return res.data;
+    }, function error(response) {
+      console.log('error', response);
+    });
+  };
+
   var loadBoard = function(board, callback) {
     console.log('loadBoard firing');
     $http({
@@ -103,7 +115,8 @@ TownHall.factory('dataFactory', function($http) {
     deleteBoard: deleteBoard,
     verifyMember: verifyMember,
     getMember: getMember,
-    sendInvite: sendInvite
+    sendInvite: sendInvite,
+    getMembers: getMembers
   };
 
 })
