@@ -90,7 +90,10 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $t
     $scope.boardTitle = board.board_title;
     $scope.createdBy = board.board_createdby;
     $scope.boardLists = JSON.parse(board.board_lists);
-    $scope.getMembers({boardID: board.id}, function(members) {
+    var boardobj = {
+      boardID: board.id
+    };
+    $scope.getMembers(boardobj, function(members) {
       members.forEach(function(member) {
         if (member.response === 1) {
           $scope.joinedMembers.push(member);
