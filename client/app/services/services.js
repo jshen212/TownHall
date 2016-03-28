@@ -6,7 +6,7 @@ TownHall.factory('dataFactory', function($http) {
       method: 'POST',
       url: 'api/board/populateRoom',
       data: boardID
-    }).then(function success(res) {
+    }).then(function(res) {
       return res.data;
     }, function error(response) {
       console.log('error', response);
