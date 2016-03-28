@@ -91,7 +91,7 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $t
     $scope.createdBy = board.board_createdby;
     $scope.boardLists = JSON.parse(board.board_lists);
     var boardobj = {
-      boardID: board.id
+      boardID: JSON.parse(board.id)
     };
     $scope.getMembers(boardobj, function(members) {
       members.forEach(function(member) {
