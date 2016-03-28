@@ -209,7 +209,7 @@ var helpers = {
       });
     }
   },
-  getBoardMembers: function(req, res) {
+  getBoardMembers: function(req, res, next) {
     knex('Invitations')
     .whereIn('board_id', req.body.boardID)
     .select('user_id', 'response')
