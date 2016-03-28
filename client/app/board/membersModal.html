@@ -3,10 +3,16 @@
     <h3>Board Members</h3>
     <section>
       <h5>Joined</h5>
+
+      <!-- shows the board creator -->
       <p>{{createdBy.name}} (owner)</p>
+
+      <!-- shows all other members of the board -->
       <p ng-repeat="member in joinedMembers">{{member.name}}</p>
     </section>
     <section>
+
+      <!-- shows all invited members that are pending responses -->
       <h5>Invited</h5>
       <p ng-repeat="member in pendingMembers">{{member.name}}</p>
     </section>
@@ -15,10 +21,13 @@
   <div>
     <h3>Invite Members</h3>
 
+    <!-- invites members with an email -->
     <form ng-submit="addInvite()">
       <md-input-container>
         <label>Email</label>
         <input ng-model="inviteMember" type="text"></input>
+
+        <!-- invite member button -->
         <md-button aria-label="inviteMember" ng-click="addInvite()"><i class="fa fa-user-plus"></i></md-button>
       </md-input-container>
     </form>

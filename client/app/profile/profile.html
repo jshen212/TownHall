@@ -4,10 +4,14 @@
 
     <div class="tool">
       <md-menu md-offset="0 42">
+
+        <!-- notification (bell) menu -->
         <md-button id="notificationButton" ng-show="invitations.length" class="md-icon-button" aria-label="Open menu" ng-click="$mdOpenMenu($event)">
           <md-icon class="fa fa-bell" id="notificationButton"></md-icon>
         </md-button>
         <md-menu-content width="4">
+
+          <!-- shows all board invitations that logged in user has received -->
           <md-menu-item ng-repeat="invitation in invitations">
             <div class="invitation" id="boardInvitation">{{invitation.board_createdby.name}} invited you to join {{invitation.board_title}}
               <md-button class="join" ng-click="respondToInvite(invitation.id, $index, 'yes')">Join</md-button>
@@ -20,6 +24,8 @@
 
     <div class="tool">
       <md-menu md-position-mode="target-right target" md-offset="0 50">
+
+        <!-- hamburger menu -->
         <md-button id="profileMenu" class="md-icon-button" aria-label="Open menu" ng-click="$mdOpenMenu($event)">
           <md-icon class="fa fa-bars"></md-icon>
         </md-button>
@@ -48,12 +54,15 @@
 <div class="profileContainer" ng-init="loadProfile()">
 
   <md-content layout="row">
+    <!-- user information -->
     <md-card flex="25" class="userContainer" hide-sm hide-xs>
       <img src="{{userImage}}" class="md-card-image" alt="Profile Picture">
       <md-card-content>
         <div inline-edit=userName inline-edit-placeholder="Edit Name" inline-edit-on-blur="cancel" inline-edit-btn-edit='<i class="fa fa-pencil"></i>' inline-edit-callback='updateProfile(newValue)'></div>
       </md-card-content>
     </md-card>
+
+    <!-- joined boards -->
     <div>
       <h3 class="boardsHeader">My Boards</h3>
       <div class="flexContainer">

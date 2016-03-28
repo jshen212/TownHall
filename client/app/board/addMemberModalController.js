@@ -3,13 +3,17 @@ TownHall.controller('addMemberModalCtrl', function($scope, $http, dataFactory, $
   $scope.boardMembers = [];
   $scope.inviteMember = '';
 
+  // invites member to a board
   $scope.addInvite = function() {
     var email = {
       email: $scope.inviteMember
     };
+    // verifies that the email exists
     dataFactory.verifyMember(email, function(boolean) {
+      // if email exists, push email into boardMembers array
       if (boolean) {
         $scope.boardMembers.push(email);
+        // reset invited member field to empty
         $scope.inviteMember = '';
         $scope.userExists = true;
         console.log('invite sent');
@@ -17,18 +21,18 @@ TownHall.controller('addMemberModalCtrl', function($scope, $http, dataFactory, $
       }
       else {
         $scope.userExists = false;
-        // $scope.inviteMember = '';
         console.log('user does not exist');
       }
     });
   };
 
+  // removes a user from the boardMembers array
   $scope.unInvite = function(index) {
     $scope.boardMembers.splice(index, 1);
   };
 
+// creates a new invite and adds the invite to the Invites collection
   $scope.addMembers = function() {
-
     $scope.boardMembers.forEach(function(member) {
       var data = {
         email: member.email,

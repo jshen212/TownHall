@@ -1,68 +1,72 @@
 <container class="dashboardView">
 
-<div class="navBar">
-  <h1 class="logo" ng-click="goProfile()"><i class="fa fa-university"></i>TownHall</h1>
-  <div class="tools">
+  <div class="navBar">
+    <h1 class="logo" ng-click="goProfile()"><i class="fa fa-university"></i>TownHall</h1>
+    <div class="tools">
 
-    <div class="tool">
-      <md-menu md-offset="0 42">
-        <md-button class="md-icon-button" aria-label="Open menu" ng-click="$mdOpenMenu($event)" hide>
-          <md-icon class="fa fa-bell"></md-icon>
-        </md-button>
-        <md-menu-content width="4">
-          <md-menu-item ng-repeat="invitation in invitations">
-            <div class="invitation"> {{invitation.board_createdby}} invited you to join {{invitation.board_title}}
-              <md-button class="join" ng-click="join(invitation.id)">Join</md-button>
-              <md-button class="deny" ng-click="deny(invitation.id)">Deny</md-button>
-            </div>
-          </md-menu-item>
-        </md-menu-content>
-      </md-menu>
-    </div>
+      <div class="tool">
+        <md-menu md-offset="0 42">
+          <md-button class="md-icon-button" aria-label="Open menu" ng-click="$mdOpenMenu($event)" hide>
 
-    <div class="tool">
-      <md-menu md-position-mode="target-right target" md-offset="0 50">
-        <md-button id="profileMenu" class="md-icon-button" aria-label="Open menu" ng-click="$mdOpenMenu($event)">
-          <md-icon class="fa fa-bars"></md-icon>
-        </md-button>
-        <md-menu-content width="4">
-          <md-menu-item>
-            <md-button ng-click="openCreateBoardModal()">
-              <div>Create New Board</div>
-            </md-button>
-          </md-menu-item>
-          <md-menu-item>
-            <md-button ng-click="goProfile()">
-              <div>Profile</div>
-            </md-button>
-          </md-menu-item>
-          <md-menu-item>
-            <md-button ng-click="signout()">
-              <div id="signOut">Sign Out</div>
-            </md-button>
-          </md-menu-item>
-        </md-menu-content>
-      </md-menu>
-    </div>
+            <!-- notifications icon in navbar -->
+            <md-icon class="fa fa-bell"></md-icon>
+          </md-button>
+          <md-menu-content width="4">
 
-  </div>
-</div>
+            <!-- shows boardinvitations that logged in user is invited to -->
+            <md-menu-item ng-repeat="invitation in invitations">
+              <div class="invitation"> {{invitation.board_createdby}} invited you to join {{invitation.board_title}}
+                <md-button class="join" ng-click="join(invitation.id)">Join</md-button>
+                <md-button class="deny" ng-click="deny(invitation.id)">Deny</md-button>
+              </div>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
+      </div>
 
+      <div class="tool">
+        <md-menu md-position-mode="target-right target" md-offset="0 50">
 
-
-
-<div class="viewsContainer">
-  <div layout="row">
-    <!-- COLUMN ONE NAMED VIEW -->
-    <div class="boardView" flex-sm="100" flex="75">
-      <div ui-view="board"></div>
-    </div>
-    <!-- COLUMN TWO NAMED VIEW -->
-    <div class="chatView" flex="25" hide-sm hide-xs>
-      <div ui-view="chat"></div>
+          <!-- hamburger menu -->
+          <md-button id="profileMenu" class="md-icon-button" aria-label="Open menu" ng-click="$mdOpenMenu($event)">
+            <md-icon class="fa fa-bars"></md-icon>
+          </md-button>
+          <md-menu-content width="4">
+            <md-menu-item>
+              <md-button ng-click="openCreateBoardModal()">
+                <div>Create New Board</div>
+              </md-button>
+            </md-menu-item>
+            <md-menu-item>
+              <md-button ng-click="goProfile()">
+                <div>Profile</div>
+              </md-button>
+            </md-menu-item>
+            <md-menu-item>
+              <md-button ng-click="signout()">
+                <div id="signOut">Sign Out</div>
+              </md-button>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
+      </div>
     </div>
   </div>
-</div>
+
+
+
+
+  <div class="viewsContainer">
+    <div layout="row">
+      <!-- board view -->
+      <div class="boardView" flex-sm="100" flex="75">
+        <div ui-view="board"></div>
+      </div>
+      <!-- chat view -->
+      <div class="chatView" flex="25" hide-sm hide-xs>
+        <div ui-view="chat"></div>
+      </div>
+    </div>
+  </div>
 </div>
 </container>
-
