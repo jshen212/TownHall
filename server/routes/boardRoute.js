@@ -16,9 +16,7 @@ module.exports = function(app) {
   // get invititations
   app.post('/invitations', boardController.getInviteBoards);
   // update invitations
-  app.post('/getMembers', boardController.getBoardMembers);
+  app.post('/populateRoom', boardController.getBoardMembers);
   // hi
   app.post('/updateInvite', boardController.updateInvite);
-  // get board members
-  // hi
 };

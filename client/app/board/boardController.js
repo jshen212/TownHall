@@ -1,4 +1,4 @@
-TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $timeout, $stateParams, boardFactory, User, dataFactory, Socket) {
+TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $timeout, $stateParams, User, dataFactory, Socket) {
   $scope.created = false;
   $scope.boardID = '';
   $scope.boardTitle = '';
@@ -24,7 +24,7 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $t
   };
 
   $scope.getMembers = function(id, callback) {
-    boardFactory.getMembers(id).then(function(members) {
+    dataFactory.getMembers(id).then(function(members) {
       callback(members);
     });
   };
