@@ -3,7 +3,7 @@ TownHall.factory('boardFactory', function($http) {
   var getMembers = function(boardID) {
     return $http({
       method: 'POST',
-      url: 'api/board/members/',
+      url: 'api/board/getMembers',
       data: boardID
     }).then(function(res) {
       return res.data;
