@@ -1,5 +1,6 @@
 TownHall.factory('profileFactory', function($http) {
 
+  // uses a user object to fetch all boards that the user is part of
   var getBoards = function(user) {
     return $http({
       method: 'POST',
@@ -10,6 +11,7 @@ TownHall.factory('profileFactory', function($http) {
     });
   };
 
+  // uses a user object to fetch all invitations that the user is part of
   var getInvites = function(user) {
     return $http({
       method: 'POST',
@@ -20,6 +22,7 @@ TownHall.factory('profileFactory', function($http) {
     });
   };
 
+  // uses a user object to fetch a specific user's name
   var getUserName = function(user) {
     return $http({
       method: 'POST',
@@ -30,6 +33,7 @@ TownHall.factory('profileFactory', function($http) {
     });
   };
 
+  // uses a user object to fetch a user's profile and updates it with the new data
   var updateProfile = function(user) {
     return $http({
       method: 'POST',
@@ -40,6 +44,7 @@ TownHall.factory('profileFactory', function($http) {
     });
   };
 
+  // fetches a specific invite and updates the response 
   var inviteResponse = function(inviteData) {
     return $http({
       method: 'POST',

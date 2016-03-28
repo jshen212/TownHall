@@ -1,27 +1,36 @@
 <div id="createBoardModalPopup" class="createBoardModal">
   <h3>Create a New Board</h3>
   <form>
+
+    <!-- board name input -->
     <md-input-container>
       <label>Board Name</label>
       <input ng-model="newBoardName"></input>
     </md-input-container>
   </form>
 
+  <!-- invites member on enter -->
   <form ng-submit="addInvite()">
     <h4>Invite Members</h4>
     <md-input-container>
       <label>Add Members</label>
+
+      <!-- member email input -->
       <input ng-model="inviteMember" type="text"></input>
       <md-button id="inviteSubmit" type="submit">+</md-button>
     </md-input-container>
   </form>
 
+  <!-- shows members that have been invited while creating this board -->
   <div class="invitedBoardMembers">
     <p class="successfulInvite" id= "invitedMember" ng-repeat="member in boardMembers" ng-click="unInvite($index)">
       {{ member.email }}
     </p>
+
+    <!-- checks if user exists in database, if not, this notification will show -->
     <p class="userDoesntExist" ng-show="!userExists">*** {{inviteMember}} does not exist <br> please enter a valid email</p>
   </div>
 
+  <!-- create board button -->
   <md-button id="submitCreateBoard" ng-click="createBoard()">Create Board</md-button>
 </div>

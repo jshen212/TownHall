@@ -1,19 +1,26 @@
 <div id="createBoardModalPopup" class="createBoardModal">
   <form ng-submit="addInvite()">
     <h4>Invite Members</h4>
+
+    <!-- add members email input -->
     <md-input-container>
       <label>Add Members</label>
       <input ng-model="inviteMember" type="text" placeholder="email"></input>
+
+      <!-- button to add members -->
       <md-button id="inviteSubmit" type="submit">+</md-button>
     </md-input-container>
   </form>
 
+  <!-- modal that shows invited members -->
   <div class="invitedBoardMembers">
     <p class="successfulInvite" id= "invitedMember" ng-repeat="member in boardMembers" ng-click="unInvite($index)">
       {{ member.email }}
     </p>
+    <!-- shows this message if user email does not exist -->
     <p class="userDoesntExist" ng-show="!userExists">*** {{inviteMember}} does not exist <br> please enter a valid email</p>
   </div>
 
+  <!-- add member button -->
   <md-button id="addMembers" ng-click="addMembers()">Add Members</md-button>
 </div>

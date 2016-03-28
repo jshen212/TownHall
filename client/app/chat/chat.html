@@ -1,21 +1,22 @@
 <div class="chat-view">
   <div class="chatViewContainer">
-    <!-- <h1 class="chat-title">chat</h1> -->
-      <div class="messageContainer" scroll-glue="glued">
 
-        <div class="guestMessage" ng-repeat="message in messages" ng-class="{'userMessage': message.userId === user.id}">
-          <p class="chatUsername">{{message.name}}</p>
-          <p class="guestChatMessageBody" ng-class="{'userChatMessageBody': message.userId === user.id}">{{message.message}}</p>
-        </div>
+    <!-- glues scroll bar to the bottom of the chat to see recent messages -->
+    <div class="messageContainer" scroll-glue="glued">
 
-        <!-- <div class="userMessage" ng-repeat="message in messages" ng-show="message.name === user.name">
-          <p class="chatUsername">{{message.name}}</p>
-          <p class="userChatMessageBody">{{message.message}}</p>
-        </div> -->
-
+    <!-- renders messages -->
+      <div class="guestMessage" ng-repeat="message in messages" ng-class="{'userMessage': message.userId === user.id}">
+        <!-- shows username -->
+        <p class="chatUsername">{{message.name}}</p>
+        <!-- shows message text -->
+        <p class="guestChatMessageBody" ng-class="{'userChatMessageBody': message.userId === user.id}">{{message.message}}</p>
       </div>
+    </div>
   </div>
+
+  <!-- sends message on pushing enter -->
   <form ng-submit="sendMessage()">
+    <!-- input area to type messages -->
     <input class="messageInput" ng-model="chat.message" type="text" placeholder="enter a message">
   </form>
 </div>

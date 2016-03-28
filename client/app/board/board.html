@@ -1,7 +1,11 @@
 <div class="boardContainer" ng-controller="boardCtrl" ng-init="loadBoard()">
 
   <div class="boardMenuBar md-toolbar-tools">
+
+    <!-- board title -->
     <h1 id="boardName" class="boardTitle">{{boardTitle}}</h1>
+
+    <!-- board hamburger menu -->
     <div class="boardMenu">
       <md-menu>
         <md-button class="md-icon-button" style="float:right;" aria-label="Open menu" ng-click="$mdOpenMenu($event); checkUserCreatedBoard()">
@@ -17,48 +21,60 @@
         </md-menu-content>
       </md-menu>
     </div>
+
+    <!-- board icon that shows members -->
     <md-icon class="fa fa-users" ng-click="editMembers()"></md-icon>
   </div>
 
+  <!-- lists when inside a board -->
   <div class="board" >
     <ul class="mainContainer" dnd-list="boardLists"
-        dnd-allowed-types="['listType']"
-        dnd-external-sources="true"
-        dnd-dragover="dragoverCallback(event, index, external, type)"
-        dnd-drop="dropCallback(event, index, item, external, type, 'listType')">
-      <li class="list" ng-repeat="list in boardLists"
-          dnd-draggable="list"
-          dnd-type="'listType'"
-          dnd-effect-allowed="move"
-          dnd-moved="boardLists.splice($index, 1)">
+    dnd-allowed-types="['listType']"
+    dnd-external-sources="true"
+    dnd-dragover="dragoverCallback(event, index, external, type)"
+    dnd-drop="dropCallback(event, index, item, external, type, 'listType')">
+    <li class="list" ng-repeat="list in boardLists"
+    dnd-draggable="list"
+    dnd-type="'listType'"
+    dnd-effect-allowed="move"
+    dnd-moved="boardLists.splice($index, 1)">
 
-          <button class="removeList" ng-click="removeList($event, $index)"><i class="fa fa-times"></i></button>
-          <div class="editListTitle" inline-edit=list.title inline-edit-placeholder="Untitled List" inline-edit-on-blur="save" inline-edit-btn-edit="" inline-edit-callback='editTitle(newValue, list)' inline-edit-on-click></div>
-          <div class="cardList">
-          <ul dnd-list="list.cards"
-              dnd-allowed-types="['cardType']"
-              dnd-horizontal-list="true"
-              dnd-external-sources="true"
-              dnd-dragover="dragoverCallback(event, index, external, type)"
-              dnd-drop="dropCallback(event, index, item, external, type, 'cardType')">
-              <li ng-repeat="card in list.cards"
-                  dnd-draggable="card"
-                  dnd-type="'cardType'"
-                  dnd-effect-allowed="move"
-                  dnd-moved="list.cards.splice($index, 1)"
-                  class="card" ng-click="editCard(card)">
-                  <button class="removeCard" ng-click="removeCard(list, $index)"><i class="fa fa-times removeCard"></i></button>
-                  <p class="cardText">{{card.text}}</p>
-                <!-- <md-button>Edit</md-button> -->
-              </li>
-          </ul>
-          <div class="addNewCard">
-            <div id="addCard"  inline-edit="" inline-edit-placeholder="Add New Card" inline-edit-on-blur="save" inline-edit-btn-edit="" inline-edit-callback='addCard(newValue, list)' inline-edit-on-click></div>
-          </div>
-        </div>
-      </li>
-      <button class="addList" ng-click="addList()">add list</button>
-    </ul>
+    <!-- remove list button -->
+    <button class="removeList" ng-click="removeList($event, $index)"><i class="fa fa-times"></i></button>
+    <div class="editListTitle" inline-edit=list.title inline-edit-placeholder="Untitled List" inline-edit-on-blur="save" inline-edit-btn-edit="" inline-edit-callback='editTitle(newValue, list)' inline-edit-on-click></div>
+
+    <!-- makes cards that are within a task list draggable-->
+    <div class="cardList">
+      <ul dnd-list="list.cards"
+      dnd-allowed-types="['cardType']"
+      dnd-horizontal-list="true"
+      dnd-external-sources="true"
+      dnd-dragover="dragoverCallback(event, index, external, type)"
+      dnd-drop="dropCallback(event, index, item, external, type, 'cardType')">
+
+      <!-- each card in a list -->
+      <li ng-repeat="card in list.cards"
+      dnd-draggable="card"
+      dnd-type="'cardType'"
+      dnd-effect-allowed="move"
+      dnd-moved="list.cards.splice($index, 1)"
+      class="card" ng-click="editCard(card)">
+      <!-- remove card button -->
+      <button class="removeCard" ng-click="removeCard(list, $index)"><i class="fa fa-times removeCard"></i></button>
+      <p class="cardText">{{card.text}}</p>
+    </li>
+  </ul>
+
+  <!-- add new card input, submits new card on enter -->
+  <div class="addNewCard">
+    <div id="addCard"  inline-edit="" inline-edit-placeholder="Add New Card" inline-edit-on-blur="save" inline-edit-btn-edit="" inline-edit-callback='addCard(newValue, list)' inline-edit-on-click></div>
   </div>
+</div>
+</li>
+
+<!-- add list button -->
+<button class="addList" ng-click="addList()">add list</button>
+</ul>
+</div>
 
 </div>

@@ -1,16 +1,26 @@
 <div class="container">
   <md-content layout-padding layout="column" layout-align="center center">
     <h2>Sign in to Town Hall</h2>
+
+    <!-- email input -->
     <md-input-container>
       <label>Email</label>
       <input ng-model="user.email">
     </md-input-container>
+
+    <!-- password input -->
     <md-input-container>
       <label>Password</label>
       <input ng-model="user.password" type="password" ng-submit="signin()">
     </md-input-container>
+
+    <!-- signin button -->
     <md-button id="signIn" class="md-raised md-primary" ng-click="signin()">Sign In</md-button>
+
+    <!-- create account link -->
     <p>Don't have an account? <a href="#/signup">Create an account</a></p>
+
+    <!-- google signin -->
     <md-button class="md-raised md-primary" ng-click="googleSignin()">Sign In with Google</md-button>
   </md-content>
 </div>

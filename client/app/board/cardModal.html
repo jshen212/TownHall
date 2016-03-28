@@ -2,20 +2,25 @@
   <h3>Details</h3>
   <p class="cardModalText" editable-textarea=card.text>{{card.text}}</p>
   <div layout="row">
+
+    <!-- comment section in the card modal -->
     <div class="commentSection" layout="column">
       <form>
         <md-input-container>
+
+          <!-- adds comments -->
           <label>Add Comment</label>
           <textarea ng-model="comment" md-select-on-focus></textarea>
           <md-button ng-click="addComment(comment)">Save</md-button>
         </md-input-container>
       </form>
+
+      <!-- repeats saved comments -->
       <ul>
         <li class="comment" ng-repeat="comment in card.comments">{{comment.createdBy.name}}: {{comment.text}}</li>
       </ul>
     </div>
     <div class="buttons" layout="column">
-      <md-button>Add Member</md-button>
     </div>
   </div>
 </div>

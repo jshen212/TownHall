@@ -1,28 +1,32 @@
 TownHall.controller('profileCtrl', function($scope, Auth, User, $state, dataFactory, profileFactory, $mdDialog, $mdSidenav) {
-  // $scope.boards = [{board_id: 1, boardName: 'board1'}, {board_id: 3, boardName: 'board3'}, {board_id: 7, boardName: 'board7'}];
   $scope.boards = [];
   $scope.invitations = [];
   $scope.userName = '';
   $scope.userEmail = '';
   $scope.userImage = '';
 
+  // refreshes the profile page
   $scope.refreshProfile = function() {
     window.location.reload();
   };
 
+  // deletes the user information from local storage and directs user to sign in page
   $scope.signout = function() {
     Auth.signout();
     $state.go('signin');
   };
 
+  // updates the user's information in the database and in localStorage
   $scope.updateProfile = function(val) {
     var getAuth = Auth.getAuth();
     var user = {
       uid: getAuth.uid,
       name: val
     };
+    // sends the user info to fetch the specific user's info from the Users table
     profileFactory.updateProfile(user).then(function() {
       User.getUser(user, function(fetchedData) {
+        // updates the information in the database and the localStorage
         var userInfo = JSON.stringify(fetchedData[0]);
         localStorage.setItem('userInfo', userInfo);
         $scope.userName = val;
@@ -30,14 +34,20 @@ TownHall.controller('profileCtrl', function($scope, Auth, User, $state, dataFact
     });
   };
 
+  // loads the board that the user enters
   $scope.loadBoard = function(board) {
+    // sets the boardID
     var boardID = board.board_id;
+    // adds the boardID to the session storage
     sessionStorage.setItem('boardID', boardID);
+    // fetches the board from the database
     dataFactory.loadBoard(board, function(fetchedData) {
+      // directs the user to the dashboard and loads the specific board that the user entered
       $state.go('dashboard', {obj: fetchedData});
     });
   };
 
+  // opens a modal that creates a new board
   $scope.openCreateBoardModal = function() {
     $mdDialog.show({
       clickOutsideToClose: true,
@@ -47,12 +57,14 @@ TownHall.controller('profileCtrl', function($scope, Auth, User, $state, dataFact
     });
   };
 
+  // takes a user's information and stores it in the associated properties in the controller's scope
   $scope.setUserInfo = function(user) {
     $scope.userName = user.name;
     $scope.userEmail = user.email;
     $scope.userImage = user.image || 'https://about.udemy.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png';
   };
 
+  // uses a user's information to retrieve all invites that the user has received
   $scope.getInvites = function(user) {
     profileFactory.getInvites(user).then(function(invitations) {
       invitations.forEach(function(invitation) {
@@ -67,6 +79,7 @@ TownHall.controller('profileCtrl', function($scope, Auth, User, $state, dataFact
     });
   };
 
+  // gets all the boards that a user is part of
   $scope.getBoards = function(user) {
     profileFactory.getBoards(user).then(function(boards) {
       var formattedBoards = boards.map(function(board) {
@@ -79,6 +92,7 @@ TownHall.controller('profileCtrl', function($scope, Auth, User, $state, dataFact
     });
   };
 
+  // uses the user's id to retrieve the user's data and loads that user's profile
   $scope.loadProfile = function() {
     var userID = localStorage.getItem('userInfo');
     var user = JSON.parse(userID);
@@ -102,6 +116,7 @@ TownHall.controller('profileCtrl', function($scope, Auth, User, $state, dataFact
     }
   };
 
+  // responds to an invitation using the boardId and updates the response based on whether the user clicks join or deny
   $scope.respondToInvite = function(boardID, index, response) {
     var user = JSON.parse(localStorage.getItem('userInfo'));
     var userID = user.id;
