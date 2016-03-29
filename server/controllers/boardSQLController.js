@@ -9,6 +9,8 @@ var _ = require('underscore');
 var knex = require('../db/schema.js').knex;
 
 var helpers = {
+
+  // creates a new board
   createBoard: function(req, res, next) {
     var newBoard = new Board({
       board_title: req.body.boardname,
@@ -18,8 +20,6 @@ var helpers = {
     newBoard.save()
     .then(function(newBoard) {
       Boards.add(newBoard);
-      console.log('new board has been created!', newBoard);
-      // helpers.addJoin(req, newBoard);
       helpers.addJoin(req, newBoard);
       res.status(201).send(newBoard);
     })
@@ -27,10 +27,10 @@ var helpers = {
       console.log('error in creating Board', err);
     });
   },
-  //When user logs in, this function gets all board ids and title related to the user.
+
+  // gets all board ids and title related to the user on sign in
   getProfileView: function(req, res, next) {
     var boardIdArray = [];
-    console.log('sending board...');
     helpers.getBoardIds(req, res, function(boardIds) {
       boardIds.forEach(function(boardId) {
         boardIdArray.push(boardId.board_id);
@@ -46,8 +46,9 @@ var helpers = {
       });
     });
   },
+
+  // gets a specific board for a signed in user
   getBoard: function(req, res, next) {
-    console.log('line44 boardSQLController', req);
     knex('Boards')
     .whereIn('id', req.body.board_id)
     .select()
@@ -58,11 +59,14 @@ var helpers = {
       console.log('error in getting board', err);
     });
   },
+
+  // sends an invite to a specific user based on email
   sendInvite: function(req, res, next) {
     knex('Users')
     .whereIn('email', req.body.email)
     .select('id')
     .then(function(userId) {
+      // creates a new invitation
       var invitation = new Invite({
         user_id: userId[0].id,
         board_id: req.body.board_id
@@ -70,11 +74,12 @@ var helpers = {
       invitation.save()
       .then(function(invite) {
         Invites.add(invite);
-        console.log('invite link has been created!', invite);
         res.status(201).send('Invite has been made!');
       });
     });
   },
+
+  // gets all boards that a user is invited to
   getInviteBoards: function(req, res, next) {
     var invitedBoards = [];
     helpers.getInviteIds(req, res, function(boards) {
@@ -85,7 +90,6 @@ var helpers = {
       .whereIn('id', invitedBoards)
       .select('id', 'board_title', 'board_createdby')
       .then(function(boards) {
-        console.log('invited boards have been sent!', boards);
         res.send(boards);
       })
       .catch(function(err) {
@@ -93,19 +97,22 @@ var helpers = {
       });
     });
   },
+
+  // gets all board IDs that a user is invited to
   getInviteIds: function(req, res, callback) {
     knex('Invitations')
     .whereIn('user_id', req.body.id)
     .whereIn('response', 0)
     .select('board_id')
     .then(function(boards) {
-      console.log('fetched boards', boards);
       callback(boards);
     })
     .catch(function(err) {
       console.log('error in getting invitation board ids', err);
     });
   },
+
+  // updates a specific board
   updateBoard: function(req, res, next) {
     knex('Boards')
     .whereIn('id', req.body.board_id)
@@ -114,29 +121,27 @@ var helpers = {
       board_lists: JSON.stringify(req.body.board_lists)
     })
     .then(function() {
-      console.log('board updated');
       res.status(201).send('board updated');
     })
     .catch(function(err) {
       console.log('error in updating board', err);
     });
   },
+
+  // deletes a specific board
   deleteBoard: function(req, res, next) {
     knex('Joined')
     .whereIn('board_id', req.body.board_id)
     .del()
     .then(function() {
-      console.log('joined board deleted');
       knex('Invitations')
       .whereIn('board_id', req.body.board_id)
       .del()
       .then(function() {
-        console.log('invitations board deleted');
         knex('Boards')
         .whereIn('id', req.body.board_id)
         .del()
         .then(function() {
-          console.log('boards board deleted');
           res.status(201).send('board deleted');
         })
         .catch(function(err) {
@@ -151,18 +156,21 @@ var helpers = {
       console.log('error in deleting joined board', err);
     });
   },
+
+  // gets all board IDs that a user has joined
   getBoardIds: function(req, res, callback) {
     knex('Joined')
     .whereIn('user_id', req.body.id)
     .select('board_id')
     .then(function(boardIds) {
-      console.log('board knex db query result is: ', boardIds);
       callback(boardIds);
     })
     .catch(function(err) {
       console.log('error in getting board ids', err);
     });
   },
+
+  // adds a user into a specific board
   addJoin: function(req, board, next) {
     var newJoined = new Joinuser({
       user_id: req.body.id,
@@ -171,9 +179,10 @@ var helpers = {
     newJoined.save()
     .then(function(joined) {
       Joinusers.add(joined);
-      console.log('new user board connection has been created', joined);
     });
   },
+
+  // adds a user to the list of users who have joined a board, then runs a callback
   joinInvited: function(req, res, callback) {
     var newJoined = new Joinuser({
       user_id: req.body.userId,
@@ -182,10 +191,11 @@ var helpers = {
     newJoined.save()
     .then(function(joined) {
       Joinusers.add(joined);
-      console.log('new user board connection has been created', joined);
       callback();
     });
   },
+
+  // updates an invited user's response to 1 from 0 in the "Invitations table"
   updateInvite: function(req, res, next) {
     console.log(req.body);
     if (req.body.answer === 'yes') {
@@ -209,12 +219,13 @@ var helpers = {
       });
     }
   },
+
+  // gets users for a specific board who have joined
   getBoardMembers: function(req, res, next) {
     knex('Invitations')
     .whereIn('board_id', req.body.boardID)
     .select('user_id', 'response')
     .then(function(users) {
-      console.log('fetched users', users);
       res.send(users);
     })
     .catch(function(err) {

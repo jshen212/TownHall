@@ -6,7 +6,7 @@ var knex = require('../db/schema.js').knex;
 
 module.exports = {
   addProfile: function(req, res, next) {
-    // add a new profile to the Users table in userSQL
+    // adds a new profile to the Users table in userSQL
     console.log('creating a new user!');
     var newUser = new User({
       email: req.body.email,
@@ -25,7 +25,7 @@ module.exports = {
     });
   },
   getUserProfile: function(req, res, next) {
-    // send a request to our sql databse for user profile. match by email
+    // sends a request to our sql databse for user profile, match by uid
     console.log('sending user...');
     knex('Users')
     .whereIn('uid', req.body.uid)
@@ -35,7 +35,9 @@ module.exports = {
       res.send(user);
     });
   },
+
   updateProfile: function(req, res) {
+    // updates a specific user's information, match by uid
     knex('Users')
     .whereIn('uid', req.body.uid)
     .update({
@@ -47,7 +49,9 @@ module.exports = {
       res.status(201).send('user updated');
     });
   },
+
   verifyMember: function(req, res, next) {
+    // verifies that a user has an account in the database, match by email
     knex('Users')
     .whereIn('email', req.body.email)
     .select('email', 'name', 'image', 'uid', 'id')
@@ -56,7 +60,9 @@ module.exports = {
       res.send(user);
     });
   },
+
   getUserName: function(req, res) {
+    // gets a user's name, match by id
     knex('Users')
     .whereIn('id', req.body.user_id)
     .select('name', 'image', 'email')

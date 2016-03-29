@@ -1,6 +1,7 @@
 var db = require('../db/schema.js').db;
 var Promise = require('bluebird');
 
+// creates a Userboardjoin model associated with the Joined table, which shows which users are part of which boards
 var Userboardjoin = db.Model.extend({
   tableName: 'Joined',
   hasTimestamps: true,
@@ -10,7 +11,6 @@ var Userboardjoin = db.Model.extend({
   user: function() {
     return this.belongsTo(User, 'id');
   }
-
 });
 
 module.exports = Userboardjoin;

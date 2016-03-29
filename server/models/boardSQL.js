@@ -1,6 +1,7 @@
 var db = require('../db/schema.js').db;
 var Promise = require('bluebird');
 
+// creates a Board model associated with the Boards table
 var Board = db.Model.extend({
   tableName: 'Boards',
   hasTimestamps: true,
@@ -10,7 +11,6 @@ var Board = db.Model.extend({
   users: function() {
     return this.hasMany(User);
   }
-
 });
 
 module.exports = Board;
