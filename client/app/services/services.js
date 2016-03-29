@@ -65,7 +65,6 @@ TownHall.factory('dataFactory', function($http) {
       data: id
     }).then(function success() {
       console.log('board deleted...in dataFactory');
-      // response.send(200);
     }, function error(response) {
       console.log('error', response);
     });
@@ -125,7 +124,6 @@ TownHall.factory('dataFactory', function($http) {
     sendInvite: sendInvite,
     getMembers: getMembers
   };
-
 })
 
 .factory('Socket', function($rootScope) {
@@ -158,5 +156,4 @@ TownHall.factory('dataFactory', function($http) {
     on: on,
     emit: emit
   };
-
 });
