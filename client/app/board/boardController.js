@@ -75,7 +75,7 @@ TownHall.controller('boardCtrl', function($scope, $window, $mdDialog, $state, $t
 
   // adds a task card to a list
   $scope.addCard = function(val, list) {
-    list.cards.push({comments: [{attachments: '', createdBy: 'user information holder', text: 'first comment'}], text: val});
+    list.cards.push({comments: [], text: val});
   };
 
   // edits the text in a task card
