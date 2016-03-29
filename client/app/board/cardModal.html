@@ -5,12 +5,12 @@
 
     <!-- comment section in the card modal -->
     <div class="commentSection" layout="column">
-      <form>
+      <form ng-submit="addComment(comment)">
         <md-input-container>
 
           <!-- adds comments -->
           <label>Add Comment</label>
-          <textarea ng-model="comment" md-select-on-focus></textarea>
+          <input ng-model="comment" md-select-on-focus></input>
           <md-button ng-click="addComment(comment)">Save</md-button>
         </md-input-container>
       </form>

@@ -8,15 +8,15 @@
     <!-- board hamburger menu -->
     <div class="boardMenu">
       <md-menu>
-        <md-button class="md-icon-button" style="float:right;" aria-label="Open menu" ng-click="$mdOpenMenu($event); checkUserCreatedBoard()">
+        <md-button class="md-icon-button" aria-label="Open menu" ng-click="$mdOpenMenu($event); checkUserCreatedBoard()">
           <md-icon class="fa fa-cog boardMenuIcon"></md-icon>
         </md-button>
         <md-menu-content width="4">
           <md-menu-item>
             <md-button class="join" ng-click="openInviteMemberModal()">Add Members</md-button>
           </md-menu-item>
-          <md-menu-item>
-            <md-button class="join" ng-show="created" ng-click="deleteBoard()">Delete Board</md-button>
+          <md-menu-item ng-show="created">
+            <md-button class="join" ng-click="deleteBoard()">Delete Board</md-button>
           </md-menu-item>
         </md-menu-content>
       </md-menu>
